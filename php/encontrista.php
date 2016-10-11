@@ -10,9 +10,10 @@
     $Carta = $_POST["carta"];
     $Valor = $_POST["valor"];
     $Desistencia = $_POST["desistencia"];
+    $Remedio = $_POST["remedio"];
     
-    $Consulta ="INSERT INTO `retiro`.`encontrista`(`IdFicha`, `Nome`, `Sexo`, `Idade`, `Comunidade`, `Onibus`, `Carta`, `Valor`, `Desistencia`) 
-    VALUES ('$Idficha','$Nome','$Sexo','$Idade','$Comunidade','$Onibus','$Carta','$Valor','$Desistencia')";
+    $Consulta ="INSERT INTO `retiro`.`encontrista`(`IdFicha`, `Nome`, `Sexo`, `Idade`, `Comunidade`, `Onibus`, `Carta`, `Valor`, `Desistencia`, `Remedio`) 
+    VALUES ('$Idficha','$Nome','$Sexo','$Idade','$Comunidade','$Onibus','$Carta','$Valor','$Desistencia','$Remedio')";
     echo $Consulta;
 	$Result = mysql_query($Consulta);
 	
