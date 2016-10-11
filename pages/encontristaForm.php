@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
     ?>
@@ -35,63 +35,72 @@
             </div>
             <!-- /.row -->
             <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
-            <div class="table">
-                  <table class="table">
-                    <tr>
-                        <form action="../php/encontrista.php" method="POST">
-                        <td>Nº ficha:</td>
-                        <td><input type="text" style="width: 50px" name="Idficha" id="Idficha" class="form-control" ></td>
-                        <td>Nome encontrista:</td>
-                        <td><input type="text" style="width: 450px" name="Nome" id="Nome" class="form-control"></td>
-                        <td>Sexo:</td>
-                        <td>1
-                        <label class="radio-inline">
-                            <input type="radio" name="sexo" id="sexo" value="F"> Feminino
-                            </label>
-                            <label class="radio-inline">
-                              <input type="radio" name="sexo" id="sexo" value="M"> Masculino
-                            </label>
-                        </td>
-                    </tr><!-- FIM DO PRIMEIRO Tr  -->
-                    <tr>
-                        <td>comunidade:</td>
-                        <td><input type="text" style="width: 70px" name="comunidade" id="comunidade" class="form-control"></td>
-                        <td>idade:</td>
-                        <td><input type="text" style="width: 45px" name="idade" id="idade" class="form-control"></td>
-                         <td>Ira de ônibus:</td>
-                        <td>
-                        <label class="radio-inline">
-                            <input type="radio" name="onibus" id="onibus" value="1"> Sim
-                            </label>
-                            <label class="radio-inline">
-                              <input type="radio" name="onibus" id="onibus" value="0"> Não
-                            </label>
-                        </td>
-                        
-                    </tr>
-                        <td>Carta:</td>
-                        <td>
-                        <label class="radio-inline">
-                            <input type="radio" name="carta"  value="1"> Sim
-                            </label>
-                            <label class="radio-inline">
-                              <input type="radio" name="carta" value="0"> Não
-                            </label>
-                        </td>
-                        <td>valor:</td>
-                        <td><input type="text" style="width: 70px" name="valor" id="valor" class="form-control" ></td>
-                        <td>desistencia:</td>
-                        <td><input type="text" style="width: 80px" name="desistencia" id="desistencia" class="form-control"></td>
-                    <tr>
-                    </tr>
-                    <tr>
-                       <td><button type="submit" class="btn btn-danger" >Cadastrar</button><td>
-                    </tr>
-                    </form>
-                  </table>
+            <div class="row">
+                <div class="container">
+                    <form action="../php/encontrista.php" method="POST">
+                        <div class="form-group row">
+                          <label for="IdFicha" class="col-sm-1 col-form-label">Nº ficha:</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" id="IdFicha">
+                          </div>
+                         
+                          <label for="nome" class="col-sm-1 col-form-label">Nome:</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" id="nome">
+                          </div>
+                        </div>
+                
+                        <div class="form-group row">
+                            <label for="sexo" class="col-xs-1 col-form-label">Sexo:</label>
+                            <div class="col-xs-2">
+                                <select  class="form-control">
+                                    <option value="F">Feminino</option>
+                                    <option value="M">Masculino</option>
+                                </select>
+                            </div>
+                            <label for="idade" class="col-xs-1 col-form-label">Idade:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="idade">
+                            </div>
+                            <label for="IdFicha" class="col-xs-1 col-form-label">Valor:</label>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                  <option>Amizade</option>
+                                  <option>Amor</option>
+                                  <option>Perdão</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            
+                            <label for="comunidade" class="col-sm-1 col-form-label">Comunidade</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="comunidade">
+                            </div>
+                            <label for="onibus" class="col-xs-1 col-form-label">Ira de ônibus?</label>
+                            <div class="col-sm-1">
+                                    <label><input type="radio" name="optradio">Sim</label> 
+                                    <label><input type="radio" name="optradio">Não</label>
+                            </div>
+                            <label for="carta" class="col-xs-1 col-form-label">Carta?</label>
+                            <div class="col-sm-1">
+                                    <label><input type="radio" name="carta">Sim</label> 
+                                    <label><input type="radio" name="carta">Não</label>
+                            </div>
+                            <label for="desistencia" class="col-xs-1 col-form-label">Desistencia?</label>
+                            <div class="col-sm-1">
+                                    <label><input type="radio" name="desistencia">Sim</label> 
+                                    <label><input type="radio" name="desistencia">Não</label>
+                            </div>
+                            <label for="remedio" class="col-xs-1 col-form-label">Remedio?</label>
+                            <div class="col-sm-1">
+                                    <label><input type="radio" name="remedio">Sim</label> 
+                                    <label><input type="radio" name="remedio">Não</label>
+                            </div>
+                        </div>
+                    </form>   
+                </div>
             </div>
-            
-            
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
