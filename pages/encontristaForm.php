@@ -41,63 +41,65 @@
                         <div class="form-group row">
                           <label for="IdFicha" class="col-sm-1 col-form-label">Nº ficha:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" id="IdFicha">
+                            <input type="text" class="form-control" name="IdFicha">
                           </div>
                          
-                          <label for="nome" class="col-sm-1 col-form-label">Nome:</label>
+                          <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
                           <div class="col-sm-6">
-                            <input type="text" class="form-control" id="nome">
+                            <input type="text" class="form-control" name="Nome">
                           </div>
                         </div>
                 
                         <div class="form-group row">
-                            <label for="sexo" class="col-xs-1 col-form-label">Sexo:</label>
+                            <label for="Sexo" class="col-xs-1 col-form-label" name="Sexo">Sexo:</label>
                             <div class="col-xs-2">
-                                <select  class="form-control">
-                                    <option value="F">Feminino</option>
-                                    <option value="M">Masculino</option>
+                                <select name="Sexo" class="form-control">
+                                    <option name="Sexo" value="F">Feminino</option>
+                                    <option name="Sexo" value="M">Masculino</option>
                                 </select>
                             </div>
-                            <label for="idade" class="col-xs-1 col-form-label">Idade:</label>
+                            <label for="Idade" class="col-xs-1 col-form-label" >Idade:</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="idade">
+                                <input type="text" class="form-control" name="Idade">
                             </div>
-                            <label for="IdFicha" class="col-xs-1 col-form-label">Valor:</label>
+                            <label for="Valor" class="col-xs-1 col-form-label">Valor:</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
-                                  <option>Amizade</option>
-                                  <option>Amor</option>
-                                  <option>Perdão</option>
+                                <select class="form-control" name="Valor">
+                                  <option name="Valor" value="Amizade">Amizade</option>
+                                  <option name="Valor" value="Amor">Amor</option>
+                                  <option name="Valor" value="Perdao">Perdão</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             
-                            <label for="comunidade" class="col-sm-1 col-form-label">Comunidade</label>
+                            <label for="Comunidade" class="col-sm-1 col-form-label">Comunidade</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="comunidade">
+                                <input type="text" class="form-control" name="Comunidade">
                             </div>
                             <label for="onibus" class="col-xs-1 col-form-label">Ira de ônibus?</label>
                             <div class="col-sm-1">
-                                    <label><input type="radio" name="optradio">Sim</label> 
-                                    <label><input type="radio" name="optradio">Não</label>
+                                    <label><input type="radio" name="Onibus" value="1">Sim</label> 
+                                    <label><input type="radio" name="Onibus" value="0">Não</label>
                             </div>
-                            <label for="carta" class="col-xs-1 col-form-label">Carta?</label>
-                            <div class="col-sm-1">
-                                    <label><input type="radio" name="carta">Sim</label> 
-                                    <label><input type="radio" name="carta">Não</label>
+                            <label for="Carta" class="col-xs-1 col-form-label">Carta:</label>
+                            <div class="col-sm-1" name="Carta">
+                                    <label><input type="radio" name="Carta" value="1">Sim</label> 
+                                    <label><input type="radio" name="Carta" value="0">Não</label>
                             </div>
-                            <label for="desistencia" class="col-xs-1 col-form-label">Desistencia?</label>
-                            <div class="col-sm-1">
-                                    <label><input type="radio" name="desistencia">Sim</label> 
-                                    <label><input type="radio" name="desistencia">Não</label>
+                            <label for="Desistencia" class="col-xs-1 col-form-label">Desistencia?</label>
+                            <div class="col-sm-1" name="Desistencia">
+                                    <label><input type="radio" name="Desistencia" value="1">Sim</label> 
+                                    <label><input type="radio" name="Desistencia"value="0">Não</label>
                             </div>
-                            <label for="remedio" class="col-xs-1 col-form-label">Remedio?</label>
-                            <div class="col-sm-1">
-                                    <label><input type="radio" name="remedio">Sim</label> 
-                                    <label><input type="radio" name="remedio">Não</label>
+                            <label for="Remedio" class="col-xs-1 col-form-label">Remedio?</label>
+                            <div class="col-sm-1" name="Remedio">
+                                    <label><input type="radio" name="Remedio" value="1">Sim</label> 
+                                    <label><input type="radio" name="Remedio" value="0">Não</label>
                             </div>
+                            
                         </div>
+                        <button type="submit" class="btn btn-danger">Cadastrar</button>
                     </form>   
                 </div>
             </div>
