@@ -14,6 +14,39 @@
 </head>
 
 <body>
+    <?php
+        include '../php/Banco.php';
+            $op =$_GET["op"];
+            switch ($op) {
+                case '1':
+                    $op = "Cristo Rei";
+                break;
+                case '2':
+                    $op = "Jesus Ressucitado";
+                break;
+                case '3':
+                    $op = "Nossa Senhora do Rosario";
+                break;
+                case '4':
+                    $op = "Sagrada Familia";
+                break;
+                case '5':
+                    $op = "Santa Clara de Assis";
+                break;
+                case '6':
+                    $op = "Santuario";
+                break;
+                case '7':
+                    $op = "São Benedito";
+                break;
+                case '8':
+                    $op = "São Marco";
+                break;
+                case '9':
+                    $op = "São Sebastião";
+                break;
+            }
+    ?>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
@@ -25,7 +58,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Meninas</h1>
+                    <h1 class="page-header">Comunidades</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -35,45 +68,42 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Collapsible Accordion Panel Group
+                            Ecnontristas da Comunidade: <?php echo $op; ?>
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
-                            <div class="panel-group" id="accordion">
-                                <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab">Home</a>
-                                </li>
-                                <li><a href="#profile" data-toggle="tab">Profile</a>
-                                </li>
-                                <li><a href="#messages" data-toggle="tab">Messages</a>
-                                </li>
-                                <li><a href="#settings" data-toggle="tab">Settings</a>
-                                </li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="home">
-                                    <h4>Home Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="profile">
-                                    <h4>Profile Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="messages">
-                                    <h4>Messages Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div class="tab-pane fade" id="settings">
-                                    <h4>Settings Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
-                        </div>
-                            </div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Nº Ficha</th>
+                                    <th>Nome</th>
+                                    <th>Idade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Comunidade` =  '$op'");
+                                
+                                $IdFicha;$Nome;$Idade;
+                                $contador=0;
+                                
+                                while($linha = mysql_fetch_array($Recebe)){
+                                    $IdFicha[$contador] = $linha["IdFicha"];
+                                    $Nome[$contador] = $linha["Nome"];
+                                    $Idade[$contador] = $linha["Idade"];
+                                    $contador++;
+                                }
+                                $contador=0;
+                                while($contador<count($Nome)){
+                                    echo'<tr class="odd gradeX">
+                                            <td>'.$IdFicha[$contador].'</td>
+                                            <td>'.$Nome[$contador].'</td>
+                                            <td class="center">'.$Idade[$contador].'</td>
+                                        </tr>';
+                                    $contador++;
+                                }
+                            ?>
+                            </tbody>
+                        </table>
                         </div>
                         <!-- .panel-body -->
                     </div>
@@ -84,5 +114,4 @@
         <!-- ********************************* listagem ****************************************-->
     </div>
 </body>
-
 </html>
