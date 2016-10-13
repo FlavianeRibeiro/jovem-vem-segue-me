@@ -25,7 +25,7 @@
                     $op = "Jesus Ressuscitado";
                 break;
                 case '3':
-                    $op = "Nossa Senhora do Rosario";
+                    $op = "Nossa Senhora do Rosário";
                 break;
                 case '4':
                     $op = "Sagrada Família";
@@ -83,7 +83,7 @@
                             <?php
                                 if ( $op == 10){
                                     $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Comunidade` !=  'Cristo Rei'
-                                        AND  `Comunidade` !=  'Jesus Ressuscitado'AND  `Comunidade` !=  'Nossa Senhora do Rosario'
+                                        AND  `Comunidade` !=  'Jesus Ressuscitado'AND  `Comunidade` !=  'Nossa Senhora do Rosário'
                                         AND  `Comunidade` !=  'Sagrada Família' AND  `Comunidade` !=  'Santa Clara de Assis'
                                         AND  `Comunidade` !=  'Santuário' AND  `Comunidade` !=  'São Benedito'
                                         AND  `Comunidade` !=  'São Marco' AND  `Comunidade` !=  'São Sebastião'");
