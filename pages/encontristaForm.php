@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
 
@@ -54,6 +54,7 @@
                             <label for="Sexo" class="col-xs-1 col-form-label" name="Sexo">Sexo:</label>
                             <div class="col-xs-2">
                                 <select name="Sexo" class="form-control">
+                                    <option> </option>
                                     <option name="Sexo" value="F">Feminino</option>
                                     <option name="Sexo" value="M">Masculino</option>
                                 </select>
@@ -73,9 +74,21 @@
                         </div>
                         <div class="form-group row">
                             
-                            <label for="Comunidade" class="col-sm-1 col-form-label">Comunidade</label>
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control" name="Comunidade">
+                            <label for="Comunidade" class="col-xs-1 col-form-label" name="Comunidade">Comunidade:</label>
+                            <div class="col-xs-2">
+                                <select name="Comunidade" class="form-control">
+                                    <option > </option>
+                                    <option name="Comunidade" value="Cristo Rei">Cristo Rei</option>
+                                    <option name="Comunidade" value="Jesus Ressuscitado">Jesus Ressuscitado</option>
+                                    <option name="Comunidade" value="Nossa Senhora do Rosário">Nossa Senhora do Rosário</option>
+                                    <option name="Comunidade" value="Sagrada Família">Sagrada Família</option>
+                                    <option name="Comunidade" value="Santa Clara de Assis">Santa Clara de Assis</option>
+                                    <option name="Comunidade" value="Santuário">Santuário</option>
+                                    <option name="Comunidade" value="São Benedito">São Benedito</option>
+                                    <option name="Comunidade" value="São Marcos">São Marcos</option>
+                                    <option name="Comunidade" value="São Sebastião">São Sebastião</option>
+                                    <option name="Comunidade" value="">Outros</option>
+                                </select>
                             </div>
                             <label for="onibus" class="col-xs-1 col-form-label">Ira de ônibus?</label>
                             <div class="col-sm-1">

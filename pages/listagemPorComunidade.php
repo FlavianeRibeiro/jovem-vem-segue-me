@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,19 +22,19 @@
                     $op = "Cristo Rei";
                 break;
                 case '2':
-                    $op = "Jesus Ressucitado";
+                    $op = "Jesus Ressuscitado";
                 break;
                 case '3':
                     $op = "Nossa Senhora do Rosario";
                 break;
                 case '4':
-                    $op = "Sagrada Familia";
+                    $op = "Sagrada Família";
                 break;
                 case '5':
                     $op = "Santa Clara de Assis";
                 break;
                 case '6':
-                    $op = "Santuario";
+                    $op = "Santuário";
                 break;
                 case '7':
                     $op = "São Benedito";
@@ -81,7 +81,16 @@
                             </thead>
                             <tbody>
                             <?php
-                                $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Comunidade` =  '$op'");
+                                if ( $op == 10){
+                                    $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Comunidade` !=  'Cristo Rei'
+                                        AND  `Comunidade` !=  'Jesus Ressuscitado'AND  `Comunidade` !=  'Nossa Senhora do Rosario'
+                                        AND  `Comunidade` !=  'Sagrada Família' AND  `Comunidade` !=  'Santa Clara de Assis'
+                                        AND  `Comunidade` !=  'Santuário' AND  `Comunidade` !=  'São Benedito'
+                                        AND  `Comunidade` !=  'São Marco' AND  `Comunidade` !=  'São Sebastião'");
+                                }else{
+                                    $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Comunidade` =  '$op'");
+                                }
+                               
                                 
                                 $IdFicha;$Nome;$Idade;
                                 $contador=0;
