@@ -52,7 +52,7 @@
                             <tbody>
                             <?php
                                 include '../php/Banco.php';
-                                $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Sexo` =  'F'");
+                                $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Sexo` =  'Feminino'");
                                 
                                 $IdFicha;
                                 $Nome;

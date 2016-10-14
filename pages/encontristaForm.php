@@ -55,8 +55,8 @@
                             <div class="col-xs-2">
                                 <select name="Sexo" class="form-control">
                                     <option> </option>
-                                    <option name="Sexo" value="F">Feminino</option>
-                                    <option name="Sexo" value="M">Masculino</option>
+                                    <option name="Sexo" value="Feminino">Feminino</option>
+                                    <option name="Sexo" value="Masculino">Masculino</option>
                                 </select>
                             </div>
                             <label for="Idade" class="col-xs-1 col-form-label" >Idade:</label>
@@ -107,8 +107,8 @@
                             </div>
                             <label for="Remedio" class="col-xs-1 col-form-label">Remedio?</label>
                             <div class="col-sm-1" name="Remedio">
-                                    <label><input type="radio" name="Remedio" value="1">Sim</label> 
-                                    <label><input type="radio" name="Remedio" value="0">Não</label>
+                                    <label><input type="radio" name="Remedio" value="Sim">Sim</label> 
+                                    <label><input type="radio" name="Remedio" value="Não">Não</label>
                             </div>
                             
                         </div>

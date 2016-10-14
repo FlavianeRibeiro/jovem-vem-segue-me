@@ -54,6 +54,8 @@
                                     <th>Comunidade</th>
                                     <th>Idade</th>
                                     <th>Valor</th>
+                                    <th>Ver Fichas</th>
+                                    <th>Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,6 +86,8 @@
                                             <td>'.$Comunidade[$contador].'</td>
                                             <td class="center">'.$Idade[$contador].'</td>
                                             <td class="center">'.$Valor[$contador].'</td>
+                                            <td align="center"><button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
+                                            <td align="center"><a href="editar.php?aux='.$IdFicha[$contador].' "type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                         </tr>';
                                     $contador++;
                                 }

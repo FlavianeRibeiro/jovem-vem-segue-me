@@ -25,7 +25,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Meninas</h1>
+                    <h1 class="page-header">Meninos</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -52,7 +52,7 @@
                             <tbody>
                             <?php
                                 include '../php/Banco.php';
-                                $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Sexo` =  'M'");
+                                $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Sexo` =  'Masculino'");
                                 
                                 $IdFicha;
                                 $Nome;
