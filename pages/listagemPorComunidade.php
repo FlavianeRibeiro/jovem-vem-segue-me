@@ -40,7 +40,7 @@
                     $op = "São Benedito";
                 break;
                 case '8':
-                    $op = "São Marco";
+                    $op = "São Marcos";
                 break;
                 case '9':
                     $op = "São Sebastião";
@@ -68,7 +68,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Ecnontristas da Comunidade: <?php echo $op; ?>
+                            Encontristas da Comunidade: <?php echo $op; ?>
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
