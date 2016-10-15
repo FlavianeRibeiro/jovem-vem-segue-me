@@ -20,6 +20,15 @@
     <?php
         include './template/styles.html';
     ?>
+    
+    <script type="text/javascript" language="Javascript">
+        function registrarDesistencia(idFicha){
+            var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
+            if (r == true) {
+               alert("concluido com sucesso");   
+            }
+        }
+    </script>
 
 </head>
 
@@ -65,6 +74,7 @@
                                     <th>Valor</th>
                                     <th>Ver Fichas</th>
                                     <th>Editar</th>
+                                    <th>Desistência</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,7 +86,8 @@
                                     <td><?php echo $myEncontrista['Idade'];?></td>
                                     <td><?php echo $myEncontrista['Valor'];?></td>
                                     <td align="center"><button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
-                                    <td align="center"><a href="editar.php?aux=<?php echo $myEncontrista['IdFicha'];?>" "type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                    <td align="center"><a href="editar.php?aux=<?php echo $myEncontrista['IdFicha'];?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                    <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>)" class="btn btn-warning btn-circle" ><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 <?php }?>
                             </tbody>
@@ -89,8 +100,7 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
-    <!-- ********************************* listagem ****************************************-->
+        <!-- ********************************* listagem ****************************************-->
         </div>
-</body>
-
+    </body>
 </html>

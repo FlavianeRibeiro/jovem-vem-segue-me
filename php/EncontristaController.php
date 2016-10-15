@@ -13,6 +13,11 @@ class EncontristaController {
         $encontrista->setSexo();
         $encontrista->setIdade();
     }
+    
+    public function registrarDesistencia($IdFicha){
+        $encontrista = new Encontrista();
+        $encontrista.registrarDesistencia($IdFicha);
+    }
 }
 
 ?>

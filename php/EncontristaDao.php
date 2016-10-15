@@ -14,10 +14,6 @@ class Encontrista{
     private $desistencia;
     private $remedio;
     
-    public function ola(){
-        echo "class encontrista";
-    }
-    
     public function save(){
         echo "salvar encontrista";
     }
@@ -26,6 +22,12 @@ class Encontrista{
         $sql = 'select * from retiro.encontrista';
         return mysql_query($sql);
     }
+    
+    public function registrarDesistencia($IdFicha){
+        $sql = 'update retiro.encontrista set Desistencia=0 where IdFicha='+$IdFicha;
+        return mysql_query($sql);
+    }
+    
     
     /*----------------------------
         Getters e Setters 
