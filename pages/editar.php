@@ -19,7 +19,6 @@
             <?php 
                 include '../php/Banco.php';
                 $aux = $_GET["aux"];
-                
                 $Recebe=mysql_query("SELECT * FROM encontrista where IdFicha=$aux");
                 $IdFicha; $Nome; $Sexo; $Idade; $Comunidade; $Onibus; $Carta; $Valor; $Desistencia; $Remedio;
                 include "./template/barraSuperior.php";
