@@ -18,8 +18,15 @@ class Encontrista{
         echo "salvar encontrista";
     }
     
+    //Retorna uma lista com todos os encontristas cadastrados
     public function getAll(){
         $sql = 'select * from retiro.encontrista';
+        return mysql_query($sql);
+    }
+    
+    //Retorna uma lista com todos os encontristas que não desistiram
+    public function getEncontristasNaoDesistentes(){
+        $sql = 'select * from retiro.encontrista where Desistencia=0';
         return mysql_query($sql);
     }
     
@@ -27,7 +34,6 @@ class Encontrista{
         $sql = 'update retiro.encontrista set Desistencia=0 where IdFicha='+$IdFicha;
         return mysql_query($sql);
     }
-    
     
     /*----------------------------
         Getters e Setters 
