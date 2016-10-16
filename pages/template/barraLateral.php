@@ -36,6 +36,9 @@
                                 <li>
                                     <a href="listagemPorValor.php">Valor</a>
                                 </li>
+                                <li>
+                                    <a href="suplencia.php">Suplência</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

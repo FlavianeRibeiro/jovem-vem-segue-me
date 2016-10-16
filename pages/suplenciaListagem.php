@@ -37,43 +37,42 @@
             <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
             <div class="row">
                 <div class="container">
-                    <form action="../php/encontrista.php" method="POST">
+                    <form action="../php/Cad_Suplencia.php" method="POST">
                         <div class="form-group row">
                           <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
                           <div class="col-md-4">
-                            <input type="text" class="form-control" name="Nome">
+                            <input type="text" class="form-control" name="Nome" placeholder="Nome completo">
                           </div>
                           <label for="Nome" class="col-sm-1 col-form-label">Equipe:</label>
                           <div class="col-xs-2">
                             <select name="Equipe" class="form-control">
                                     <option> </option>
-                                    <option name="Equipe" value="">Bem Estar</option>
-                                    <option name="Equipe" value="">CG</option>
-                                    <option name="Equipe" value="">Comunicação</option>
-                                    <option name="Equipe" value="">Copa</option>
-                                    <option name="Equipe" value="">Casal Apoio</option>
-                                    <option name="Equipe" value="">Copa</option>
-                                    <option name="Equipe" value="">Cozinha</option>
-                                    <option name="Equipe" value="">Decoração</option>
-                                    <option name="Equipe" value="">Intercessão e Liturgia</option>
-                                    <option name="Equipe" value="">Logistica</option>
-                                    <option name="Equipe" value="">Música</option>
-                                    <option name="Equipe" value="">Ordem e Vigilância</option>
-                                    <option name="Equipe" value="">Sala</option>
-                                    <option name="Equipe" value="">Secretaria</option>
+                                    <option name="Equipe" value="Bem Estar">Bem Estar</option>
+                                    <option name="Equipe" value="CG">CG</option>
+                                    <option name="Equipe" value="Comunicação">Comunicação</option>
+                                    <option name="Equipe" value="Copa">Copa</option>
+                                    <option name="Equipe" value="Casal Apoio">Casal Apoio</option>
+                                    <option name="Equipe" value="Cozinha">Cozinha</option>
+                                    <option name="Equipe" value="Decoração">Decoração</option>
+                                    <option name="Equipe" value="Intercessão e Liturgia">Intercessão e Liturgia</option>
+                                    <option name="Equipe" value="Logistica">Logistica</option>
+                                    <option name="Equipe" value="Música">Música</option>
+                                    <option name="Equipe" value="Ordem e Vigilância">Ordem e Vigilância</option>
+                                    <option name="Equipe" value="Sala">Sala</option>
+                                    <option name="Equipe" value="Secretaria">Secretaria</option>
                                     
                                 </select>
                           </div>
                         </div>
                 
                         <div class="form-group row">
-                            <label for="Nome" class="col-sm-1 col-form-label">Email:</label>
+                            <label for="Email" class="col-sm-1 col-form-label">Email:</label>
                           <div class="col-md-4">
-                            <input type="text" class="form-control" name="Email">
+                            <input type="text" class="form-control" name="Email" placeholder="exemplo@retiro.com">
                           </div>
-                           <label for="Nome" class="col-sm-1 col-form-label">Telefone:</label>
+                           <label for="Telefone" class="col-sm-1 col-form-label" >Telefone:</label>
                           <div class="col-xs-2">
-                            <input type="text" class="form-control" name="Telefone">
+                            <input type="text" class="form-control" name="Telefone" placeholder="(27)99999-9999">
                           </div>
                         </div>
                         
