@@ -108,6 +108,26 @@
                                             <td>'.$Comunidade[$contador].'</td>
                                             <td>'.$Equipe[$contador].'</td>
                                         </tr>';  
+                                    }else if($Status[$contador]=="Espiao"){
+                                        echo'<tr class="warning">
+                                            <td>'.$Nome[$contador].'</td>
+                                            <td>'.$Fixo[$contador].'</td>
+                                            <td>'.$Celular[$contador].'</td>
+                                            <td>'.$Operadora[$contador].'</td>
+                                            <td>'.$Email[$contador].'</td>
+                                            <td>'.$Comunidade[$contador].'</td>
+                                            <td>'.$Equipe[$contador].'</td>
+                                        </tr>';  
+                                    }else if($Status[$contador]=="Apresentador"){
+                                        echo'<tr class="success">
+                                            <td>'.$Nome[$contador].'</td>
+                                            <td>'.$Fixo[$contador].'</td>
+                                            <td>'.$Celular[$contador].'</td>
+                                            <td>'.$Operadora[$contador].'</td>
+                                            <td>'.$Email[$contador].'</td>
+                                            <td>'.$Comunidade[$contador].'</td>
+                                            <td>'.$Equipe[$contador].'</td>
+                                        </tr>';  
                                     }
                                     
                                     

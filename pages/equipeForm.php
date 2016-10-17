@@ -119,7 +119,7 @@
                                     <option name="Status" value="Equipe">Equipe</option>
                                     <option name="Status" value="Coordenador">Coordenador</option>
                                     <option name="Status" value="Espiao">Espião</option>
-                                    <option name="Status" value="Apresenador">Apresenador</option>
+                                    <option name="Status" value="Apresentador">Apresenador</option>
                                     
                                 </select>
                           </div>
