@@ -119,7 +119,7 @@
                                     <option name="Status" value="Equipe">Equipe</option>
                                     <option name="Status" value="Coordenador">Coordenador</option>
                                     <option name="Status" value="Espiao">Espião</option>
-                                    <option name="Status" value="Apresentador">Apresenador</option>
+                                    <option name="Status" value="Apresenador">Apresenador</option>
                                     
                                 </select>
                           </div>
@@ -156,7 +156,5 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
 </body>
-
 </html>
