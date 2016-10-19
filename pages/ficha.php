@@ -19,7 +19,7 @@
             <?php 
                 include '../php/Banco.php';
                 $aux = $_GET["aux"];
-                $Recebe=mysql_query("SELECT * FROM encontrista where IdFicha=$aux");
+                $Recebe=mysql_query("SELECT * FROM encontrista where IdFicha='$aux'");
                 $IdFicha; $Nome; $Sexo; $Idade; $Comunidade; $Onibus; $Carta; $Valor; $Desistencia; $Remedio;
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
@@ -54,45 +54,42 @@
                 <div class="container">
                     <form action="../php/atualizar_ficha.php" method="POST">
                         <div class="form-group row">
-                          <label for="IdFicha" class="col-sm-1 col-form-label">Nº ficha:</label>
+                          <label for="IdFicha" class="col-md-1 col-form-label">Nº ficha:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" name="IdFicha" value="'.$IdFicha[$cont].'">
+                            '.$IdFicha[$cont].'
                           </div>
-                         
                           <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
                           <div class="col-sm-6">
-                            <input type="text" class="form-control" name="Nome" value="'.$Nome[$cont].'">
+                            '.$Nome[$cont].'
                           </div>
                         </div>
                 
                         <div class="form-group row">
                             <label for="Sexo" class="col-xs-1 col-form-label" name="Sexo">Sexo:</label>
                             <div class="col-xs-2">
-                                <input type="text" class="form-control" name="Sexo" value="'.$Sexo[$cont].'">
+                                '.$Sexo[$cont].'
                             </div>
                             <label for="Idade" class="col-xs-1 col-form-label" >Idade:</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" name="Idade" value="'.$Idade[$cont].'">
+                                '.$Idade[$cont].'
                             </div>
                         </div>
                         <div class="form-group row">
                             
                             <label for="Comunidade" class="col-xs-1 col-form-label" name="Comunidade">Comunidade:</label>
                             <div class="col-xs-2">
-                                 <input type="text" class="form-control" name="Comunidade" value="'.$Comunidade[$cont].'">
+                                 '.$Comunidade[$cont].'
                             </div>
                             <label for="onibus" class="col-xs-1 col-form-label">Ira de ônibus?</label>
                             <div class="col-sm-1">
-                                    <label><input type="radio" name="Onibus" value="1">Sim</label> 
-                                    <label><input type="radio" name="Onibus" value="0">Não</label>
+                                    '.$Onibus[$cont].'
                             </div>
                                 <label for="Remedio" class="col-xs-1 col-form-label">Remedio?</label>
                             <div class="col-sm-1" name="Remedio">
-                                <input type="text" class="form-control" name="Remedio" value="'.$Remedio[$cont].'">
+                                '.$Remedio[$cont].'
                             </div>
                             
                         </div>
-                        <button type="submit" class="btn btn-danger">Editar</button>
                     </form>   
                 </div>
             </div>

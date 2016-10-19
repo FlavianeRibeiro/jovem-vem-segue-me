@@ -2,7 +2,6 @@
     //include '../model/petDao.php';
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,4 +102,8 @@
         <!-- ********************************* listagem ****************************************-->
         </div>
     </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> upstream/master

@@ -8,13 +8,11 @@
     $Idade= $_POST["Idade"];
     $Onibus = $_POST["Onibus"];
     $Remedio = $_POST["Remedio"];
-    
-    echo $consulta = "UPDATE `encontrista` SET `Nome`=".$Nome.",`Sexo`=".$Sexo.",`Idade`=".$Idade.",`Comunidade`=".$Comunidade.",
-    `Onibus`=".$Onibus.",`Remedio`=".$Remedio." WHERE `IdFicha`= ".$IdFicha."";
+    echo $Consulta = "UPDATE `retiro`.`encontrista` SET `Nome`='$Nome',`Sexo`='$Sexo',`Idade`= '$Idade',`Comunidade`= '$Comunidade',
+    `Onibus`='$Onibus',`Remedio`= '$Remedio' WHERE `IdFicha`= '$IdFicha'";
     
 	$Result = mysql_query($Consulta);
-	
+	echo "<br><br><br>";
 	echo $Result.mysql_error();
-    
-   // header("Location: ../pages/index.php"); 
+    header("Location: ../pages/index.php"); 
 ?>
