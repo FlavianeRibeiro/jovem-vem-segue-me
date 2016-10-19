@@ -1,3 +1,8 @@
+<?php
+    //include '../model/petDao.php';
+    require_once '../php/EncontristaController.php';
+    $encontrista = new EncontristaController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +19,15 @@
     <?php
         include './template/styles.html';
     ?>
+    
+    <script type="text/javascript" language="Javascript">
+        function registrarDesistencia(idFicha){
+            var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
+            if (r == true) {
+               alert("concluido com sucesso");   
+            }
+        }
+    </script>
 
 </head>
 
@@ -36,7 +50,11 @@
                 <!-- /.col-lg-12 -->
             </div>
             
-                <!-- ********************************* listagem ****************************************-->
+            
+        <!-- ********************************* listagem ****************************************-->
+        <?php
+            $listaDeEncontristas = $encontrista->listarTodos();
+        ?>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -53,44 +71,24 @@
                                     <th>Comunidade</th>
                                     <th>Idade</th>
                                     <th>Valor</th>
-                                    <th>Fichas</th>
+                                    <th>Ver Fichas</th>
                                     <th>Editar</th>
+                                    <th>Desistência</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                include '../php/Banco.php';
-                                $Recebe = mysql_query("SELECT * FROM  `encontrista`");
-                                
-                                $IdFicha;
-                                $Nome;
-                                $Comunidade;
-                                $Idade;
-                                $Valor;
-                                $contador=0;
-                                
-                                while($linha = mysql_fetch_array($Recebe)){
-                                    $IdFicha[$contador] = $linha["IdFicha"];
-                                    $Nome[$contador] = $linha["Nome"];
-                                    $Comunidade[$contador] = $linha["Comunidade"];
-                                    $Idade[$contador] = $linha["Idade"];
-                                    $Valor[$contador] = $linha["Valor"];
-                                    $contador++;
-                                }
-                                $contador=0;
-                                while($contador<count($Nome)){
-                                    echo'<tr class="odd gradeX">
-                                            <td>'.$IdFicha[$contador].'</td>
-                                            <td>'.$Nome[$contador].'</td>
-                                            <td>'.$Comunidade[$contador].'</td>
-                                            <td class="center">'.$Idade[$contador].'</td>
-                                            <td class="center">'.$Valor[$contador].'</td>
-                                            <td align="center"><a href="ficha.php?aux='.$IdFicha[$contador].' type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
-                                            <td align="center"><a href="editar.php?aux='.$IdFicha[$contador].' "type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
-                                        </tr>';
-                                    $contador++;
-                                }
-                            ?>
+                                <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
+                               <tr class="odd gradeX">
+                                    <td><?php echo $myEncontrista['IdFicha'];?></td>
+                                    <td><?php echo $myEncontrista['Nome'];?></td>
+                                    <td><?php echo $myEncontrista['Comunidade'];?></td>
+                                    <td><?php echo $myEncontrista['Idade'];?></td>
+                                    <td><?php echo $myEncontrista['Valor'];?></td>
+                                    <td align="center"><button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
+                                    <td align="center"><a href="editar.php?aux=<?php echo $myEncontrista['IdFicha'];?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                    <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>)" class="btn btn-warning btn-circle" ><i class="fa fa-times"></i></a></td>
+                                </tr>
+                                <?php }?>
                             </tbody>
                         </table>
                     <!-- /.table-responsive -->
@@ -101,8 +99,7 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
-    <!-- ********************************* listagem ****************************************-->
+        <!-- ********************************* listagem ****************************************-->
         </div>
-</body>
-
+    </body>
 </html>
