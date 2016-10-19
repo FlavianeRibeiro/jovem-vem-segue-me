@@ -54,7 +54,7 @@
             
         <!-- ********************************* listagem ****************************************-->
         <?php
-            $listaDeEncontristas = $encontrista->listarTodos();
+            $listaDeEncontristas = $encontrista->listarEncontristasNaoDesistentes();
         ?>
         <div class="row">
             <div class="col-lg-12">
