@@ -30,6 +30,12 @@ class Encontrista{
         return mysql_query($sql);
     }
     
+    
+    public function getBySexo($Sexo_){
+        $sql = "select * from retiro.encontrista where Sexo='".$Sexo_."'";
+        return mysql_query($sql);
+    }
+    
     public function registrarDesistencia($IdFicha){
         $sql = 'update retiro.encontrista set Desistencia=0 where IdFicha='+$IdFicha;
         return mysql_query($sql);
