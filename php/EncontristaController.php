@@ -14,6 +14,11 @@ class EncontristaController {
         return $encontrista->getEncontristasNaoDesistentes();
     }
     
+    public function listarPorSexo($Sexo) {
+        $encontrista = new Encontrista();
+        return $encontrista->getBySexo($Sexo);
+    }
+    
     //Realiza o cadastro de um novo encontrista  (falta terminar)
     public function salvar(){
         $encontrista = new Encontrista();
