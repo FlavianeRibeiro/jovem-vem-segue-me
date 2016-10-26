@@ -9,15 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
     ?>
-
 </head>
 
 <body>
-
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
@@ -25,11 +23,10 @@
                 include "./template/barraLateral.php";
             ?>
         </nav>
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Morris.js Charts</h1>
+                    <h1 class="page-header">Encontrista que irá de Ônibus</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -38,11 +35,52 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Area Chart Example
+                            Onibus 01
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-area-chart"></div>
+                            <table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Nº Ficha</th>
+												<th>Nome</th>
+												<th>Comunidade</th>
+												<th>Valor</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+												include '../php/Banco.php';
+												$Recebe = mysql_query("SELECT * FROM `encontrista` ORDER BY `IdFicha` ASC");
+												
+												$IdFicha;
+												$Nome;
+												$Comunidade;
+												$Valor;
+												$contador=0;
+												
+												while($linha = mysql_fetch_array($Recebe)){
+													$IdFicha[$contador] = $linha["IdFicha"];
+													$Nome[$contador] = $linha["Nome"];
+													$Comunidade[$contador] = $linha["Comunidade"];
+													$Valor[$contador] = $linha["Valor"];
+													$contador++;
+												}
+												$contador=0;
+												while($contador == 5){
+    												while($contador<count($Nome)){
+    													echo'<tr class="odd gradeX">
+    															<td>'.$IdFicha[$contador].'</td>
+    															<td>'.$Nome[$contador].'</td>
+    															<td>'.$Comunidade[$contador].'</td>
+    															<td class="center">'.$Valor[$contador].'</td>
+    														</tr>';
+    													$contador++;
+    												}
+												}
+											?>
+										</tbody>
+									</table>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -52,54 +90,11 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Bar Chart Example
+                            Onibus 02
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-bar-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-line-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Donut Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Morris.js Usage
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <p>Morris.js is a jQuery based charting plugin created by Olly Smith. In SB Admin, we are using the most recent version of Morris.js which includes the resize function, which makes the charts fully responsive. The documentation for Morris.js is available on their website, <a target="_blank" href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
-                            <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://morrisjs.github.io/morris.js/">View Morris.js Documentation</a>
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>

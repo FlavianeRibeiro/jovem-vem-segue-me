@@ -84,7 +84,7 @@
                                     <td><?php echo $myEncontrista['Comunidade'];?></td>
                                     <td><?php echo $myEncontrista['Idade'];?></td>
                                     <td><?php echo $myEncontrista['Valor'];?></td>
-                                    <td align="center"><button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
+                                    <td align="center"><a href="ficha.php?aux=<?php echo $myEncontrista['IdFicha'];?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
                                     <td align="center"><a href="editar.php?aux=<?php echo $myEncontrista['IdFicha'];?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                     <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>)" class="btn btn-warning btn-circle" ><i class="fa fa-times"></i></a></td>
                                 </tr>

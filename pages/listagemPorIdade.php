@@ -100,7 +100,7 @@
                             <div class="list-group">
                             	<?php
                             		$contadora =0;
-                            		$menor=16;
+                            		$menor=15;
                             		
                             		while($linha = mysql_fetch_array($Recebe)){
 										$Idade[$contadora] = $linha["Idade"];
