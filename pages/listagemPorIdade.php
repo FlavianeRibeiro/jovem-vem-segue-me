@@ -101,19 +101,20 @@
                             	<?php
                             		$contadora =0;
                             		$menor=16;
-                            		$maior=29;
-                            		$i=0;
-                            		while($menor != $maior){ 
-                            			while($contadora<count($Idade)){
-	                            			if($menor == $Idade[$contadora]){
-	                            				echo'<a href="#" class="list-group-item">'.$Idade[$contadora].' anos
-				                                    <span class="pull-right text-muted small"><em>'.$i++.'</em></span>
-				                                </a>';	
-	                            			}	
+                            		
+                            		while($linha = mysql_fetch_array($Recebe)){
+										$Idade[$contadora] = $linha["Idade"];
 										$contadora++;
-										$menor = $menor+1;
-										}
-                            		}
+									} $contadora =0;
+                        			while($contadora<count($Idade)){
+                            			if($menor == $Idade[$contadora]){
+                            				echo'<a href="#" class="list-group-item">'.$Idade[$contadora].' anos
+			                                    <span class="pull-right text-muted small"><em>'.$i++.'</em></span>
+			                                </a>';	
+                            			}	
+									$contadora++;
+									$menor++;
+									}
                             	?>
                             </div>
                             <!-- /.list-group -->
