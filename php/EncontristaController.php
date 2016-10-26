@@ -33,6 +33,11 @@ class EncontristaController {
         $encontrista.registrarDesistencia($IdFicha);
         
     }
+    
+    public function obterTotalEncontristasPorIdade(){
+        $encontrista = new Encontrista();
+        return $encontrista->getTotalEncontristasPorIdade();
+    }
 }
 
 ?>

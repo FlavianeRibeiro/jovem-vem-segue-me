@@ -41,6 +41,12 @@ class Encontrista{
         return mysql_query($sql);
     }
     
+    public function getTotalEncontristasPorIdade(){
+        $sql = 'SELECT DISTINCT idade, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.idade = enc.idade) AS total_idade FROM  encontrista ORDER BY idade';
+        return mysql_query($sql);
+    }
+    
+    
     /*----------------------------
         Getters e Setters 
     ----------------------------*/
