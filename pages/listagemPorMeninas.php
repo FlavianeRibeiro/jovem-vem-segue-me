@@ -1,3 +1,7 @@
+<?php
+    require_once '../php/EncontristaController.php';
+    $encontrista = new EncontristaController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +35,9 @@
             </div>
             
         <!-- ********************************* listagem ****************************************-->
+        <?php
+            $listaDeEncontristas = $encontrista->listarPorSexo("Feminino");
+        ?>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -50,37 +57,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                include '../php/Banco.php';
-                                $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Sexo` =  'Feminino'");
-                                
-                                $IdFicha;
-                                $Nome;
-                                $Comunidade;
-                                $Idade;
-                                $Valor;
-                                $contador=0;
-                                
-                                while($linha = mysql_fetch_array($Recebe)){
-                                    $IdFicha[$contador] = $linha["IdFicha"];
-                                    $Nome[$contador] = $linha["Nome"];
-                                    $Comunidade[$contador] = $linha["Comunidade"];
-                                    $Idade[$contador] = $linha["Idade"];
-                                    $Valor[$contador] = $linha["Valor"];
-                                    $contador++;
-                                }
-                                $contador=0;
-                                while($contador<count($Nome)){
-                                    echo'<tr class="odd gradeX">
-                                            <td>'.$IdFicha[$contador].'</td>
-                                            <td>'.$Nome[$contador].'</td>
-                                            <td>'.$Comunidade[$contador].'</td>
-                                            <td class="center">'.$Idade[$contador].'</td>
-                                            <td class="center">'.$Valor[$contador].'</td>
-                                        </tr>';
-                                    $contador++;
-                                }
-                            ?>
+                                <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
+                               <tr class="odd gradeX">
+                                    <td><?php echo $myEncontrista['IdFicha'];?></td>
+                                    <td><?php echo $myEncontrista['Nome'];?></td>
+                                    <td><?php echo $myEncontrista['Comunidade'];?></td>
+                                    <td><?php echo $myEncontrista['Idade'];?></td>
+                                    <td><?php echo $myEncontrista['Valor'];?></td>
+                                </tr>
+                                <?php }?>
                             </tbody>
                         </table>
                     <!-- /.table-responsive -->
