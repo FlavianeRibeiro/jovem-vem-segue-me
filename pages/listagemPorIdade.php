@@ -1,3 +1,7 @@
+<?php
+    require_once '../php/EncontristaController.php';
+    $encontrista = new EncontristaController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,32 +94,22 @@
 					<!-- /.col-lg-12 -->
 				</div>
 				<!-- ********************************* listagem ****************************************-->
-			<div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                            	<?php
-                            		$contadora =0;
-                            		$menor=15;
-                            		
-                            		while($linha = mysql_fetch_array($Recebe)){
-										$Idade[$contadora] = $linha["Idade"];
-										$contadora++;
-									} $contadora =0;
-                        			while($contadora<count($Idade)){
-                            			if($menor == $Idade[$contadora]){
-                            				echo'<a href="#" class="list-group-item">'.$Idade[$contadora].' anos
-			                                    <span class="pull-right text-muted small"><em>'.$i++.'</em></span>
-			                                </a>';	
-                            			}	
-									$contadora++;
-									$menor++;
-									}
-                            	?>
+				<?php $listaDeEncontristas = $encontrista->obterTotalEncontristasPorIdade(); ?>
+  				<div class="col-lg-4">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">
+                             <i class="fa fa-bell fa-fw"></i> Total por Idade
+                          </div>
+                          <!-- /.panel-heading -->
+                          <div class="panel-body">
+                              <div class="list-group">
+                             	  <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
+                                <tr class="odd gradeX">
+                                    <a href="#" class="list-group-item"><?php echo $myEncontrista['idade'];?> anos
+ 			                             <span class="pull-right text-muted small"><em><?php echo $myEncontrista['total_idade'];?></em></span>
+ 			                        </a>
+                                 </tr>
+                                 <?php }?>
                             </div>
                             <!-- /.list-group -->
                         </div>
