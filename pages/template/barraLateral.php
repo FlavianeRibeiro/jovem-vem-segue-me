@@ -11,7 +11,7 @@
                                     <a href="encontristaForm.php">Encontrista</a>
                                 </li>
                                 <li>
-                                    <a href="suplenciaListagem.php">Lista de suplencia</a>
+                                    <a href="suplenciaListagem.php">Suplencia</a>
                                 </li>
                                 <li>
                                     <a href="quartoListagem.php">Quarto</a>

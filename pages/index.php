@@ -1,4 +1,5 @@
 <?php
+    //include '../model/petDao.php';
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
 ?>
