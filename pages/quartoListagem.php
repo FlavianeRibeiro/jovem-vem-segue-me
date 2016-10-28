@@ -13,8 +13,23 @@
     <?php
         include './template/styles.html';
     ?>
+    <script type="text/javascript" >
+    alert('teste');
+    $(document).ready(function(){
+    	var input = '<label>Nome: <input type="text" name="foto[]" class="form-control" /> <a href="#" class="remove">X</a></label>';
+        
+    	$("input[name='add']").click(function( e ){
+    		$('#adicionar').append( input );
+    	});
+    
+    	$('#adicionar').delegate('a','click',function( e ){
+    		e.preventDefault();
+    		$( this ).parent('label').remove();
+    	});
+    
+    });
+    </script>
 </head>
-
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -38,19 +53,22 @@
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
-                            <div class="panel-group" id="accordion">
-                                 <div class="form-group row">
-                                  <label for="IdQuarto" class="col-sm-1 col-form-label">Nº do Quarto:</label>
-                                  <div class="col-sm-2">
-                                    <input type="text" class="form-control" name="IdQuarto">
-                                  </div>
+                            <form action="../php/cad_quarto.php" method="POST">
+                                
+                                <label for="IdQuarto" class="col-sm-1 col-form-label">Nº do Quarto:</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" name="IdQuarto">
+                                    </div>
                                  
-                                  <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
-                                  <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="Nome" placeholder="NOME E SOBRENOME (VALOR/EQUIPE)">
-                                  </div>
-                                </div>
-                            </div>
+                                <label for="Nome" class="col-sm-1 col-form-label">Adicionar input:</label>
+                                        
+                                   <label><input type="button" name="add" value="+" class="btn btn-info btn-circle"/></label>
+                    				
+                    
+                    			<fieldset id="adicionar">
+                    			</fieldset>
+                                   
+                            </form>
                         </div>
                         <!-- .panel-body -->
                     </div>
