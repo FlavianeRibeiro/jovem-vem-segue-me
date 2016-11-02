@@ -1,3 +1,43 @@
+ <?php
+    require_once '../php/EncontristaController.php';
+    $encontristaController = new EncontristaController();
+    $encontrista = new Encontrista();
+    
+    // pega a variavel GET que passamos no action do form
+    if (isset($_GET['acao'])){
+    $acao = $_GET['acao'];
+    
+    // Verifica qual formulario foi submetido
+    switch($acao) {
+        case "cadastraEncontrista":{
+            //Atribuindo valores ao objeto
+            $encontrista->setId($_POST['IdFicha']);
+            $encontrista->setNome($_POST['Nome']);
+            $encontrista->setSexo($_POST['Sexo']);
+            $encontrista->setComunidade($_POST['Comunidade']);
+            $encontrista->setCarta($_POST['Idade']);
+            $encontrista->setOnibus($_POST['Onibus']);
+            $encontrista->setCarta($_POST['Carta']);
+            $encontrista->setValor($_POST['Valor']);
+            $encontrista->setDesistencia($_POST['Desistencia']);
+            $encontrista->setRemedio($_POST['Remedio']);
+            
+            //chamando a funcao que faz o insert
+           $resposta =  $encontristaController->salvar($encontrista);
+           echo $resposta;
+        }
+            break;
+        //se for setProduto
+        case "getProduto": {
+            $getProduto = new Produto;
+            $getProduto->cat_id = $_POST['Categoria'];
+            $getProduto->getProduto();
+        }
+        break;
+    }
+
+}
+?>
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -37,7 +77,7 @@
             <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
             <div class="row">
                 <div class="container">
-                    <form action="../php/encontrista.php" method="POST">
+                    <form action="<?php $SELF_PHP;?>?acao=cadastraEncontrista" method="POST">
                         <div class="form-group row">
                           <label for="IdFicha" class="col-sm-1 col-form-label">Nº ficha:</label>
                           <div class="col-sm-2">

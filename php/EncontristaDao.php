@@ -3,7 +3,7 @@ include 'Banco.php';
 
 class Encontrista{
     
-     private $id;
+    private $id;
     private $nome;
     private $sexo;
     private $dataNascimento;
@@ -14,8 +14,35 @@ class Encontrista{
     private $desistencia;
     private $remedio;
     
-    public function save(){
-        echo "salvar encontrista";
+    public function save($encontrista){
+        $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `Sexo`, `Idade`, `Comunidade`, `Onibus`, `Carta`, `Valor`, `Desistencia`, `Remedio`) 
+        VALUES('$encontrista->id','$encontrista->nome','$encontrista->sexo','$encontrista->dataNascimento','$encontrista->comunidade','$encontrista->onibus','$encontrista->carta','$encontrista->valor','$encontrista->desistencia','$encontrista->remedio')";
+    
+        $insertProdutos = mysql_query($Consulta);
+
+        if($insertProdutos){
+            $resposta="Inserido com sucesso";
+        }else{
+            $resposta ="Erro ao inserir";
+        }
+        
+        return $resposta;
+    }
+    
+    public function update($encontrista){
+        
+        $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `Sexo`, `Idade`, `Comunidade`, `Onibus`, `Carta`, `Valor`, `Desistencia`, `Remedio`) 
+        VALUES('$encontrista->id','$encontrista->nome','$encontrista->sexo','$encontrista->dataNascimento','$encontrista->comunidade','$encontrista->onibus','$encontrista->carta','$encontrista->valor','$encontrista->desistencia','$encontrista->remedio')";
+    
+        $insertProdutos = mysql_query($Consulta);
+
+        if($insertProdutos){
+            $resposta="Inserido com sucesso";
+        }else{
+            $resposta ="Erro ao inserir";
+        }
+        
+        return $resposta;
     }
     
     //Retorna uma lista com todos os encontristas cadastrados
@@ -37,13 +64,24 @@ class Encontrista{
     }
     
     public function registrarDesistencia($IdFicha){
-        $sql = 'update retiro.encontrista set Desistencia=0 where IdFicha='+$IdFicha;
+        $sql = 'update retiro.encontrista set Desistencia=0 where IdFicha='.$IdFicha;
         return mysql_query($sql);
     }
     
     public function getTotalEncontristasPorIdade(){
         $sql = 'SELECT DISTINCT idade, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.idade = enc.idade) AS total_idade FROM  encontrista ORDER BY idade';
         return mysql_query($sql);
+    }
+    
+    public function getEncontristaById($IdFicha){
+        $sql = "SELECT IdFicha, Nome FROM  encontrista where IdFicha=".$IdFicha;
+        return mysql_query($sql);
+    }
+    
+    public function cadastrarDesistencia($IdFicha, $Justificativa){
+        $sql = "UPDATE encontrista SET Justificativa='.$Justificativa.' where IdFicha=".$IdFicha;
+        return mysql_query($sql);
+        
     }
     
     
@@ -82,7 +120,7 @@ class Encontrista{
         $this->dataNascimento = $dataNascimento;
     }
     
-    public function getIdade($dataNascimento){
+    public function getIdade(){
         $this->dataNascimento = $dataNascimento;
     }
     

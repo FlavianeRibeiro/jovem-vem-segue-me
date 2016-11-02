@@ -1,5 +1,5 @@
 <?php
-	$conect=mysql_connect("localhost","flavianeribeiro","");
+	$conect=mysql_connect("localhost","ju_carvalh0","");
 	
 	if($conect){
 		echo "";

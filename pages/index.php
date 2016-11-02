@@ -24,14 +24,16 @@
         function registrarDesistencia(idFicha){
             var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
             if (r == true) {
-               alert("concluido com sucesso"); 
+                location.href = "desistenciaForm.php?IdFicha="+idFicha;
             }
         }
     </script>
 
+    
 </head>
 
 <body>
+    
 
     <div id="wrapper">
 
@@ -102,8 +104,5 @@
         <!-- ********************************* listagem ****************************************-->
         </div>
     </body>
-<<<<<<< HEAD
 </html>
-=======
 </html>
->>>>>>> upstream/master

@@ -20,24 +20,26 @@ class EncontristaController {
     }
     
     //Realiza o cadastro de um novo encontrista  (falta terminar)
-    public function salvar(){
-        $encontrista = new Encontrista();
-        $encontrista->setNome();
-        $encontrista->setSexo();
-        $encontrista->setIdade();
+    public function salvar($encontrista){
+        //$encontrista = new Encontrista();
+        //$encontrista->setNome("Ju");
+        return $encontrista->save($encontrista);
+        
     }
     
     //cadastrar desistencia (falta terminar)
-    public function registrarDesistencia($IdFicha){
+    public function cadastrarDesistencia($IdFicha, $justificativa){
         $encontrista = new Encontrista();
-        $encontrista.registrarDesistencia($IdFicha);
-        
+        $encontrista.cadastrarDesistencia($IdFicha,$justificativa);
     }
     
     public function obterTotalEncontristasPorIdade(){
         $encontrista = new Encontrista();
         return $encontrista->getTotalEncontristasPorIdade();
     }
+    
+    public function obterEncontristaPorIdFicha($IdFicha) {
+        $encontrista = new Encontrista();
+        return $encontrista->getEncontristaById($IdFicha);
+    }
 }
-
-?>
