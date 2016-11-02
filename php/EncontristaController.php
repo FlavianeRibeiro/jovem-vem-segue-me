@@ -19,15 +19,18 @@ class EncontristaController {
         return $encontrista->getBySexo($Sexo);
     }
     
-    //Realiza o cadastro de um novo encontrista  (falta terminar)
+    //Realiza o cadastro de um novo encontrista 
     public function salvar($encontrista){
-        //$encontrista = new Encontrista();
-        //$encontrista->setNome("Ju");
         return $encontrista->save($encontrista);
-        
     }
     
-    //cadastrar desistencia (falta terminar)
+    
+    //Realiza o cadastro de um novo encontrista 
+    public function atualizar($encontrista){
+        return $encontrista->update($encontrista);
+    }
+    
+    //Altera um encontrista para desistente
     public function cadastrarDesistencia($IdFicha, $justificativa){
         $encontrista = new Encontrista();
         $encontrista->saveDesistencia($IdFicha, $justificativa);

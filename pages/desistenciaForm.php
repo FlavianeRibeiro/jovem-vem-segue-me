@@ -4,8 +4,8 @@
     $encontrista = new Encontrista();
     
     
-    if (isset($_GET['IdFicha'])){
-        $IdFicha = $_GET['IdFicha'];
+    if (isset($_GET['Id'])){
+        $IdFicha = $_GET['Id'];
         $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
         $myEncontrista = mysql_fetch_array($resposta);
     }
@@ -52,7 +52,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Cadastrar desistência</h1>
+                    <h1 class="page-header">Cadastrar Desistência</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

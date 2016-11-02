@@ -24,12 +24,10 @@
         function registrarDesistencia(idFicha){
             var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
             if (r == true) {
-                location.href = "./desistenciaForm.php?IdFicha="+idFicha;
+                location.href = "./desistenciaForm.php?Id="+idFicha;
             }
         }
     </script>
-
-    
 </head>
 
 <body>
@@ -52,7 +50,6 @@
                 <!-- /.col-lg-12 -->
             </div>
             
-            
         <!-- ********************************* listagem ****************************************-->
         <?php
             $listaDeEncontristas = $encontrista->listarEncontristasNaoDesistentes();
@@ -61,7 +58,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Encontristas (Todos)
+                        Encontristas (Todos exceto desistentes e suplentes)
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -86,8 +83,8 @@
                                     <td><?php echo $myEncontrista['Comunidade'];?></td>
                                     <td><?php echo $myEncontrista['Idade'];?></td>
                                     <td><?php echo $myEncontrista['Valor'];?></td>
-                                    <td align="center"><a href="ficha.php?aux=<?php echo $myEncontrista['IdFicha'];?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
-                                    <td align="center"><a href="editar.php?aux=<?php echo $myEncontrista['IdFicha'];?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                    <td align="center"><a href="encontristaForm.php?acao=verFicha&Id=<?php echo $myEncontrista['IdFicha'];?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
+                                    <td align="center"><a href="encontristaForm.php?acao=editarFicha&Id=<?php echo $myEncontrista['IdFicha'];?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                     <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>)" class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 <?php }?>
