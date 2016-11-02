@@ -2,10 +2,10 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+                            <a href="index.php"><i class="fa fa-home fa-fw"></i> Inicio</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Cadastrar<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Cadastrar<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="encontristaForm.php">Encontrista</a>
@@ -22,10 +22,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Listagem<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="listagemPorMeninas.php">Meninas</a>
+                                    <a href="listagemPorSexo.php?Sexo=F">Meninas</a>
                                 </li>
                                 <li>
-                                    <a href="listagemPorMeninos.php">Meninos</a>
+                                    <a href="listagemPorSexo.php?Sexo=M">Meninos</a>
                                 </li>
                                 <li>
                                     <a href="listagemPorIdade.php">Idade</a>

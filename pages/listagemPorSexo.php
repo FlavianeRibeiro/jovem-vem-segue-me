@@ -14,6 +14,18 @@
     <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
+        
+        if (isset($_GET['Sexo'])){
+            
+            if($_GET['Sexo'] == 'F'){
+                $Sexo = 'Feminino'; 
+                $Titulo = 'Meninas';
+            }else if($_GET['Sexo'] == 'M'){
+                $Sexo = 'Masculino';
+                $Titulo = 'Meninos';    
+            }
+            
+        }
     ?>
 </head>
 
@@ -29,14 +41,14 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Meninas</h1>
+                    <h1 class="page-header"><?php echo $Titulo; ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             
         <!-- ********************************* listagem ****************************************-->
         <?php
-            $listaDeEncontristas = $encontrista->listarPorSexo("Feminino");
+            $listaDeEncontristas = $encontrista->listarPorSexo($Sexo);
         ?>
         <div class="row">
             <div class="col-lg-12">
