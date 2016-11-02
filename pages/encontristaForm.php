@@ -168,23 +168,23 @@
                             </div>
                             <label for="onibus" class="col-xs-1 col-form-label">Ira de ônibus?</label>
                             <div class="col-sm-1">
-                                    <label><input type="radio" name="Onibus" value="1" <?php echo $permissao;?>>Sim</label> 
-                                    <label><input type="radio" name="Onibus" value="0" <?php echo $permissao;?>>Não</label>
+                                    <label><input type="radio" name="Onibus" value="1" <?php echo $permissao; if($Onibus == 1) echo "checked";?>>Sim</label> 
+                                    <label><input type="radio" name="Onibus" value="0" <?php echo $permissao; if($Onibus == 0) echo "checked";?>>Não</label>
                             </div>
                             <label for="Carta" class="col-xs-1 col-form-label">Carta:</label>
                             <div class="col-sm-1" name="Carta" <?php echo $permissao;?>>
-                                    <label><input type="radio" name="Carta" value="1" <?php echo $permissao;?>>Sim</label> 
-                                    <label><input type="radio" name="Carta" value="0" <?php echo $permissao;?>>Não</label>
+                                    <label><input type="radio" name="Carta" value="1" <?php echo $permissao; if($Carta == 1) echo "checked";?>>Sim</label> 
+                                    <label><input type="radio" name="Carta" value="0" <?php echo $permissao; if($Carta == 0) echo "checked";?>>Não</label>
                             </div>
                             <label for="Desistencia" class="col-xs-1 col-form-label">Desistencia?</label>
                             <div class="col-sm-1" name="Desistencia" <?php echo $permissao;?>>
-                                    <label><input type="radio" name="Desistencia" value="1" <?php echo $permissao;?>>Sim</label> 
-                                    <label><input type="radio" name="Desistencia"value="0" <?php echo $permissao;?>>Não</label>
+                                    <label><input type="radio" name="Desistencia" value="1" <?php echo $permissao; if($Desistencia == 1) echo "checked";?>>Sim</label> 
+                                    <label><input type="radio" name="Desistencia"value="0" <?php echo $permissao; if($Desistencia == 0) echo "checked";?>>Não</label>
                             </div>
                             <label for="Remedio" class="col-xs-1 col-form-label">Remedio?</label>
                             <div class="col-sm-1" name="Remedio" <?php echo $permissao;?>>
-                                    <label><input type="radio" name="Remedio" value="Sim" <?php echo $permissao;?>>Sim</label> 
-                                    <label><input type="radio" name="Remedio" value="Não" <?php echo $permissao;?>>Não</label>
+                                    <label><input type="radio" name="Remedio" value="Sim" <?php echo $permissao; if($Remedio == 'Sim') echo "checked";?>>Sim</label> 
+                                    <label><input type="radio" name="Remedio" value="Não" <?php echo $permissao; if($Remedio == 'Não') echo "checked";?>>Não</label>
                             </div>
                             
                         </div>
