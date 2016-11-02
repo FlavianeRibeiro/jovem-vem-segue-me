@@ -30,7 +30,7 @@ class EncontristaController {
     //cadastrar desistencia (falta terminar)
     public function cadastrarDesistencia($IdFicha, $justificativa){
         $encontrista = new Encontrista();
-        $encontrista.cadastrarDesistencia($IdFicha,$justificativa);
+        $encontrista->saveDesistencia($IdFicha, $justificativa);
     }
     
     public function obterTotalEncontristasPorIdade(){

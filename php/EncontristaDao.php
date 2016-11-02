@@ -63,11 +63,6 @@ class Encontrista{
         return mysql_query($sql);
     }
     
-    public function registrarDesistencia($IdFicha){
-        $sql = 'update retiro.encontrista set Desistencia=0 where IdFicha='.$IdFicha;
-        return mysql_query($sql);
-    }
-    
     public function getTotalEncontristasPorIdade(){
         $sql = 'SELECT DISTINCT idade, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.idade = enc.idade) AS total_idade FROM  encontrista ORDER BY idade';
         return mysql_query($sql);
@@ -78,8 +73,8 @@ class Encontrista{
         return mysql_query($sql);
     }
     
-    public function cadastrarDesistencia($IdFicha, $Justificativa){
-        $sql = "UPDATE encontrista SET Justificativa='.$Justificativa.' where IdFicha=".$IdFicha;
+    public function saveDesistencia($IdFicha, $Justificativa){
+        $sql = "UPDATE encontrista SET Desistencia=1, Justificativa='".$Justificativa."' where IdFicha=".$IdFicha;
         return mysql_query($sql);
         
     }

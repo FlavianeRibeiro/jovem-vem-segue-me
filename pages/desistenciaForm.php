@@ -13,10 +13,10 @@
     if (isset($_GET['acao'])){
         if($_GET['acao'] == 'cadastrarDesistencia'){
             
-            $encontrista->setNome($_POST['Just']);
+            $encontrista->setNome($_POST['Justificativa']);
             
             $id = $_POST['IdFicha'];
-            echo $id;
+            $just = $_POST['Justificativa'];
             $resposta =  $encontristaController->cadastrarDesistencia($id, $just);
         }
         
@@ -64,19 +64,19 @@
                         <div class="form-group row">
                           <label for="IdFicha" class="col-sm-1 col-form-label">Nº ficha:</label>
                           <div class="col-sm-1">
-                            <input type="text" class="form-control" name="IdFicha" value="<?php echo $myEncontrista["IdFicha"]; ?>" disabled>
+                            <input type="text" class="form-control" name="IdFicha" value="<?php echo $myEncontrista["IdFicha"]; ?>" readonly>
                           </div>
                          
                           <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
                           <div class="col-sm-5">
-                            <input type="text" class="form-control" name="Nome" value="<?php echo $myEncontrista["Nome"]; ?>" disabled>
+                            <input type="text" class="form-control" name="Nome" value="<?php echo $myEncontrista["Nome"]; ?>" readonly>
                           </div>
                         </div>
                 
                         <div class="form-group row">
-                            <label for="Sexo" class="col-xs-1 col-form-label" name="justificativa">Justificativa:</label>
+                            <label for="Justificativa" class="col-xs-1 col-form-label" name="Justificativa">Justificativa:</label>
                             <div class="col-sm-7">
-                                <textarea class="form-control" rows="5" name="justificativa" id="justificativa"></textarea>
+                                <textarea class="form-control" rows="5" name="Justificativa"></textarea>
                             </div>
                           
                         </div>

@@ -24,7 +24,7 @@
         function registrarDesistencia(idFicha){
             var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
             if (r == true) {
-                location.href = "desistenciaForm.php?IdFicha="+idFicha;
+                location.href = "./desistenciaForm.php?IdFicha="+idFicha;
             }
         }
     </script>
