@@ -58,7 +58,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Encontristas (Todos exceto desistentes e suplentes)
+                        Encontristas (Todos exceto desistentes)
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -76,7 +76,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
+                                <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){ ?>
                                <tr class="odd gradeX">
                                     <td><?php echo $myEncontrista['IdFicha'];?></td>
                                     <td><?php echo $myEncontrista['Nome'];?></td>
@@ -87,7 +87,7 @@
                                     <td align="center"><a href="encontristaForm.php?acao=editarFicha&Id=<?php echo $myEncontrista['IdFicha'];?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                     <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>)" class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>
                                 </tr>
-                                <?php }?>
+                                <?php } ?>
                             </tbody>
                         </table>
                     <!-- /.table-responsive -->
