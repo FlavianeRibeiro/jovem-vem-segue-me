@@ -16,7 +16,6 @@
         include './template/styles.html';
         
         if (isset($_GET['Sexo'])){
-            
             if($_GET['Sexo'] == 'F'){
                 $Sexo = 'Feminino'; 
                 $Titulo = 'Meninas';
@@ -24,7 +23,6 @@
                 $Sexo = 'Masculino';
                 $Titulo = 'Meninos';    
             }
-            
         }
     ?>
 </head>
