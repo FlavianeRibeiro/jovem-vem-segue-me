@@ -5,6 +5,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+                        
+        	var input = '<option name="'.$IdFicha[$contador].'" value=".$Nome[$contador]."> <a href="#" class="remove">X</a></label>';
+            alert('teste');
+        	$("input[name='add']").click(function( e ){
+        		$('#inputs_adicionais').append( input );
+        	});
+        
+        	$('#inputs_adicionais').delegate('a','click',function( e ){
+        		e.preventDefault();
+        		$( this ).parent('label').remove();
+        	});
+        
+        });
+        </script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,13 +86,19 @@
                         </div>
                           <!-- /.panel-heading -->
                          <?php
-							$Recebe = mysql_query("SELECT * FROM `encontrista`");
-							$IdFicha;$Nome;$contador=0;
+							$encontrista = mysql_query("SELECT * FROM `encontrista` WHERE `Desistencia` = 0");
+							$equipe = mysql_query("SELECT * FROM `equipe`");
+							$IdFicha;$Nome;$Idequipe;$contador=0;$cont=0;
 							
-							while($linha = mysql_fetch_array($Recebe)){
+							while($linha = mysql_fetch_array($encontrista)){
 								$IdFicha[$contador] = $linha["IdFicha"];
 								$Nome[$contador] = $linha["Nome"];
 								$contador++;
+							}
+							while($ln = mysql_fetch_array($equipe)){
+								$Idequipe[$cont] = $ln["Idequipe"];
+								$Nomeeq[$cont] = $ln["Nome"];
+								$cont++;
 							}
 						?>
                         <div class="panel-body">
@@ -85,8 +109,9 @@
                                         <input type="text" class="form-control" name="Email" placeholder="Nº">
                                     </div>
                                 </div>
+                                <!-- /. ENCONTRISTA -->
                                 <div class="form-group row">
-                                    <label for="Email" class="col-sm-1 col-form-label">Nome:  </label>
+                                    <label for="Email" class="col-sm-1 col-form-label">Encontrista:  </label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
                                         </div>
@@ -96,15 +121,25 @@
                                             while($contador<count($IdFicha)){
                 								echo '<option name="'.$IdFicha[$contador].'" value="'.$Nome[$contador].'">';
                 								$contador++;
-                    							}
-                    						?>
+                    							} ?>
                     				    </datalist>
-                                    </div>
+                                </div>
+                                <!-- /.EQUIPE -->
+                                <div class="form-group row">
+                                    <label for="Email" class="col-sm-1 col-form-label">Equipe:  </label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
+                                        </div>
+                                            <datalist id="datalist">
+                                            <?php
+                                            $cont=0;
+                                            while($cont<count($Nomeeq)){
+                								echo '<option name="'.$Idequipe[$cont].'" value="'.$Nomeeq[$cont].'">';
+                								$contador++;
+                    							}	?>
+                    				    </datalist>
+                                </div>
                             </div>
-                            <!-- /.list-group -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
                     <!-- /.panel -->
                 </div>
             </div>
