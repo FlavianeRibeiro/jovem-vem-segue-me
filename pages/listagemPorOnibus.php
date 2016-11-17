@@ -51,10 +51,9 @@
 								<tbody>
 									<?php
 										include '../php/Banco.php';
-										$Recebe = mysql_query("SELECT `IdFicha`, `Nome`, `Comunidade`, `Valor` FROM `encontrista` WHERE `Onibus` = '1'");
-										
+	                                    $Recebe = mysql_query("SELECT `IdFicha`, `Nome`, `Comunidade`, `Valor` FROM `encontrista` e WHERE `Onibus` = '1'  ORDER BY `Nome` ASC");
 										$IdFicha;$Nome;	$Comunidade;$Valor;	$contador=0;
-										
+
 										while($linha = mysql_fetch_array($Recebe)){
 											$IdFicha[$contador] = $linha["IdFicha"];
 											$Nome[$contador] = $linha["Nome"];
@@ -63,15 +62,19 @@
 											$contador++;
 										}
 										$contador=0;
-											while($contador<count($Nome)){
-										      echo'<tr class="odd gradeX">
-													<td>'.$IdFicha[$contador].'</td>
-													<td>'.$Nome[$contador].'</td>
-													<td>'.$Comunidade[$contador].'</td>
-													<td class="center">'.$Valor[$contador].'</td>
-												</tr>';echo $i;
+										//if($contador >=0){
+										  while($contador< 15){
+										     echo  $com = mysql_query('SELECT `Nome` FROM `comunidade` WHERE `IdComunidade` ='.$Comunidade[$contador]);
+									        echo'<tr class="odd gradeX">
+												<td>'.$IdFicha[$contador].'</td>
+												<td>'.$Nome[$contador].'</td>
+												<td>'.$com.'</td>
+												<td class="center">'.$Valor[$contador].'</td>
+											</tr>';
 												$contador++;
-											}
+											}  
+									//	}
+											
 									?>
 								</tbody>
 							</table>
@@ -88,7 +91,31 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            
+                            <table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Nº Ficha</th>
+										<th>Nome</th>
+										<th>Comunidade</th>
+										<th>Valor</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									if ($contador >= 16){
+										while($contador< 30){
+									        echo'<tr class="odd gradeX">
+												<td>'.$IdFicha[$contador].'</td>
+												<td>'.$Nome[$contador].'</td>
+												<td>'.$Comunidade[$contador].'</td>
+												<td class="center">'.$Valor[$contador].'</td>
+											</tr>';
+												$contador++;
+										}
+									}
+									?>
+								</tbody>
+							</table>
                         </div>
                         <!-- /.panel-body -->
                     </div>

@@ -7,21 +7,21 @@
 <head>
    <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-                        
-        	var input = '<option name="'.$IdFicha[$contador].'" value=".$Nome[$contador]."> <a href="#" class="remove">X</a></label>';
-            alert('teste');
-        	$("input[name='add']").click(function( e ){
-        		$('#inputs_adicionais').append( input );
-        	});
-        
-        	$('#inputs_adicionais').delegate('a','click',function( e ){
-        		e.preventDefault();
-        		$( this ).parent('label').remove();
-        	});
-        
-        });
-        </script>
+    $(document).ready(function(){
+    
+    	var input = $teste;
+    
+    	$("input[name='add']").click(function( e ){
+    		$('#inputs_adicionais').append( input );
+    	});
+    
+    	$('#inputs_adicionais').delegate('a','click',function( e ){
+    		e.preventDefault();
+    		$( this ).parent('label').remove();
+    	});
+    
+    });
+    </script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,11 +115,17 @@
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
                                         </div>
-                                            <datalist id="datalist">
+                                        <datalist id="datalist">
+                                            <select nome='add'>
+                                                <option value='1' <?php $add =1; ?> >1
+                                                <option value='2' <?php $add =2; ?> >2
+                                                <option value='3' <?php $add =3; ?> >3
+                                            </select>
                                             <?php
                                             $contador=0;
+                                            echo $add;
                                             while($contador<count($IdFicha)){
-                								echo '<option name="'.$IdFicha[$contador].'" value="'.$Nome[$contador].'">';
+                								echo  '<option name="'.$IdFicha[$contador].'" value="'.$Nome[$contador].'">';
                 								$contador++;
                     							} ?>
                     				    </datalist>
@@ -136,7 +142,7 @@
                                             while($cont<count($Nomeeq)){
                 								echo '<option name="'.$Idequipe[$cont].'" value="'.$Nomeeq[$cont].'">';
                 								$contador++;
-                    							}	?>
+                    						}	?>
                     				    </datalist>
                                 </div>
                             </div>
