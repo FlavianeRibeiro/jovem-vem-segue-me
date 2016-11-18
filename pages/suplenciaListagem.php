@@ -14,9 +14,11 @@
     <?php
         include './template/styles.html';
     ?>
+
 </head>
 
 <body>
+
     <div id="wrapper">
 
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -64,6 +66,7 @@
                                     <th>Equipe</th>
                                     <th>E-mail</th>
                                     <th>Telefone</th>
+                                    <th>Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +79,7 @@
                                             <td>'.$Equipe[$contador].'</td>
                                             <td class="center">'.$Email[$contador].'</td>
                                             <td class="center">'.$Telefone[$contador].'</td>
+                                            <td align="center"><a href="" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                         </tr>';
                                     $contador++;
                                 }
