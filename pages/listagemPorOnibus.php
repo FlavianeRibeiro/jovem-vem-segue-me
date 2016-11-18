@@ -51,7 +51,10 @@
 								<tbody>
 									<?php
 										include '../php/Banco.php';
-	                                    $Recebe = mysql_query("SELECT `IdFicha`, `Nome`, `Comunidade`, `Valor` FROM `encontrista` e WHERE `Onibus` = '1'  ORDER BY `Nome` ASC");
+	                                    $Recebe = mysql_query("SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Sexo`, `encontrista`.`Idade`, `encontrista`.`Onibus`, `encontrista`.`Carta`, `encontrista`.`Valor`, `encontrista`.`Desistencia`, `encontrista`.`Remedio`, `encontrista`.`Justificativa`, `comunidade`.`Nome` as Comunidade
+												                FROM  `encontrista` 
+												                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+												                WHERE  Desistencia=0");
 										$IdFicha;$Nome;	$Comunidade;$Valor;	$contador=0;
 
 										while($linha = mysql_fetch_array($Recebe)){
@@ -64,15 +67,11 @@
 										$contador=0;
 										if($contador >=0){ 
 										  while($contador< 15){
-										     $com = mysql_query("SELECT `Nome` FROM `comunidade` WHERE `IdComunidade` =".$Comunidade[$contador]);
-										            $teste;$add=0;
-										            while($ln = mysql_fetch_array($com)){
-										                $teste[$add] = $ln["Nome"];$add++;
-										            }
+										     
 									        echo'<tr class="odd gradeX">
 												<td>'.$IdFicha[$contador].'</td>
 												<td>'.$Nome[$contador].'</td>
-												<td>'.$teste[$contador].'</td>
+												<td>'.$Comunidade[$contador].'</td>
 												<td class="cenater">'.$Valor[$contador].'</td>
 											</tr>';
 												$contador++;
