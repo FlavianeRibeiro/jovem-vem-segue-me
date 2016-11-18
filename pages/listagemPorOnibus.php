@@ -62,18 +62,22 @@
 											$contador++;
 										}
 										$contador=0;
-										//if($contador >=0){
+										if($contador >=0){ 
 										  while($contador< 15){
-										     echo  $com = mysql_query('SELECT `Nome` FROM `comunidade` WHERE `IdComunidade` ='.$Comunidade[$contador]);
+										     $com = mysql_query("SELECT `Nome` FROM `comunidade` WHERE `IdComunidade` =".$Comunidade[$contador]);
+										            $teste;$add=0;
+										            while($ln = mysql_fetch_array($com)){
+										                $teste[$add] = $ln["Nome"];$add++;
+										            }
 									        echo'<tr class="odd gradeX">
 												<td>'.$IdFicha[$contador].'</td>
 												<td>'.$Nome[$contador].'</td>
-												<td>'.$com.'</td>
-												<td class="center">'.$Valor[$contador].'</td>
+												<td>'.$teste[$contador].'</td>
+												<td class="cenater">'.$Valor[$contador].'</td>
 											</tr>';
 												$contador++;
 											}  
-									//	}
+										}
 											
 									?>
 								</tbody>
