@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
 
@@ -10,7 +10,6 @@
     <meta name="author" content="">
 
     <title>Jovem vem e segue-me</title>
-
     <?php
         include './template/styles.html';
     ?>
@@ -20,80 +19,72 @@
 <body>
 
     <div id="wrapper">
-
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
-                include '../php/Banco.php';
-                    $Recebe = mysql_query("SELECT * FROM  `Suplencia`");
-                    
-                    $IdSuplencia;$Nome;$Equipe;$Email;$Telefone;
-                    $contador=0;
-                    
-                    while($linha = mysql_fetch_array($Recebe)){
-                        $IdSuplencia[$contador] = $linha["IdSuplencia"];
-                        $Nome[$contador] = $linha["Nome"];
-                        $Equipe[$contador] = $linha["Equipe"];
-                        $Email[$contador] = $linha["Email"];
-                        $Telefone[$contador] = $linha["Telefone"];
-                        $contador++;
-                    }
             ?>
         </nav>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Listagens de suplência </h1>
+                    <h1 class="page-header">Suplencia</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-                <!-- ********************************* listagem ****************************************-->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <?php echo "Total: ",$contador; ?>
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                       <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Número</th>
-                                    <th>Nome</th>
-                                    <th>Equipe</th>
-                                    <th>E-mail</th>
-                                    <th>Telefone</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                                $contador=0;
-                                while($contador<count($Nome)){
-                                    echo'<tr class="odd gradeX">
-                                            <td>'.$IdSuplencia[$contador].'</td>
-                                            <td>'.$Nome[$contador].'</td>
-                                            <td>'.$Equipe[$contador].'</td>
-                                            <td class="center">'.$Email[$contador].'</td>
-                                            <td class="center">'.$Telefone[$contador].'</td>
-                                        </tr>';
-                                    $contador++;
-                                }
-                            ?>
-                            </tbody>
-                        </table>
-                    <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
+            <!-- /.row -->
+            <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
+            <div class="row">
+                <div class="container">
+                    <form action="../php/Cad_Suplencia.php" method="POST">
+                        <div class="form-group row">
+                          <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
+                          <div class="col-md-4">
+                            <input type="text" class="form-control" name="Nome" placeholder="Nome completo">
+                          </div>
+                          <label for="Nome" class="col-sm-1 col-form-label">Equipe:</label>
+                          <div class="col-xs-2">
+                            <select name="Equipe" class="form-control">
+                                    <option> </option>
+                                    <option name="Equipe" value="Bem Estar">Bem Estar</option>
+                                    <option name="Equipe" value="CG">CG</option>
+                                    <option name="Equipe" value="Comunicação">Comunicação</option>
+                                    <option name="Equipe" value="Copa">Copa</option>
+                                    <option name="Equipe" value="Casal Apoio">Casal Apoio</option>
+                                    <option name="Equipe" value="Cozinha">Cozinha</option>
+                                    <option name="Equipe" value="Decoração">Decoração</option>
+                                    <option name="Equipe" value="Intercessão e Liturgia">Intercessão e Liturgia</option>
+                                    <option name="Equipe" value="Logistica">Logistica</option>
+                                    <option name="Equipe" value="Música">Música</option>
+                                    <option name="Equipe" value="Ordem e Vigilância">Ordem e Vigilância</option>
+                                    <option name="Equipe" value="Sala">Sala</option>
+                                    <option name="Equipe" value="Secretaria">Secretaria</option>
+                                    
+                                </select>
+                          </div>
+                        </div>
+                
+                        <div class="form-group row">
+                            <label for="Email" class="col-sm-1 col-form-label">Email:</label>
+                          <div class="col-md-4">
+                            <input type="text" class="form-control" name="Email" placeholder="exemplo@retiro.com">
+                          </div>
+                           <label for="Telefone" class="col-sm-1 col-form-label" >Telefone:</label>
+                          <div class="col-xs-2">
+                            <input type="text" class="form-control" name="Telefone" placeholder="(27)99999-9999">
+                          </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-danger">Cadastrar</button>
+                    </form>   
                 </div>
-                <!-- /.panel -->
             </div>
-            <!-- /.col-lg-12 -->
+            <!-- /.row -->
         </div>
-    <!-- ********************************* listagem ****************************************-->
-        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
 </body>
 
 </html>

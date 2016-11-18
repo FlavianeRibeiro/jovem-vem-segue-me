@@ -51,10 +51,10 @@
 								<tbody>
 									<?php
 										include '../php/Banco.php';
-	                                    $Recebe = mysql_query("SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Sexo`, `encontrista`.`Idade`, `encontrista`.`Onibus`, `encontrista`.`Carta`, `encontrista`.`Valor`, `encontrista`.`Desistencia`, `encontrista`.`Remedio`, `encontrista`.`Justificativa`, `comunidade`.`Nome` as Comunidade
+	                                    $Recebe = mysql_query("SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`,  `encontrista`.`Valor`,  `comunidade`.`Nome` as Comunidade
 												                FROM  `encontrista` 
 												                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
-												                WHERE  Desistencia=0");
+												                WHERE  Desistencia=0  ORDER BY `Nome` ASC");
 										$IdFicha;$Nome;	$Comunidade;$Valor;	$contador=0;
 
 										while($linha = mysql_fetch_array($Recebe)){
