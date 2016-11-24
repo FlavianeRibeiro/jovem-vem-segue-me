@@ -84,7 +84,23 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
+                           <tr>
+                                        <td>NOME COMPLETO ENCONTRISTA</td>
+                                        <td>EQUIPE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOME COMPLETO ENCONTRISTA</td>
+                                        <td>EQUIPE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOME COMPLETO ENCONTRISTA</td>
+                                        <td>EQUIPE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOME COMPLETO ENCONTRISTA</td>
+                                        <td>EQUIPE</td>
+                                    </tr>
+                                </table>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -110,10 +126,7 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
-
 </body>
-
 </html>
