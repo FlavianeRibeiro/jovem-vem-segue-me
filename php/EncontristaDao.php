@@ -68,6 +68,10 @@ class Encontrista{
         $sql = "UPDATE encontrista SET Desistencia=1, Justificativa='".$Justificativa."' where IdFicha=".$IdFicha;
         return mysql_query($sql);
     }
+    public function getTotalEncontristasPorValor(){
+        $sql = 'SELECT DISTINCT Valor, (SELECT COUNT( * ) FROM valor enc WHERE valor.Valor = enc.Valor) AS total_Valor FROM  valor ORDER BY Valor';
+        return mysql_query($sql);
+    }
     
     
     /*----------------------------

@@ -5,24 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-    
-    	var input = $teste;
-    
-    	$("input[name='add']").click(function( e ){
-    		$('#inputs_adicionais').append( input );
-    	});
-    
-    	$('#inputs_adicionais').delegate('a','click',function( e ){
-    		e.preventDefault();
-    		$( this ).parent('label').remove();
-    	});
-    
-    });
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,7 +69,7 @@
                           <!-- /.panel-heading -->
                          <?php
 							$encontrista = mysql_query("SELECT * FROM `encontrista` WHERE `Desistencia` = 0");
-							$equipe = mysql_query("SELECT * FROM `equipe`");
+						//	$equipe = mysql_query("SELECT * FROM `equipe`");
 							$IdFicha;$Nome;$Idequipe;$contador=0;$cont=0;
 							
 							while($linha = mysql_fetch_array($encontrista)){
@@ -95,11 +77,11 @@
 								$Nome[$contador] = $linha["Nome"];
 								$contador++;
 							}
-							while($ln = mysql_fetch_array($equipe)){
+						/*	while($ln = mysql_fetch_array($equipe)){
 								$Idequipe[$cont] = $ln["Idequipe"];
 								$Nomeeq[$cont] = $ln["Nome"];
 								$cont++;
-							}
+							}*/
 						?>
                         <div class="panel-body">
                             <div class="list-group">
@@ -115,11 +97,7 @@
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
                                         </div>
-                                        <datalist id="datalist">
-                                            <select nome='add'>
-                                                <option value='1' <?php $add =1; ?> >1
-                                                <option value='2' <?php $add =2; ?> >2
-                                                <option value='3' <?php $add =3; ?> >3
+                                        <datalist id="datalist"> value='3' <?php $add =3; ?> >3
                                             </select>
                                             <?php
                                             $contador=0;
@@ -136,13 +114,13 @@
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
                                         </div>
-                                            <datalist id="datalist">
+                                        <datalist id="datalist">
                                             <?php
-                                            $cont=0;
-                                            while($cont<count($Nomeeq)){
+                                          //  $cont=0;
+                                            /*while($cont<count($Nomeeq)){
                 								echo '<option name="'.$Idequipe[$cont].'" value="'.$Nomeeq[$cont].'">';
                 								$contador++;
-                    						}	?>
+                    						}*/	?>
                     				    </datalist>
                                 </div>
                             </div>

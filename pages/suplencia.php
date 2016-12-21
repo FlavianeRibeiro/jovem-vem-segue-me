@@ -13,11 +13,9 @@
     <?php
         include './template/styles.html';
     ?>
-
 </head>
 
 <body>
-
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
@@ -33,7 +31,6 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
             <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
             <div class="row">
                 <div class="container">

@@ -78,23 +78,25 @@
                                     while($contador<count($Nome)){
                                         echo'<tr class="odd gradeX">';
                                                 if ($Ficha[$contador] == 0){
-                                                    echo '<td class="col-sm-1"><input type="text" class="form-control" name="Ficha"><td>
+                                                    echo '
+                                                    <td class="col-sm-1"><input type="text" class="form-control" name="Ficha"><td></td>
                                                     <td>'.$IdSuplencia[$contador].'</td>
                                                     <td>'.$Nome[$contador].'</td>
                                                     <td>'.$Equipe[$contador].'</td>
                                                     <td class="center">'.$Email[$contador].'</td>
                                                     <td class="center">'.$Telefone[$contador].'</td>
-                                                    <td align="center"><a href="listagemPorComunidade.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                                    <td align="center"><a href="./php/Cad_Suplencia.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                                 </tr>';
                                                 
                                                 }else {
-                                                    echo '<td>'.$Ficha[$contador].'</td>
+                                                    echo '
+                                                    <td>'.$Ficha[$contador].'</td><td></td>
                                                     <td>'.$IdSuplencia[$contador].'</td>
                                                     <td>'.$Nome[$contador].'</td>
                                                     <td>'.$Equipe[$contador].'</td>
                                                     <td class="center">'.$Email[$contador].'</td>
                                                     <td class="center">'.$Telefone[$contador].'</td>
-                                                    <td align="center"><a href="listagemPorComunidade.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>
+                                                    <td align="center"><a href="./php/Cad_Suplencia.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>
                                                 </tr>'; }
                                         $contador++;
                                     }

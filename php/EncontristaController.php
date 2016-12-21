@@ -45,4 +45,8 @@ class EncontristaController {
         $encontrista = new Encontrista();
         return $encontrista->getEncontristaById($IdFicha);
     }
+    public function obterTotalEncontristasPorValor(){
+        $encontrista = new Encontrista();
+        return $encontrista->getTotalEncontristasPorValor();
+    }
 }
