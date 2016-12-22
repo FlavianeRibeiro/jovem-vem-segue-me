@@ -16,7 +16,7 @@
     VALUES ('Null','$Nome','$Fixo','$Celular','$Operadora','$Email','$Senha','$Comunidade','$Equipe','$Status','$Sexo')";
 	$Result = mysql_query($Consulta);
 	
-	echo $Result.mysql_error();
+	$Result=mysql_error();
     
     header("Location: ../pages/equipe.php"); 
 ?>

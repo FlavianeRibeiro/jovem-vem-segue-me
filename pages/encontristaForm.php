@@ -139,21 +139,8 @@
                             <div class="col-sm-2">
                                 <input type="text" class="form-control" name="Idade"  value="<?php echo $Idade;?>" <?php echo $permissao;?>>
                             </div>
-                            <label for="Valor" class="col-xs-1 col-form-label">Valor:</label>
-                            <div class="col-sm-3">
-                                <select class="form-control" name="Valor" <?php echo $permissao;?>>
-                                  <option name="Valor" value="Amizade" >Amizade</option>
-                                  <option name="Valor" value="Amor" <?php if($Valor == 'Amor') echo"selected";?>>Amor</option>
-                                  <option name="Valor" value="Perdao"<?php if($Valor == 'Perdao') echo"selected";?>>Perdão</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <?php $listComunidade = $comunidadeController->listarTodas();?>
-                         
-                        <div class="form-group row">
-                            
-                            <label for="Comunidade" class="col-xs-1 col-form-label" name="Comunidade">Comunidade:</label>
+                             <?php $listComunidade = $comunidadeController->listarTodas();?>
+                             <label for="Comunidade" class="col-xs-1 col-form-label" name="Comunidade">Comunidade:</label>
                             <div class="col-xs-2">
                                 <select name="Comunidade" class="form-control" <?php echo $permissao;?>>
                                     <option > </option>
@@ -166,6 +153,11 @@
                                     <option name="Comunidade" value="">Outros</option>
                                 </select>
                             </div>
+                        </div>
+                        
+                       
+                         
+                        <div class="form-group row"></div>
                             <label for="onibus" class="col-xs-1 col-form-label">Ira de ônibus?</label>
                             <div class="col-sm-1">
                                     <label><input type="radio" name="Onibus" value="1" <?php echo $permissao; if($Onibus == 1) echo "checked";?>>Sim</label> 

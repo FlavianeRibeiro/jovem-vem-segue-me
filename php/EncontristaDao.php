@@ -69,7 +69,7 @@ class Encontrista{
         return mysql_query($sql);
     }
     public function getTotalEncontristasPorValor(){
-        $sql = 'SELECT DISTINCT Valor, (SELECT COUNT( * ) FROM valor enc WHERE valor.Valor = enc.Valor) AS total_Valor FROM  valor ORDER BY Valor';
+        $sql = 'SELECT DISTINCT Valor, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.Valor = enc.Valor) AS total_Valor FROM  encontrista ORDER BY Valor';
         return mysql_query($sql);
     }
     

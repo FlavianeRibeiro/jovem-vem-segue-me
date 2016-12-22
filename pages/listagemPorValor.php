@@ -56,43 +56,46 @@
 												<th>Op</th>
 												<th>Nº Ficha</th>
 												<th>Nome</th>
-												<th>Comunidade</th>
 												<th>Idade</th>
+												<th>Comunidade</th>
 												<th>Valor</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
 												include '../php/Banco.php';
-												$Recebe = mysql_query("SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`,  `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
-														                FROM  `encontrista`  
-														                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
-														                WHERE  Desistencia=0  ORDER BY `Idade` ASC");
 												
-												$IdFicha;
-												$Nome;
-												$Comunidade;
-												$Idade;
-												$Valor;
-												$contador=0;
+												$Recebe = mysql_query('SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`,  `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
+														                FROM  `encontrista`  INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+														                WHERE  Desistencia = 0  ORDER BY `Idade` ASC');
+												$IdFicha;$Nome;	$Comunidade;$Idade;	$Valor;$contador=0;
 												
 												while($linha = mysql_fetch_array($Recebe)){
 													$IdFicha[$contador] = $linha["IdFicha"];
 													$Nome[$contador] = $linha["Nome"];
 													$Comunidade[$contador] = $linha["Comunidade"];
-													$Idade[$contador] = $linha["Idade"];
 													$Valor[$contador] = $linha["Valor"];
-													$contador++;
+													$Idade[$contador] = $linha["Idade"];	$contador++;
 												}
 												$contador=0;
+												$x = mysql_query("SELECT * FROM valor");
+												$Valor;$Id;
+												while($linha = mysql_fetch_array($x)){
+													$Id[$contador] = $linha["Id"];
+													$Valorx[$contador] = $linha["Valor"];
+												}
+												
 												while($contador<count($Nome)){
+													while($contador<count($Id)){
+														
+													}
 													echo'<tr class="odd gradeX">
 															<td><input type="checkbox" name="Id[]" value="'.$IdFicha[$contador].'"></td>
 															<td>'.$IdFicha[$contador].'</td>
 															<td>'.$Nome[$contador].'</td>
+															<td class="center">'.$Idade[$contador].' anos</td>
 															<td>'.$Comunidade[$contador].'</td>
-															<td class="center">'.$Idade[$contador].'</td>
-															<td class="center">'.$Valor[$contador].'</td>
+															<td>'.$Valor[$contador].'</td>
 														</tr>';
 													$contador++;
 												}
