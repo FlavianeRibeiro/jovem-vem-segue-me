@@ -48,9 +48,35 @@ class Encontrista{
         return mysql_query($sql);
     }
     
+    public function getByComunidade($Comunidade_){
+        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`, `comunidade`.`Nome` as Comunidade
+                FROM  `encontrista` 
+                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+                WHERE  Desistencia = 0 AND Comunidade='".$Comunidade_."'";
+        return mysql_query($sql);
+    }
+    
+    public function getByComun($Comunidade_){
+        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`,  `comunidade`.`Nome` as Comunidade
+                FROM  `encontrista` 
+                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+                WHERE  Desistencia=0 AND Comunidade !='".$Comunidade_."'";
+        return mysql_query($sql);
+    }
     
     public function getBySexo($Sexo_){
-        $sql = "select * from retiro.encontrista where Sexo='".$Sexo_."'";
+        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
+                FROM  `encontrista` 
+                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+                WHERE  Desistencia=0 AND Sexo='".$Sexo_." '";
+        return mysql_query($sql);
+    }
+    
+    public function getByValor($Valor_){
+        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
+                FROM  `encontrista` 
+                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+                WHERE  Desistencia=0 AND Valor='".$Valor_." '";
         return mysql_query($sql);
     }
     

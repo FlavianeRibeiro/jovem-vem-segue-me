@@ -1,5 +1,9 @@
+<?php
+    require_once '../php/EncontristaController.php';
+    $encontrista = new EncontristaController();
+?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,43 +14,51 @@
     <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
+        
+        if (isset($_GET['op'])){
+            switch ($_GET['op']){
+                case 1:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "Cristo Rei";
+                break;
+                case 2:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "Jesus Ressuscitado";
+                break;
+                case 31:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "Nossa Senhora do Rosário";
+                break;
+                case 4:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "Sagrada Família";
+                break;
+                case 5:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "Santa Clara de Assis";
+                break;
+                case 6:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "Santuário";
+                break;
+                case 7:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "São Benedito";
+                break;
+                case 8:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "São Marcos";
+                break;
+                case 8:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "São Sebastião";
+                break;
+            }
+        }
     ?>
 </head>
 
 <body>
-    <?php
-        include '../php/Banco.php';
-            $op =$_GET["op"];
-            switch ($op) {
-                case '1':
-                    $op = "Cristo Rei";
-                break;
-                case '2':
-                    $op = "Jesus Ressuscitado";
-                break;
-                case '3':
-                    $op = "Nossa Senhora do Rosário";
-                break;
-                case '4':
-                    $op = "Sagrada Família";
-                break;
-                case '5':
-                    $op = "Santa Clara de Assis";
-                break;
-                case '6':
-                    $op = "Santuário";
-                break;
-                case '7':
-                    $op = "São Benedito";
-                break;
-                case '8':
-                    $op = "São Marcos";
-                break;
-                case '9':
-                    $op = "São Sebastião";
-                break;
-            }
-    ?>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
@@ -58,21 +70,25 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Comunidades</h1>
+                    <h1 class="page-header"><?php echo $Titulo; ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             
         <!-- ********************************* listagem ****************************************-->
+        <?php
+            $listaDeEncontristas = $encontrista->listarPorComunidade($Comunidade);
+        ?>
         <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Encontristas da Comunidade: <?php echo $op; ?>
-                        </div>
-                        <!-- .panel-heading -->
-                        <div class="panel-body">
-                            <table class="table table-bordered">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Encontristas (Todos)
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
                                 <tr>
                                     <th>Nº Ficha</th>
                                     <th>Nome</th>
@@ -80,47 +96,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                if ( $op == 10){
-                                    $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Comunidade` !=  'Cristo Rei'
-                                        AND  `Comunidade` !=  'Jesus Ressuscitado'AND  `Comunidade` !=  'Nossa Senhora do Rosário'
-                                        AND  `Comunidade` !=  'Sagrada Família' AND  `Comunidade` !=  'Santa Clara de Assis'
-                                        AND  `Comunidade` !=  'Santuário' AND  `Comunidade` !=  'São Benedito'
-                                        AND  `Comunidade` !=  'São Marco' AND  `Comunidade` !=  'São Sebastião'");
-                                }else{
-                                    $Recebe = mysql_query("SELECT * FROM  `encontrista` WHERE  `Comunidade` =  '$op'");
-                                }
-                               
-                                
-                                $IdFicha;$Nome;$Idade;
-                                $contador=0;
-                                
-                                while($linha = mysql_fetch_array($Recebe)){
-                                    $IdFicha[$contador] = $linha["IdFicha"];
-                                    $Nome[$contador] = $linha["Nome"];
-                                    $Idade[$contador] = $linha["Idade"];
-                                    $contador++;
-                                }
-                                $contador=0;
-                                while($contador<count($Nome)){
-                                    echo'<tr class="odd gradeX">
-                                            <td>'.$IdFicha[$contador].'</td>
-                                            <td>'.$Nome[$contador].'</td>
-                                            <td class="center">'.$Idade[$contador].'</td>
-                                        </tr>';
-                                    $contador++;
-                                }
-                            ?>
+                                <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
+                               <tr class="odd gradeX">
+                                    <td><?php echo $myEncontrista['IdFicha'];?></td>
+                                    <td><?php echo $myEncontrista['Nome'];?></td>
+                                    <td><?php echo $myEncontrista['Idade']." anos";?></td>
+                                </tr>
+                                <?php }?>
                             </tbody>
                         </table>
-                        </div>
-                        <!-- .panel-body -->
+                    <!-- /.table-responsive -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.panel-body -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.panel -->
             </div>
-        <!-- ********************************* listagem ****************************************-->
+            <!-- /.col-lg-12 -->
+        </div>
+    <!-- ********************************* listagem ****************************************-->
     </div>
 </body>
 </html>

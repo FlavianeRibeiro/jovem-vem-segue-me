@@ -19,6 +19,23 @@ class EncontristaController {
         return $encontrista->getBySexo($Sexo);
     }
     
+    
+    //LISTAGEM POR VALOR
+    public function listarPorValor($Valor_) {
+        $encontrista = new Encontrista();
+        return $encontrista->getByValor($Valor_);
+    }
+    //LISTAGEM POR COMUNIDADE
+    public function listarPorComunidade($Comunidade) {
+        $encontrista = new Encontrista();
+        return $encontrista->getByComunidade($Comunidade);
+    }
+    //LISTAGEM POR COMUNIDADE fora da paroquia
+    public function listarPorComun($Comunidade_) {
+        $encontrista = new Encontrista();
+        return $encontrista->getByComun($Comunidade_);
+    }
+    
     //Realiza o cadastro de um novo encontrista 
     public function salvar($encontrista){
         return $encontrista->save($encontrista);

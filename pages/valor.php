@@ -14,120 +14,79 @@
     <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
+        
+        if (isset($_GET['Op'])){
+            if($_GET['Op'] == 'Amizade'){
+                $Valor = 'Amizade'; 
+            }else if($_GET['Op'] == 'Amor'){
+                $Valor = 'Amor';    
+            }else if ($_GET['Op'] == 'Perdão'){
+                $Valor = 'Perdão';   
+            }
+        }
     ?>
 </head>
 
 <body>
-    <div id="wrapper"><!-- /DIV PRINCIPAL -->
+    <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
             ?>
         </nav>
+
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12"><h1 class="page-header">Listagem do quarto teste</h1></div>
-            </div>
-				<div class="col-lg-8">
-                    
-                    <div class="col-lg-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                NUMERO DO QUARTO
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="table-responsive table-bordered">
-                                <table class="table">
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-lg-12">
+                    <h1 class="page-header"><?php echo $Valor; ?></h1>
                 </div>
-                <div class="col-lg-4"><!-- CADASTRO -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Cadastrar Quarto
-                        </div>
-                          <!-- /.panel-heading -->
-                         <?php
-							$encontrista = mysql_query("SELECT * FROM `encontrista` WHERE `Desistencia` = 0");
-							$equipe = mysql_query("SELECT * FROM `equipe`");
-							$IdFicha;$Nome;$Idequipe;$contador=0;$cont=0;
-							
-							while($linha = mysql_fetch_array($encontrista)){
-								$IdFicha[$contador] = $linha["IdFicha"];
-								$Nome[$contador] = $linha["Nome"];
-								$contador++;
-							}
-							while($ln = mysql_fetch_array($equipe)){
-								$Idequipe[$cont] = $ln["Idequipe"];
-								$Nomeeq[$cont] = $ln["Nome"];
-								$cont++;
-							}
-						?>
-						<form action="cad_valor.php" method="POST">
-                            <div class="panel-body"><!-- /CADASTRO DE QUARTOS -->
-                                <div class="list-group">
-                                    <div class="form-group row">
-                                        <label for="Email" class="col-sm-1 col-form-label">Nº:</label>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" name="quarto" placeholder="Nº">
-                                        </div>
-                                    </div>
-                                    <!-- /. ENCONTRISTA -->
-                                    <div class="form-group row">
-                                        <label for="Email" class="col-sm-1 col-form-label">Encontrista:  </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
-                                            </div>
-                                            <datalist id="datalist">
-                                                <?php
-                                                $contador=0;
-                                                while($contador<count($IdFicha)){
-                    								echo  '<option name="'.$IdFicha[$contador].'" value="'.$Nome[$contador].'">';
-                    								$contador++;
-                        							} ?>
-                        				    </datalist>
-                                    </div>
-                                    <!-- /.EQUIPE -->
-                                    <div class="form-group row">
-                                        <label for="Email" class="col-sm-1 col-form-label">Equipe:  </label>
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control" name="Nomeeq" placeholder="Digite o nome" list="datalist">
-                                            </div>
-                                                <datalist id="datalist">
-                                                <?php
-                                                $cont=0;
-                                                while($cont<count($Nomeeq)){
-                    								echo '<option name="'.$Idequipe[$cont].'" value="'.$Nomeeq[$cont].'">';
-                    								$contador++;
-                        						}	?>
-                        				    </datalist>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-primary" id="cancelar" >Voltar</button>
-    						</div><!-- /FIM DOS INPUTS -->
-    					</div>
-    				</form>
-				</div> <!-- /FIM CADASTRO -->
-		</div>
-	</div><!-- /FIM DIV PRICIPAL -->
+                <!-- /.col-lg-12 -->
+            </div>
+            
+        <!-- ********************************* listagem ****************************************-->
+        <?php
+            $listaDeEncontristas = $encontrista->listarPorValor($Valor);
+        ?>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Encontristas (Todos)
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Nº Ficha</th>
+                                    <th>Nome</th>
+                                    <th>Comunidade</th>
+                                    <th>Idade</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
+                               <tr class="odd gradeX">
+                                    <td><?php echo $myEncontrista['IdFicha'];?></td>
+                                    <td><?php echo $myEncontrista['Nome'];?></td>
+                                    <td><?php echo $myEncontrista['Comunidade'];?></td>
+                                    <td><?php echo $myEncontrista['Idade'];?></td>
+                                    <td><?php echo $myEncontrista['Valor'];?></td>
+                                </tr>
+                                <?php }?>
+                            </tbody>
+                        </table>
+                    <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    <!-- ********************************* listagem ****************************************-->
+    </div>
 </body>
 </html>

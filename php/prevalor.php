@@ -9,5 +9,5 @@
              $Result = mysql_query($Consulta);
             //echo $_id;
     }echo $Result.mysql_error();
-   // header("Location: ../pages/listagemPorValor.php"); 
+   header("Location: ../pages/listagemPorValor.php"); 
 ?>
