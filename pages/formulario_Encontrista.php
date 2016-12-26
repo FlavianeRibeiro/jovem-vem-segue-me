@@ -4,11 +4,9 @@
     $encontristaController = new EncontristaController();
     $comunidadeController = new ComunidadeController();
     
-    
     $encontrista = new Encontrista();
     $Titulo = 'Cadastrar encontrista';
     $action = 'cadastraEncontrista';
-    
     
     // pega a variavel GET que passamos no action do form
     if (isset($_GET['acao'])){
@@ -113,7 +111,7 @@
             <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
             <div class="row">
                 <div class="container">
-                    <form action="<?php $SELF_PHP;?>?acao=<?php echo $action;?>" method="POST">
+                    <form action="form.php" method="POST">
                         <div class="form-group row">
                           <label for="IdFicha" class="col-sm-1 col-form-label">Nº ficha:</label>
                           <div class="col-sm-1">

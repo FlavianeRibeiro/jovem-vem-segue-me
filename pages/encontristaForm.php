@@ -5,7 +5,7 @@
     $comunidadeController = new ComunidadeController();
     
     $encontrista = new Encontrista();
-    $Titulo = 'Cadastrar encontrista';
+    $Titulo = 'CADASTRAR ENCONTRISTA';
     $action = 'cadastraEncontrista';
     
     // pega a variavel GET que passamos no action do form
@@ -46,13 +46,13 @@
     }else if(($acao == "verFicha") || ($acao == "editarFicha")){
         $IdFicha = $_GET['Id'];
         if($acao == "verFicha"){
-            $Titulo = 'Ver Ficha';
+            $Titulo = 'VER FICHA';
             $permissao='disabled';
             $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
             $myEncontrista = mysql_fetch_array($resposta);
            
         }else{
-            $Titulo = 'Editar Ficha';
+            $Titulo = 'EDITAR FICHA';
             $action='AtualizarCadastro';
             $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
             $myEncontrista = mysql_fetch_array($resposta);
@@ -78,20 +78,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Adicionando JQuery -->
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Adicionando Javascript -->
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#Rua").val("");
+                $("#Bairro").val("");
+                $("#Cidade").val("");
+                $("#Estado").val("");
+            }
+            //Quando o campo cep perde o foco.
+            $("#Cep").blur(function() {
+                //Nova variável "cep" somente com dígitos.
+                var Cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (Cep != "") {
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(Cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#Rua").val("...");
+                        $("#Bairro").val("...");
+                        $("#Cidade").val("...");
+                        $("#Estado").val("...");
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("//viacep.com.br/ws/"+ Cep +"/json/?callback=?", function(dados) {
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#Rua").val(dados.logradouro);
+                                $("#Bairro").val(dados.bairro);
+                                $("#Cidade").val(dados.localidade);
+                                $("#Estado").val(dados.uf);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+    </script>
     <?php include './template/styles.html'; ?>
     
     <title>Jovem vem e segue-me</title>
 </head>
-<script language="javascript">
-    function habilitacao(){
-      if(document.getElementById('Sim').checked == true){
-        document.getElementById('dataInicial').disabled = false;
-      }
-      if(document.getElementById('Sim').checked == false){
-        document.getElementById('Quais').disabled = true;
-      }
-    }
-  </script>
 <body>
 
     <div id="wrapper">
@@ -107,11 +158,10 @@
                     <h1 class="page-header"><?php echo $Titulo?></h1>
                 </div>
             </div>
-            
             <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
             <div class="row">
-                <d iv class="col-lg-12">
-                    <div class="panel panel-default">
+                <div class="col-lg-12">
+                    <div class="panel panel-default"> 
                         <div class="panel-heading">
                             DADOS PESSOAIS
                         </div>
@@ -129,7 +179,7 @@
                                 </div>
                         
                                 <div class="form-group row">
-                                    <label for="DataNasc" class="col-xs-1 col-form-label" name="DataNasc">Data Nascimento:</label>
+                                    <label for="DataNasc" class="col-xs-2 col-form-label" name="DataNasc">Data Nascimento:</label>
                                     <div class="col-sm-2">
                                         <input type="Date" class="form-control" name="DataNasc"  value="<?php echo $DataNasc;?>" <?php echo $permissao;?>>
                                     </div>
@@ -138,13 +188,13 @@
                                         <input type="text" class="form-control" name="Idade"  value="<?php echo $Idade;?>" <?php echo $permissao;?>>
                                     </div>
                                     <label for="Sexo" class="col-xs-1 col-form-label" name="Sexo">Sexo:</label>
-                            <div class="col-xs-2">
-                                <select name="Sexo" class="form-control"  <?php echo $permissao;?>>
-                                    <option> </option>
-                                    <option name="Sexo" value="Feminino" <?php if($Sexo == 'Feminino') echo"selected";?>>Feminino</option>
-                                    <option name="Sexo" value="Masculino" <?php if($Sexo == 'Masculino') echo"selected";?>>Masculino</option>
-                                </select>
-                            </div>
+                                    <div class="col-xs-2">
+                                        <select name="Sexo" class="form-control"  <?php echo $permissao;?>>
+                                            <option> </option>
+                                            <option name="Sexo" value="Feminino" <?php if($Sexo == 'Feminino') echo"selected";?>>Feminino</option>
+                                            <option name="Sexo" value="Masculino" <?php if($Sexo == 'Masculino') echo"selected";?>>Masculino</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="EstadoCivil" class="col-xs-1 col-form-label" name="EstadoCivil">Estado Civil:</label>
@@ -170,10 +220,10 @@
                                     <div class="col-sm-2">
                                         <select name="Operadora" class="form-control"  <?php echo $permissao;?>>
                                             <option> </option>
-                                            <option name="Operadora" value="Solteiro" <?php if($Operadora == 'Vivo') echo"selected";?>>VIVO</option>
-                                            <option name="Operadora" value="Namorando"<?php if($Operadora == 'Tim') echo"selected";?>>TIM</option>
-                                            <option name="Operadora" value="Casado" <?php if($Operadora == 'Claro') echo"selected";?>>CLARO</option>
-                                            <option name="Operadora" value="Casado" <?php if($Operadora == 'Oi') echo"selected";?>>OI</option>
+                                            <option name="Operadora" value="Solteiro" <?php if($Operadora == 'VIVO') echo"selected";?>>VIVO</option>
+                                            <option name="Operadora" value="Namorando"<?php if($Operadora == 'TIM') echo"selected";?>>TIM</option>
+                                            <option name="Operadora" value="Casado" <?php if($Operadora == 'CLARO') echo"selected";?>>CLARO</option>
+                                            <option name="Operadora" value="Casado" <?php if($Operadora == 'OI') echo"selected";?>>OI</option>
                                         </select>
                                     </div>
                                     <label for="Whats" class="col-xs-1 col-form-label" name="Whats">Possui WhatsApp:</label>
@@ -196,13 +246,13 @@
                                             <input type="text" class="form-control" name="Email"  value="<?php echo $Email;?>" <?php echo $permissao;?>>
                                         </div>
                                     <label for="Convite" class="col-sm-2 col-form-label" name="Convite">Responsável pelo convite:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <input type="text" class="form-control" name="Convite" placeholder="Pessoa responsável pelo convite" value="<?php echo $Convite;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label for="Paroquia" class="col-sm-2 col-form-label" name="Paroquia">Qual Paróquia você participa ?:</label>
+                                    <label for="Paroquia" class="col-sm-2 col-form-label" name="Paroquia">Qual Paróquia você participa?</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control" name="Paroquia"  value="<?php echo $Paroquia;?>" <?php echo $permissao;?>>
                                         </div>
@@ -223,21 +273,21 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="Outro"  placeholder="Outras comunidade"value="<?php echo $Outro;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Outro"  placeholder="Outras comunidades"value="<?php echo $Outro;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <label for="Servico" class="col-sm-3 col-form-label" name="Servico">Participa de serviço(s) dentro da igreja?</label>
                                         <div class="col-sm-2">
-                                            <select name="Servico" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim' ? Quais.disabled=false : Quais.disabled=true;">
+                                            <select name="Servico" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Servico.disabled=false : Q_Servico.disabled=true;">
                                                  <option></option>
                                                 <option name="Servico" <?php if($Servico == '1') echo"selected";?> value="1">Sim</option>
                                                 <option name="Servico"<?php if($Servico == '0') echo"selected";?>  value="0">Não</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="Q_Servico"  placeholder="Serviços feito dentro da comunidade/Paroquia"value="<?php echo $Q_Servico;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Q_Servico"  placeholder="Serviços realizados"value="<?php echo $Q_Servico;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 <div class="form-group row">
@@ -257,31 +307,31 @@
                             <div class="form-group row">
                                 <label for="Rua" class="col-sm-1 col-form-label" name="Rua">Rua:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Rua/Avenida"name="Rua"  value="<?php echo $Rua;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" placeholder="Rua/Avenida" name="Rua" id="Rua"  value="<?php echo $Rua;?>" <?php echo $permissao;?>>
                                     </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Numero" class="col-sm-1 col-form-label" name="Numero">Número:</label>
                                     <div class="col-sm-1">
-                                        <input type="text" class="form-control" name="Numero"  value="<?php echo $Numero;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="Numero" id="Numero"  value="<?php echo $Numero;?>" <?php echo $permissao;?>>
                                     </div>
                                 <label for="Bairro" class="col-sm-1 col-form-label" name="Bairro">Bairro:</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="Bairro"  value="<?php echo $Bairro;?>" <?php echo $permissao;?>>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="Bairro" id="Bairro"  value="<?php echo $Bairro;?>" <?php echo $permissao;?>>
                                     </div>
                                 <label for="Cidade" class="col-sm-1 col-form-label" name="Cidade">Cidade:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="Cidade"  value="<?php echo $Cidade;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="Cidade" id="Cidade"  value="<?php echo $Cidade;?>" <?php echo $permissao;?>>
                                     </div>
                                 <label for="Estado" class="col-sm-1 col-form-label" name="Estado">Estado:</label>
                                     <div class="col-sm-1">
-                                        <input type="text" class="form-control" name="Estado"  value="<?php echo $Estado;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="Estado" id="Estado"  value="<?php echo $Estado;?>" <?php echo $permissao;?>>
                                     </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Cep" class="col-sm-1 col-form-label" name="Cep">Cep:</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" name="Cep"  value="<?php echo $Cep;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="Cep" id="Cep"  value="<?php echo $Cep;?>" <?php echo $permissao;?>>
                                     </div>
                                 <label for="Referencia" class="col-sm-2 col-form-label" name="Referencia">Ponto de referência:</label>
                                     <div class="col-sm-4">
@@ -334,7 +384,7 @@
                                         </div>
                             </div>
                             <div class="form-group row">
-                                    <label for="Responsavel" class="col-sm-1 col-form-label" name="Responsavel">Responsável:</label>
+                                    <label for="Responsavel" class="col-sm-1 col-form-label" name="Responsavel">Nome do Respesponsavel:</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control" name="Responsavel"  value="<?php echo $Responsavel;?>" <?php echo $permissao;?>>
                                         </div>
@@ -355,7 +405,7 @@
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" name="Procurar"  value="<?php echo $Procurar;?>" <?php echo $permissao;?>>
                                     </div>
-                                <label for="ContatoProcurar" class="col-sm-2 col-form-label" name="ContatoProcurar">Contato:</label>
+                                <label for="ContatoProcurar" class="col-sm-1 col-form-label" name="ContatoProcurar">Contato:</label>
                                     <div class="col-sm-2">
                                         <input type="text" class="form-control" name="ContatoProcurar"  value="<?php echo $ContatoProcurar;?>" <?php echo $permissao;?>>
                                     </div>
@@ -363,10 +413,10 @@
                             <div class="form-group row">
                             <label for="Medicamento" class="col-sm-2 col-form-label" name="Medicamento">Toma algum medicamento?</label>
                                 <div class="col-sm-2">
-                                    <select name="Medicamento" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim' ? Q_Remedio.disabled=false : Q_Remedio.disabled=true; this.value=='Sim' ? Horario.disabled=false : Horario.disabled=true;">
+                                    <select name="Medicamento" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Remedio.disabled=false : Q_Remedio.disabled=true; this.value=='Sim'? Horario.disabled=false : Horario.disabled=true;">
                                         <option></option>
-                                        <option name="Medicamento"  value="Sim" <?php if($Medicamento == 'Sim')  echo"selected";?>value="Sim">Sim</option>
-                                        <option name="Medicamento"  value="Sim" <?php if($Medicamento == 'Nao')  echo"selected";?>value="Nao">Não</option>
+                                        <option name="Medicamento"  value="Sim" <?php if($Medicamento == 'Sim')  echo"selected";?>>Sim</option>
+                                        <option name="Medicamento"  value="Nao" <?php if($Medicamento == 'Nao')  echo"selected";?>>Não</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">

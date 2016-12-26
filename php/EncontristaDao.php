@@ -16,10 +16,8 @@ class Encontrista{
     private $remedio='';
     
     public function save($encontrista){
-        
         $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `Sexo`, `Idade`, `Comunidade`, `Onibus`, `Carta`, `Valor`, `Desistencia`, `Remedio`) 
         VALUES('$encontrista->id','$encontrista->nome','$encontrista->sexo','$encontrista->idade','$encontrista->comunidade','$encontrista->onibus','$encontrista->carta','$encontrista->valor','$encontrista->desistencia','$encontrista->remedio')";
-        
         return mysql_query($Consulta);
     }
     
