@@ -89,5 +89,4 @@ class Suplencia{
     public function setDevolvido($devolvido){
         $this->devolvido = $devolvido;
     }
-    
 }

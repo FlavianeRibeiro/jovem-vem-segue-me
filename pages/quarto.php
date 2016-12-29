@@ -33,18 +33,18 @@
             	<form action="../php/prevalor.php" method="POST">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                        <div class="panel-heading" >
-	                            <i class="fa fa-bar-chart-o fa-fw"></i> CADASTRAR QUARTO
-	                            <div class="col-xs-2">
-		                            <select name="NumQuarto" class="form-control" >
-		                                    <option> </option>
-		                                    <option name="NumQuarto" value="10" >10</option>
-		                                    <option name="NumQuarto" value="20" >20</option>
-		                                    <option name="NumQuarto" value="30" >30</option>
-		                            </select>
-		                        </div>
-		                         <button type="sumit" class="btn btn-link">Validar</button>
-                        </div>
+				        <div class="panel-heading" >
+				                <i class="fa fa-bar-chart-o fa-fw"></i> CADASTRAR QUARTO
+				                <div class="col-xs-2">
+				                    <select name="NumQuarto" class="form-control" >
+				                            <option> </option>
+				                            <option name="NumQuarto" value="10" >10</option>
+				                            <option name="NumQuarto" value="20" >20</option>
+				                            <option name="NumQuarto" value="30" >30</option>
+				                    </select>
+				                </div>
+				                 <button type="sumit" class="btn btn-link">Validar</button>
+				        </div>
                         
 						<!-- /.panel-heading -->
 						<div class="panel-body">

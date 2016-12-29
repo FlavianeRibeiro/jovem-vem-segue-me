@@ -34,8 +34,7 @@
         $encontrista->setId($_POST['IdFicha']);
         $encontrista->setNome($_POST['Nome']);
         $encontrista->setSexo($_POST['Sexo']);
-        $encontrista->setComunidade($_POST[
-            'Comunidade']);
+        $encontrista->setComunidade($_POST['Comunidade']);
         $encontrista->setIdade($_POST['Idade']);
         $encontrista->setOnibus($_POST['Onibus']);
         $encontrista->setRemedio($_POST['Remedio']);
@@ -80,7 +79,6 @@
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Adicionando JQuery -->
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-
     <!-- Adicionando Javascript -->
     <script type="text/javascript" >
         $(document).ready(function() {
@@ -95,15 +93,12 @@
             $("#Cep").blur(function() {
                 //Nova variável "cep" somente com dígitos.
                 var Cep = $(this).val().replace(/\D/g, '');
-
                 //Verifica se campo cep possui valor informado.
                 if (Cep != "") {
                     //Expressão regular para validar o CEP.
                     var validacep = /^[0-9]{8}$/;
-
                     //Valida o formato do CEP.
                     if(validacep.test(Cep)) {
-
                         //Preenche os campos com "..." enquanto consulta webservice.
                         $("#Rua").val("...");
                         $("#Bairro").val("...");
