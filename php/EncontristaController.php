@@ -1,5 +1,5 @@
 <?php require_once 'EncontristaDao.php';
- 
+
 class EncontristaController {
 
     //Retorna uma lista com todos os encontristas cadastrados

@@ -33,15 +33,16 @@
             	<form action="../php/prevalor.php" method="POST">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                    	
                         <div class="panel-heading" >
-	                            <i class="fa fa-bar-chart-o fa-fw"></i> Listagem por Valor
-		                            <select name="Valor" class="form-control" >
+	                            <i class="fa fa-bar-chart-o fa-fw"></i> CADASTRAR QUARTO
+	                            <div class="col-xs-2">
+		                            <select name="NumQuarto" class="form-control" >
 		                                    <option> </option>
-		                                    <option name="Valor" value="Amizade" >Amizade</option>
-		                                    <option name="Valor" value="Amor" >Amor</option>
-		                                    <option name="Valor" value="Perdão" >Perdão</option>
+		                                    <option name="NumQuarto" value="10" >10</option>
+		                                    <option name="NumQuarto" value="20" >20</option>
+		                                    <option name="NumQuarto" value="30" >30</option>
 		                            </select>
+		                        </div>
 		                         <button type="sumit" class="btn btn-link">Validar</button>
                         </div>
                         

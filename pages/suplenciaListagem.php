@@ -72,20 +72,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <form action="./php/Cad_Suplencia.php" method="POST">
+                                <form action="teste.php" method="POST">
                                 <?php
                                     $contador=0;
                                     while($contador<count($Nome)){
                                         echo'<tr class="odd gradeX">';
                                                 if ($Ficha[$contador] == 0){
                                                     echo '
-                                                    <td class="col-sm-1"><input type="text" class="form-control" name="Ficha"><td></td>
+                                                    <td class="col-sm-1"><td></td>
                                                     <td>'.$IdSuplencia[$contador].'</td>
                                                     <td>'.$Nome[$contador].'</td>
                                                     <td>'.$Equipe[$contador].'</td>
                                                     <td class="center">'.$Email[$contador].'</td>
                                                     <td class="center">'.$Telefone[$contador].'</td>
-                                                    <td align="center"><a href="./php/Cad_Suplencia.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                                    <td align="center"><a href="suplencia.php?acao=Editar&Id='.$IdSuplencia[$contador].'" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                                 </tr>';
                                                 
                                                 }else {
@@ -96,12 +96,12 @@
                                                     <td>'.$Equipe[$contador].'</td>
                                                     <td class="center">'.$Email[$contador].'</td>
                                                     <td class="center">'.$Telefone[$contador].'</td>
-                                                    <td align="center"><a href="./php/Cad_Suplencia.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>
+                                                    <td align="center"><a href="teste.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>
                                                 </tr>'; }
                                         $contador++;
                                     }
                                 ?>
-                                </form>
+                                
                             </tbody>
                         </table>
                     <!-- /.table-responsive -->

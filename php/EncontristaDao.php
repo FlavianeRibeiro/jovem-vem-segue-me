@@ -46,6 +46,7 @@ class Encontrista{
         return mysql_query($sql);
     }
     
+    
     public function getByComunidade($Comunidade_){
         $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`, `comunidade`.`Nome` as Comunidade
                 FROM  `encontrista` 
@@ -100,6 +101,7 @@ class Encontrista{
     
     /*----------------------------
         Getters e Setters 
+    
     ----------------------------*/
     public function getId(){
         return $this->$id; 

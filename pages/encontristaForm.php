@@ -15,7 +15,6 @@
     // Verifica qual formulario foi submetido
     if($acao == "cadastraEncontrista"){
         echo "cadastrar".$_POST['IdFicha'];
-        
         //Atribuindo valores ao objeto
         $encontrista->setId($_POST['IdFicha']);
         $encontrista->setNome($_POST['Nome']);
@@ -27,7 +26,6 @@
         $encontrista->setValor($_POST['Valor']); 
         $encontrista->setDesistencia($_POST['Desistencia']);
         $encontrista->setRemedio($_POST['Remedio']);
-        
         //chamando a funcao que faz o insert
        $resposta =  $encontristaController->salvar($encontrista);
     }elseif($acao == 'AtualizarCadastro'){
@@ -36,7 +34,8 @@
         $encontrista->setId($_POST['IdFicha']);
         $encontrista->setNome($_POST['Nome']);
         $encontrista->setSexo($_POST['Sexo']);
-        $encontrista->setComunidade($_POST['Comunidade']);
+        $encontrista->setComunidade($_POST[
+            'Comunidade']);
         $encontrista->setIdade($_POST['Idade']);
         $encontrista->setOnibus($_POST['Onibus']);
         $encontrista->setRemedio($_POST['Remedio']);
