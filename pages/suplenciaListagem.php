@@ -96,7 +96,7 @@
                                                     <td>'.$Equipe[$contador].'</td>
                                                     <td class="center">'.$Email[$contador].'</td>
                                                     <td class="center">'.$Telefone[$contador].'</td>
-                                                    <td align="center"><a href="teste.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>
+                                                    <td align="center"><a href="suplencia.php?op='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>
                                                 </tr>'; }
                                         $contador++;
                                     }

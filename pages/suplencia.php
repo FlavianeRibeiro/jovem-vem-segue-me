@@ -58,7 +58,11 @@
             <!-- COMEÇO DO FORMULARIO DE CADASTRO  -->
             <div class="row">
                 <div class="container">
-                    <form action="" method="POST">
+                    <?php if ($acao == 'Editar'){ echo "teste";
+                echo '<form action="../php/editar.php?Id='.$hue.'" method="POST">';
+                     }else{ ?>
+                         <form action="../php/Cad_Suplencia.php" method="POST">
+                    <?php } ?>
                         <div class="panel panel-default"> 
                             <div class="panel-heading">
                                 Suplencia
@@ -106,15 +110,9 @@
                                 <input type="text" class="form-control" name="Telefone" id="Telefone" placeholder="(27)99999-9999" value="<?php echo $Telefone;?>" <?php echo $permissao;?>>
                               </div>
                             </div>
-                            <?php
-                                if($acao == 'Editar'){
-                                    echo '<a href="../php/editar.php" button type="submit" class="btn btn-danger">Editar</button></a>';
-                                    
-                                }else{
-                                    echo '<a href="../php/Cad_Suplencia.php" button type="submit" class="btn btn-danger">Cadastrar</button></a>';
-                                }
-                            ?>
                             
+                                <button type="submit" class="btn btn-danger">Cadastrar</button>
+                           
                             </div>
                         </div>
                     </form>   
