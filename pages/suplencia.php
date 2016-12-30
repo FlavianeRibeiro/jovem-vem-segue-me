@@ -18,6 +18,7 @@
                     $contador++;
                 }
         }else if($acao == 'Ver'){
+            $permissao='disabled';
             while($linha = mysql_fetch_array($x)){
                     $Ficha = $linha["Ficha"];
                     $Nome = $linha["Nome"];
@@ -26,6 +27,9 @@
                     $Telefone = $linha["Telefone"];
                     $contador++;
                 }
+        }
+        if($acao == 'ok'){  
+            $y = mysql_query("UPDATE `Suplencia` SET `Devolvido`= 1 WHERE `IdSuplencia` ='".$hue."'");$Result = mysql_query($y);header("Location: ../pages/suplenciaListagem.php");
         }
     }
         
@@ -69,7 +73,7 @@
                             </div>
                             <div class="panel-body">
                             <div class="form-group row">
-                            <?php if($acao == 'Editar'){ ?>
+                            <?php if($acao == 'Editar' || $acao == 'Ver' ){ ?>
                             <label for="Ficha" class="col-sm-1 col-form-label">Ficha:</label>
                               <div class="col-sm-1">
                                 <input type="text" class="form-control" name="Ficha" id="Ficha"  value="<?php echo $Ficha;?>" <?php echo $permissao;?>>

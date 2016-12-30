@@ -1,10 +1,6 @@
 <?php
 include 'Banco.php';
- if(isset($_POST["button"])){
-     echo "teste";
- }else{
-     echo "burra";
- }
+
     $Id =$_GET['Id'];
     $Nome   = $_POST["Nome"];
     $Equipe = $_POST["Equipe"];
@@ -17,4 +13,6 @@ include 'Banco.php';
 	//$Result.mysql_error();
 	mysql_query($sqlinsert) or die(mysql_error());
      mysql_query($sqlinsert) or die(mysql_error());
+     header("Location: ../pages/suplenciaListagem.php");
+     
 ?>
