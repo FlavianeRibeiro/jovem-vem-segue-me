@@ -91,7 +91,7 @@
                                                 if ($Devolvido[$contador] == 0){
                                                     echo '<td align="center"><a href="suplencia.php?acao=ok&Id='.$IdSuplencia[$contador].'" type="button"  class="btn btn-info btn-circle" ><i class="fa fa-times"></i></a></td>';
                                                 }else {
-                                                    echo '<td align="center"><a href="suplencia.php?acao=&Id='.$IdSuplencia[$contador].'" type="button"  class="btn btn-danger btn-danger" ><i class="fa fa-times"></i></a></td>';
+                                                    echo '<td align="center"><a href="suplencia.php?acao=&Id='.$IdSuplencia[$contador].'" type="button"  class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>';
                                                 }
                                                 
                                             echo '</tr>'; }

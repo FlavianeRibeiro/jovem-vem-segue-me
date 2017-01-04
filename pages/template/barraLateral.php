@@ -11,10 +11,13 @@
                                     <a href="encontristaForm.php">Encontrista</a>
                                 </li>
                                 <li>
-                                    <a href="suplenciaListagem.php">Suplência</a>
+                                    <a href="suplencia.php">Suplência</a>
                                 </li>
                                 <li>
-                                    <a href="quartoListagem.php">Quarto</a>
+                                    <a href="quarto.php?Sexo=Feminino">Quarto das meninas</a>
+                                </li>
+                                <li>
+                                    <a href="quarto.php?Sexo=Masculino">Quarto dos meninos</a>
                                 </li>
                             </ul>
                         </li>
@@ -37,7 +40,7 @@
                                     <a href="listagemPorValor.php">Valor</a>
                                 </li>
                                 <li>
-                                    <a href="suplencia.php">Suplência</a>
+                                    <a href="suplenciaListagem.php">Suplência</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

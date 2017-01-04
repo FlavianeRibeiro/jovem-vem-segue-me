@@ -33,18 +33,17 @@
             	<form action="../php/prevalor.php" method="POST">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                    	
                         <div class="panel-heading" >
-	                            <i class="fa fa-bar-chart-o fa-fw"></i> Listagem por Valor
+                        	<div class="col-xs-3">
 		                            <select name="Valor" class="form-control" >
 		                                    <option> </option>
 		                                    <option name="Valor" value="Amizade" >Amizade</option>
 		                                    <option name="Valor" value="Amor" >Amor</option>
 		                                    <option name="Valor" value="Perdão" >Perdão</option>
 		                            </select>
+		                    </div>
 		                         <button type="sumit" class="btn btn-link">Validar</button>
                         </div>
-                        
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="row">

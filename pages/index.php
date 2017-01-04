@@ -2,24 +2,25 @@
     //include '../model/petDao.php';
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
+    session_start();
+			if(isset($_SESSION["Idusuario"])){
+				$IdEquipe= $_SESSION["IdEquipe"];
+				$g= $_SESSION["Nome"];
+			}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Jovem vem e segue-me</title>
-
     <?php
         include './template/styles.html';
     ?>
-    
     <script type="text/javascript" language="Javascript">
         function registrarDesistencia(idFicha){
             var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
@@ -29,19 +30,16 @@
         }
     </script>
 </head>
-
 <body>
-    
-
     <div id="wrapper">
-
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
+                include './template/sessao.php';
+                session_start();
             ?>
         </nav>
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">

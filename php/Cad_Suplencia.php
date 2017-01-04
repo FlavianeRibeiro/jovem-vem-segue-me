@@ -9,7 +9,7 @@
         $Consulta ="INSERT INTO `Suplencia`(`IdSuplencia`, `Nome`, `Equipe`, `Email`, `Telefone`, `Ficha`, `Devolvido`) VALUES ('Null','$Nome','$Equipe','$Email','$Telefone','','0')";
     	$Result = mysql_query($Consulta);
     	$Result.mysql_error();
-    	//header("Location: ../pages/suplencia.php");    
+    	header("Location: ../pages/suplencia.php");    
     
     
     

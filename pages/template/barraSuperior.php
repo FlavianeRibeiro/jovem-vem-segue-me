@@ -5,12 +5,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Bem vindo, Fulano!!</a>
+                <?php 
+                include '../php/Banco.php'; 
+                include 'sessao.php'; 
+                session_save_path("./sessions");
+                session_start();
+                echo '<a class="navbar-brand" href="index.html">Bem vindo,'. $_SESSION['Nome'].'</a>';?>
             </div>
             <!-- /.navbar-header -->
-
             <ul class="nav navbar-top-links navbar-right">
-                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>

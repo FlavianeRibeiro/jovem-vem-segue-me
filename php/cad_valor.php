@@ -5,9 +5,9 @@
     echo $Nome = $_POST["Nomeeq"];
     echo $quartp = $_POST["quarto"];
    
-   // $Consulta ="INSERT INTO `retiro`.`equipe`(`IdEquipe`, `Nome`, `Fixo`, `Celular`, `Operadora`, `Email`, `Senha`, `Comunidade`, `Equipe`, `Status`, `Sexo`) 
-    //VALUES ('Null','$Nome','$Fixo','$Celular','$Operadora','$Email','$Senha','$Comunidade','$Equipe','$Status','$Sexo')";
-	//$Result = mysql_query($Consulta);
+    $Consulta ="INSERT INTO `retiro`.`equipe`(`IdEquipe`, `Nome`, `Fixo`, `Celular`, `Operadora`, `Email`, `Senha`, `Comunidade`, `Equipe`, `Status`, `Sexo`) 
+    VALUES ('Null','$Nome','$Fixo','$Celular','$Operadora','$Email','$Senha','$Comunidade','$Equipe','$Status','$Sexo')";
+	$Result = mysql_query($Consulta);
 	
 	//echo $Result.mysql_error();
     
