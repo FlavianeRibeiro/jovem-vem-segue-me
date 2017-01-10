@@ -67,6 +67,7 @@
         $Remedio = $myEncontrista['Remedio'];
     }
 }
+   session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt">

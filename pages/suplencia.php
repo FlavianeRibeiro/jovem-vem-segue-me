@@ -1,7 +1,7 @@
  <?php
     include './template/styles.html';
     include '../php/Banco.php';
-    
+    session_start();
     if (isset($_GET['acao'])){
         $acao = $_GET['acao'];
         $hue = $_GET['Id'];

@@ -14,7 +14,7 @@
     <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
-        
+        session_start();
         if (isset($_GET['Sexo'])){
             if($_GET['Sexo'] == 'F'){
                 $Sexo = 'Feminino'; 

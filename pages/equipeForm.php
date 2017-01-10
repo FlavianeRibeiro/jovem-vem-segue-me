@@ -16,6 +16,8 @@
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
                 include './template/styles.html';
+                session_start();
+                
             ?>
         </nav>
 

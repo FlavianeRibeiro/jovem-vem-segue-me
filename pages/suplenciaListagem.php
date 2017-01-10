@@ -16,6 +16,7 @@
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
                 include '../php/Banco.php';
+                session_start();
                     $Recebe = mysql_query("SELECT * FROM  `Suplencia`");
                     $IdSuplencia;$Nome;$Equipe;$Email;$Telefone;$Ficha;$Devolvido;
                     $contador=0;

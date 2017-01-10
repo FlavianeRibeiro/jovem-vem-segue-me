@@ -14,6 +14,7 @@
     <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
+        session_start();
     ?>
 </head>
 

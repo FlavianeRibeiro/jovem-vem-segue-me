@@ -23,6 +23,7 @@
             <?php 
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
+                session_start();
             ?>
         </nav>
         <div id="page-wrapper">

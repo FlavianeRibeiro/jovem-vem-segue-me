@@ -1,6 +1,7 @@
 <?php
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
+    session_start();
     $op = $_GET['Sexo'];
     if($op = 'Feminino')
     	$titulo = "CADASTRANDO QUARTO DAS MENINAS";

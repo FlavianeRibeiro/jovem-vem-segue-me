@@ -36,7 +36,6 @@
             <?php 
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
-                include './template/sessao.php';
                 session_start();
             ?>
         </nav>

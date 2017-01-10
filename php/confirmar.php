@@ -11,6 +11,7 @@
 		{
 			$Nome=$linha["Nome"];
 			$IdEquipe=$linha["IdEquipe"];
+		    $Status=$linha["Status"];
 			$contador++;
 		}
 

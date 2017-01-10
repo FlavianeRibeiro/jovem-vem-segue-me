@@ -7,10 +7,13 @@
                 </button>
                 <?php 
                 include '../php/Banco.php'; 
-                include 'sessao.php'; 
-                session_save_path("./sessions");
                 session_start();
-                echo '<a class="navbar-brand" href="index.html">Bem vindo,'. $_SESSION['Nome'].'</a>';?>
+                if(isset($_SESSION["IdEquipe"])){
+        			$IdEquipe= $_SESSION["IdEquipe"];
+        			$Nome= $_SESSION["Nome"];
+        			$Status= $_SESSION["Status"];
+        		}
+                echo '<a class="navbar-brand" href="index.html">Bem vindo, '. $_SESSION['Nome'].'</a>';?>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
