@@ -5,15 +5,51 @@ class Encontrista{
     
     private $id='';
     private $nome='';
-    private $sexo='';
+    private $datanasc='';
     private $idade='';
-    private $dataNascimento='';
+    private $sexo='';
+    private $estadocivil='';
+    private $telresid='';
+    private $celular='';
+    private $operadora='';
+    private $whats='';
+    private $facebook='';
+    private $email='';
+    private $paroquia='';
     private $comunidade='';
+    private $outro='';
+    private $servico='';
+    private $q_servico='';
     private $onibus='';
+    private $rua='';
+    private $numero='';
+    private $bairro;
+    private $cidade='';
+    private $estado='';
+    private $cep='';
+    private $referencia='';
+    private $complemento='';
+    private $numapt='';
+    private $nomeapt='';
+    private $nomepai='';
+    private $contatopai='';
+    private $nomemae='';
+    private $contatomae='';
+    private $responsavel='';
+    private $contatoresponsavel='';
+    private $procurar='';
+    private $contatoprocurar='';
+    private $medicamento='';
+    private $q_remedio='';
+    private $horario='';
+    private $arlegia='';
+    private $q_alergia='';
     private $carta='';
     private $valor='';
     private $desistencia='';
     private $remedio='';
+   
+Q_Alergia
     
     public function save($encontrista){
         $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `Sexo`, `Idade`, `Comunidade`, `Onibus`, `Carta`, `Valor`, `Desistencia`, `Remedio`) 

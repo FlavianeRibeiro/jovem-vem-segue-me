@@ -101,10 +101,7 @@
                     //Valida o formato do CEP.
                     if(validacep.test(Cep)) {
                         //Preenche os campos com "..." enquanto consulta webservice.
-                        $("#Rua").val("...");
-                        $("#Bairro").val("...");
-                        $("#Cidade").val("...");
-                        $("#Estado").val("...");
+                        $("#Rua").val("...");$("#Bairro").val("...");$("#Cidade").val("...");$("#Estado").val("...");
                         //Consulta o webservice viacep.com.br/
                         $.getJSON("//viacep.com.br/ws/"+ Cep +"/json/?callback=?", function(dados) {
                             if (!("erro" in dados)) {
@@ -114,32 +111,27 @@
                                 $("#Cidade").val(dados.localidade);
                                 $("#Estado").val(dados.uf);
                             } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
+                            else {//CEP pesquisado não foi encontrado.
                                 limpa_formulário_cep();
                                 alert("CEP não encontrado.");
                             }
                         });
                     } //end if.
-                    else {
-                        //cep é inválido.
+                    else {//cep é inválido.
                         limpa_formulário_cep();
                         alert("Formato de CEP inválido.");
                     }
                 } //end if.
-                else {
-                    //cep sem valor, limpa formulário.
+                else {//cep sem valor, limpa formulário.
                     limpa_formulário_cep();
                 }
             });
         });
     </script>
     <?php include './template/styles.html'; ?>
-    
     <title>Jovem vem e segue-me</title>
 </head>
 <body>
-
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
@@ -165,29 +157,29 @@
                                 <div class="form-group row">
                                     <label for="IdFicha" class="col-sm-1 col-form-label" name="IdFicha"><font color="red">*</font> Nº ficha:</label>
                                     <div class="col-sm-1">
-                                        <input type="text" class="form-control" name="IdFicha" value="<?php echo $IdFicha;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="IdFicha" id="IdFicha" value="<?php echo $IdFicha;?>" <?php echo $permissao;?>>
                                     </div>
                                     <label for="Nome" class="col-sm-1 col-form-label" name="Nome"><font color="red">*</font>Nome:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="Nome"  value="<?php echo $Nome;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Nome" id="Nome"  value="<?php echo $Nome;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                         
                                 <div class="form-group row">
-                                    <label for="DataNasc" class="col-xs-2 col-form-label" name="DataNasc">Data Nascimento:</label>
+                                    <label for="DataNasc" class="col-sm-2 col-form-label" name="DataNasc">Data Nascimento:</label>
                                     <div class="col-sm-2">
-                                        <input type="Date" class="form-control" name="DataNasc"  value="<?php echo $DataNasc;?>" <?php echo $permissao;?>>
+                                        <input type="Date" class="form-control" name="DataNasc" id="DataNasc" value="<?php echo $DataNasc;?>" <?php echo $permissao;?>>
                                     </div>
                                     <label for="Idade" class="col-sm-1 col-form-label" name="Idade"><font color="red">*</font>Idade:</label>
                                     <div class="col-sm-1">
-                                        <input type="text" class="form-control" name="Idade"  value="<?php echo $Idade;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="Idade" id="Idade" value="<?php echo $Idade;?>" <?php echo $permissao;?>>
                                     </div>
-                                    <label for="Sexo" class="col-xs-1 col-form-label" name="Sexo">Sexo:</label>
+                                    <label for="Sexo" class="col-sm-1 col-form-label" name="Sexo">Sexo:</label>
                                     <div class="col-xs-2">
                                         <select name="Sexo" class="form-control"  <?php echo $permissao;?>>
                                             <option> </option>
-                                            <option name="Sexo" value="Feminino" <?php if($Sexo == 'Feminino') echo"selected";?>>Feminino</option>
-                                            <option name="Sexo" value="Masculino" <?php if($Sexo == 'Masculino') echo"selected";?>>Masculino</option>
+                                            <option name="Sexo" id="Sexo" value="Feminino" <?php if($Sexo == 'Feminino') echo"selected";?>>Feminino</option>
+                                            <option name="Sexo" id="Sexo" value="Masculino" <?php if($Sexo == 'Masculino') echo"selected";?>>Masculino</option>
                                         </select>
                                     </div>
                                 </div>
@@ -196,18 +188,18 @@
                                     <div class="col-sm-2">
                                         <select name="EstadoCivil" class="form-control"  <?php echo $permissao;?>>
                                             <option> </option>
-                                            <option name="EstadoCivil" value="Solteiro" <?php if($EstadoCivil == 'Solteiro') echo"selected";?>>Solteiro</option>
-                                            <option name="EstadoCivil" value="Namorando" <?php if($EstadoCivil == 'Namorando') echo"selected";?>>Namorando</option>
-                                            <option name="EstadoCivil" value="Casado" <?php if($EstadoCivil == 'Casado') echo"selected";?>>Casado</option>
+                                            <option name="EstadoCivil" id="EstadoCivil" value="Solteiro" <?php if($EstadoCivil == 'Solteiro') echo"selected";?>>Solteiro</option>
+                                            <option name="EstadoCivil" id="EstadoCivil" value="Namorando" <?php if($EstadoCivil == 'Namorando') echo"selected";?>>Namorando</option>
+                                            <option name="EstadoCivil" id="EstadoCivil" value="Casado" <?php if($EstadoCivil == 'Casado') echo"selected";?>>Casado</option>
                                         </select>
                                     </div>
                                     <label for="TelResid" class="col-xs-1 col-form-label" name="TelResid">Tel. Resid.:</label>
                                         <div class="col-sm-2" name="TelResid" <?php echo $permissao;?>>
-                                            <input type="text" class="form-control" name="TelResid"  placeholder="(DDD) 3333-3333" value="<?php echo $TelResid;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="TelResid" id="TelResid" placeholder="(DDD) 3333-3333" value="<?php echo $TelResid;?>" <?php echo $permissao;?>>
                                         </div>
                                     <label for="Celular" class="col-xs-1 col-form-label" name="Celular">Celular.:</label>
                                         <div class="col-sm-2" name="Celular" <?php echo $permissao;?>>
-                                            <input type="text" class="form-control" name="Celular"  placeholder="(DDD) 99999-9999" value="<?php echo $Celular;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Celular" id="Celular" placeholder="(DDD) 99999-9999" value="<?php echo $Celular;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 <div class="form-group row">
@@ -215,41 +207,40 @@
                                     <div class="col-sm-2">
                                         <select name="Operadora" class="form-control"  <?php echo $permissao;?>>
                                             <option> </option>
-                                            <option name="Operadora" value="Solteiro" <?php if($Operadora == 'VIVO') echo"selected";?>>VIVO</option>
-                                            <option name="Operadora" value="Namorando"<?php if($Operadora == 'TIM') echo"selected";?>>TIM</option>
-                                            <option name="Operadora" value="Casado" <?php if($Operadora == 'CLARO') echo"selected";?>>CLARO</option>
-                                            <option name="Operadora" value="Casado" <?php if($Operadora == 'OI') echo"selected";?>>OI</option>
+                                            <option name="Operadora" id="Operadora" value="Solteiro" <?php if($Operadora == 'VIVO') echo"selected";?>>VIVO</option>
+                                            <option name="Operadora" id="Operadora" value="Namorando"<?php if($Operadora == 'TIM') echo"selected";?>>TIM</option>
+                                            <option name="Operadora" id="Operadora" value="Casado" <?php if($Operadora == 'CLARO') echo"selected";?>>CLARO</option>
+                                            <option name="Operadora" id="Operadora" value="Casado" <?php if($Operadora == 'OI') echo"selected";?>>OI</option>
                                         </select>
                                     </div>
                                     <label for="Whats" class="col-xs-1 col-form-label" name="Whats">Possui WhatsApp:</label>
                                     <div class="col-sm-2">
                                         <select name="Sexo" class="form-control"  <?php echo $permissao;?>>
                                             <option></option>
-                                            <option name="Whats" value="1" <?php if($Whats == '1') echo"selected";?>>Sim</option>
-                                            <option name="Whats" value="0" <?php if($Whats == '0') echo"selected";?>>Não</option>
+                                            <option name="Whats" id="Whats" value="1" <?php if($Whats == '1') echo"selected";?>>Sim</option>
+                                            <option name="Whats" id="Whats"value="0" <?php if($Whats == '0') echo"selected";?>>Não</option>
                                         </select>
                                     </div>
                                     <label for="Facebook" class="col-sm-1 col-form-label" name="Facebook">Facebook:</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" name="Facebook"  value="<?php echo $Facebook;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Facebook" id="Facebook"  value="<?php echo $Facebook;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <label for="Email" class="col-sm-1 col-form-label" name="Email">Email:</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="Email"  value="<?php echo $Email;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Email" id="Email"  value="<?php echo $Email;?>" <?php echo $permissao;?>>
                                         </div>
                                     <label for="Convite" class="col-sm-2 col-form-label" name="Convite">Responsável pelo convite:</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" name="Convite" placeholder="Pessoa responsável pelo convite" value="<?php echo $Convite;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Convite" id="Convite" placeholder="Pessoa responsável pelo convite" value="<?php echo $Convite;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
-                                
                                 <div class="form-group row">
                                     <label for="Paroquia" class="col-sm-2 col-form-label" name="Paroquia">Qual Paróquia você participa?</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="Paroquia"  value="<?php echo $Paroquia;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Paroquia" id="Paroquia" value="<?php echo $Paroquia;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 <div class="form-group row">
@@ -268,7 +259,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="Outro"  placeholder="Outras comunidades"value="<?php echo $Outro;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="Outro" id="Outro" placeholder="Outras comunidades"value="<?php echo $Outro;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 
@@ -286,10 +277,10 @@
                                         </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="Onibus" class="col-xs-1 col-form-label" name="Onibus"><font color="red"><b>*</b></font>Irá de ônibus?</label>
+                                    <label for="Onibus" class="col-sm-1 col-form-label" name="Onibus"><font color="red"><b>*</b></font>Irá de ônibus?</label>
                                     <div class="col-sm-2">
-                                            <input type="radio" name="Onibus" value="1" <?php echo $permissao; if($Onibus == 1) echo "checked";?>>Sim
-                                            <input type="radio" name="Onibus" value="0" <?php echo $permissao; if($Onibus == 0) echo "checked";?>>Não
+                                            <input type="radio" name="Onibus" id="Onibus" value="1" <?php echo $permissao; if($Onibus == 1) echo "checked";?>>Sim
+                                            <input type="radio" name="Onibus" id="Onibus" value="0" <?php echo $permissao; if($Onibus == 0) echo "checked";?>>Não
                                     </div>
                                 </div>
                         </div><!-- FIM DADOS PESSOAIS-->
@@ -330,7 +321,7 @@
                                     </div>
                                 <label for="Referencia" class="col-sm-2 col-form-label" name="Referencia">Ponto de referência:</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="Referencia"  value="<?php echo $Referencia;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="Referencia" id="Referencia"  value="<?php echo $Referencia;?>" <?php echo $permissao;?>>
                                     </div>
                             </div>
                             <div class="form-group row">
@@ -338,17 +329,17 @@
                                 <div class="col-sm-2">
                                         <select name="Complemento" class="form-control"  <?php echo $permissao;?>>
                                              <option></option>
-                                            <option name="Complemento" value="Casa" <?php if($Complemento == 'Casa') echo"selected";?>>Casa</option>
-                                            <option name="Complemento" value="Apartamento" <?php if($Complemento == 'Apartamento') echo"selected";?>>Apartamento</option>
+                                            <option name="Complemento" id="Complemento" value="Casa" <?php if($Complemento == 'Casa') echo"selected";?>>Casa</option>
+                                            <option name="Complemento" id="Complemento" value="Apartamento" <?php if($Complemento == 'Apartamento') echo"selected";?>>Apartamento</option>
                                         </select>
                                     </div>
                                     <label for="NumApt" class="col-sm-1 col-form-label" name="NumApt">Nº Apart.:</label>
                                         <div class="col-sm-1">
-                                            <input type="text" class="form-control" name="NumApt"  value="<?php echo $NumApt;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="NumApt" id="NumApt" value="<?php echo $NumApt;?>" <?php echo $permissao;?>>
                                         </div>
-                                    <label for="NomeAp" class="col-sm-2 col-form-label" name="NomeAp">Nome do prédio:</label>
+                                    <label for="NomeApt" class="col-sm-2 col-form-label" id="NomeAp">Nome do prédio:</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="NomeAp"  value="<?php echo $NomeAp;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="NomeApt" id="NomeApt" value="<?php echo $NomeApt;?>" <?php echo $permissao;?>>
                                         </div>
                             </div>
                         </div>
@@ -360,33 +351,33 @@
                         <div class="panel-body">
                             <div class="form-group row">
                                 <label for="NomePai" class="col-sm-1 col-form-label" name="NomePai">Nome do Pai:</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="NomePai"  value="<?php echo $NomePai;?>" <?php echo $permissao;?>>
-                                        </div>
-                                    <label for="ContatoPai" class="col-sm-1 col-form-label" name="ContatoPai">Contato:</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="ContatoPai"  value="<?php echo $ContatoPai;?>" <?php echo $permissao;?>>
-                                        </div>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="NomePai" id="NomePai" value="<?php echo $NomePai;?>" <?php echo $permissao;?>>
+									</div>
+								<label for="ContatoPai" class="col-sm-1 col-form-label" name="ContatoPai">Contato:</label>
+									<div class="col-sm-2">
+										<input type="text" class="form-control" name="ContatoPai" id="ContatoPai" value="<?php echo $ContatoPai;?>" <?php echo $permissao;?>>
+									</div>
                             </div>
                             <div class="form-group row">
-                                    <label for="NomeMae" class="col-sm-1 col-form-label" name="NomeMae">Nome da Mãe:</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="NomeMae"  value="<?php echo $NomeMae;?>" <?php echo $permissao;?>>
-                                        </div>
-                                    <label for="ContatoMae" class="col-sm-1 col-form-label" name="ContatoMae">Contato:</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="ContatoMae"  value="<?php echo $ContatoMae;?>" <?php echo $permissao;?>>
-                                        </div>
+								<label for="NomeMae" class="col-sm-1 col-form-label" name="NomeMae">Nome da Mãe:</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="NomeMae" id="NomeMae" value="<?php echo $NomeMae;?>" <?php echo $permissao;?>>
+									</div>
+								<label for="ContatoMae" class="col-sm-1 col-form-label" name="ContatoMae">Contato:</label>
+									<div class="col-sm-2">
+										<input type="text" class="form-control" name="ContatoMae" id="ContatoMae" value="<?php echo $ContatoMae;?>" <?php echo $permissao;?>>
+									</div>
                             </div>
                             <div class="form-group row">
-                                    <label for="Responsavel" class="col-sm-1 col-form-label" name="Responsavel">Nome do Respesponsavel:</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="Responsavel"  value="<?php echo $Responsavel;?>" <?php echo $permissao;?>>
-                                        </div>
-                                    <label for="ContatoResposavel" class="col-sm-1 col-form-label" name="ContatoResposavel">Contato:</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="ContatoResposavel"  value="<?php echo $ContatoResposavel;?>" <?php echo $permissao;?>>
-                                        </div>
+								<label for="Responsavel" class="col-sm-2 col-form-label" name="Responsavel">Nome do Responsavel:</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" name="Responsavel" id="Responsavel" value="<?php echo $Responsavel;?>" <?php echo $permissao;?>>
+									</div>
+								<label for="ContatoResposavel" class="col-sm-1 col-form-label" name="ContatoResposavel">Contato:</label>
+									<div class="col-sm-2">
+										<input type="text" class="form-control" name="ContatoResposavel" id="ContatoResposavel" value="<?php echo $ContatoResposavel;?>" <?php echo $permissao;?>>
+									</div>
                             </div>
                         </div>
                     </div>
@@ -398,11 +389,11 @@
                             <div class="form-group row">
                                 <label for="Procurar" class="col-sm-3 col-form-label" name="Procurar">Em caso de emergência, procurar:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" name="Procurar"  value="<?php echo $Procurar;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="Procurar" id="Procurar" value="<?php echo $Procurar;?>" <?php echo $permissao;?>>
                                     </div>
                                 <label for="ContatoProcurar" class="col-sm-1 col-form-label" name="ContatoProcurar">Contato:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="ContatoProcurar"  value="<?php echo $ContatoProcurar;?>" <?php echo $permissao;?>>
+                                        <input type="text" class="form-control" name="ContatoProcurar" id="ContatoProcurar"  value="<?php echo $ContatoProcurar;?>" <?php echo $permissao;?>>
                                     </div>
                             </div>
                             <div class="form-group row">
@@ -410,15 +401,15 @@
                                 <div class="col-sm-2">
                                     <select name="Medicamento" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Remedio.disabled=false : Q_Remedio.disabled=true; this.value=='Sim'? Horario.disabled=false : Horario.disabled=true;">
                                         <option></option>
-                                        <option name="Medicamento"  value="Sim" <?php if($Medicamento == 'Sim')  echo"selected";?>>Sim</option>
-                                        <option name="Medicamento"  value="Nao" <?php if($Medicamento == 'Nao')  echo"selected";?>>Não</option>
+                                        <option name="Medicamento" id="Medicamento"  value="Sim" <?php if($Medicamento == 'Sim')  echo"selected";?>>Sim</option>
+                                        <option name="Medicamento" id="Medicamento" value="Nao" <?php if($Medicamento == 'Nao')  echo"selected";?>>Não</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="Q_Remedio" placeholder="Qual(is) medicamento(s)"value="<?php echo $Q_Remedio;?>" <?php echo $permissao;?>>
+                                    <input type="text" class="form-control" name="Q_Remedio" id="Q_Remedio" placeholder="Qual(is) medicamento(s)"value="<?php echo $Q_Remedio;?>" <?php echo $permissao;?>>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="Horario" placeholder="Horários(De manhã / De Tarde / De Noite)"value="<?php echo $Horario;?>" <?php echo $permissao;?>>
+                                    <input type="text" class="form-control" name="Horario" id="Horario" placeholder="Horários(De manhã / De Tarde / De Noite)"value="<?php echo $Horario;?>" <?php echo $permissao;?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -426,19 +417,19 @@
                                 <div class="col-sm-2">
                                     <select name="Alergia" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim' ? Q_Alergia.disabled=false : Q_Alergia.disabled=true;">
                                         <option></option>
-                                        <option name="Alergia" <?php if($Alergia == 'Sim')  echo"selected";?>value="Sim">Sim</option>
-                                        <option name="Alergia" <?php if($Alergia == 'Nao')  echo"selected";?> value="Nao">Não</option>
+                                        <option name="Alergia" id="Alergia" <?php if($Alergia == 'Sim')  echo"selected";?>value="Sim">Sim</option>
+                                        <option name="Alergia" id="Alergia" <?php if($Alergia == 'Nao')  echo"selected";?> value="Nao">Não</option>
                                     </select>
                                 </div>
                                  <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="Q_Alergia" placeholder="Quail(s) medicamento(s)"value="<?php echo $Q_Alergia;?>" <?php echo $permissao;?>>
+                                    <input type="text" class="form-control" name="Q_Alergia" id="Q_Alergia"placeholder="Quail(s) medicamento(s)"value="<?php echo $Q_Alergia;?>" <?php echo $permissao;?>>
                                 </div>
                         </div>
                         </div>
-                        
                     </div>
                     <?php if(!isset($permissao)) echo "<button type='submit' class='btn btn-danger'>Cadastrar</button>";?>
                                 <button type="button" class="btn btn-primary" id="cancelar" onclick="location.href='index.php';">Voltar</button>
+								<br>
                             </form> 
                 </div>
             </div>

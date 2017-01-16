@@ -2,12 +2,12 @@
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
     session_start();
-    $op = $_GET['Sexo'];
-    if($op = 'Feminino')
-    	$titulo = "CADASTRANDO QUARTO DAS MENINAS";
-    	else
-		$titulo = "CADASTRANDO QUARTO DOS MENINOS";	
-		
+   echo $op = $_GET['Sexo'];
+    if($op == 'Feminino'){
+    	$titulo = "CADASTRAR QUARTO DAS MENINAS";
+    	}else if($op == 'Masculino' ){
+		$titulo = "CADASTRAR QUARTO DOS MENINOS";	
+    	}
     $Recebe = mysql_query('SELECT IdFicha, Nome, Valor FROM encontrista WHERE Sexo =  "'.$op.'" AND `Quarto` = 0 AND Desistencia =0');
 	    $IdFicha;$Nome;$Valor;$contador=0;
 	    while($linha = mysql_fetch_array($Recebe)){
