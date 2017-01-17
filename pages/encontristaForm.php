@@ -18,26 +18,94 @@
         //Atribuindo valores ao objeto
         $encontrista->setId($_POST['IdFicha']);
         $encontrista->setNome($_POST['Nome']);
+        $encontrista->setDataNasc($_POST['DataNasc']);
+        $encontrista->setIdade($_POST['Idade']);
+        $encontrista->SetEstadocivil($_POST['Estadocivil']);
+        $encontrista->setTelResid($_POST['TelResid']);
+        $encontrista->setCelular($_POST['Celular']);
+        $encontrista->setOperadora($_POST['Operadora']);
+        $encontrista->setWhats($_POST['Whats']);
+        $encontrista->setFacebook($_POST['Facebook']);
+        $encontrista->setEmail($_POST['Email']);
+        $encontrista->setConvite($_POST['Convite']);
+        $encontrista->setParoquia($_POST['Paroquia']);
+        $encontrista->setComunidade($_POST['Comunidade']);
+        $encontrista->setOutro($_POST['Outro']);
+        $encontrista->setServico($_POST['Servico']);
+        $encontrista->setQ_Servico($_POST['Q_Servico']);
+        $encontrista->setOnibus($_POST['Onibus']);
+        $encontrista->setRua($_POST['Rua']);
+        $encontrista->setNumero($_POST['Numero']);
+        $encontrista->setBairro($_POST['Bairro']);
+        $encontrista->setCidade($_POST['Cidade']);
+        $encontrista->setEstado($_POST['Estado']);
+        $encontrista->setCep($_POST['Cep']);
+        $encontrista->setReferencia($_POST['Referencia']);
+        $encontrista->setComplemento($_POST['Complemento']);
+        $encontrista->setNumApt($_POST['NumApt']);
+        $encontrista->setNomeApt($_POST['NomeApt']);
+        $encontrista->setNomePai($_POST['NomePai']);
+        $encontrista->setContatoPai($_POST['ContatoPai']);
+        $encontrista->setNomeMae($_POST['NomeMae']);
+        $encontrista->setContatoMae($_POST['ContatoMae']);
+        $encontrista->setResponsavel($_POST['Responsavel']);
+        $encontrista->setContatoResponsavel($_POST['ContatoResponsavel']);
+        $encontrista->setProcurar($_POST['Procurar']);
+        $encontrista->setContatoProcurar($_POST['ContatoProcurar']);
+        $encontrista->setRemedio($_POST['Remedio']);
+        $encontrista->setQ_Remedio($_POST['Q_Remedio']);
+        $encontrista->setHorario($_POST['Horario']);
+        $encontrista->setAlergia($_POST['Alergia']);
+        $encontrista->setQ_Alergia($_POST['Q_Alergia']);
         $encontrista->setSexo($_POST['Sexo']);
         $encontrista->setComunidade($_POST['Comunidade']);
-        $encontrista->setIdade($_POST['Idade']);
-        $encontrista->setOnibus($_POST['Onibus']);
-        $encontrista->setCarta($_POST['Carta']); 
-        $encontrista->setValor($_POST['Valor']); 
-        $encontrista->setDesistencia($_POST['Desistencia']);
-        $encontrista->setRemedio($_POST['Remedio']);
         //chamando a funcao que faz o insert
        $resposta =  $encontristaController->salvar($encontrista);
     }elseif($acao == 'AtualizarCadastro'){
         //Atribuindo valores ao objeto
-        
         $encontrista->setId($_POST['IdFicha']);
         $encontrista->setNome($_POST['Nome']);
+        $encontrista->setDataNasc($_POST['DataNasc']);
+        $encontrista->setIdade($_POST['Idade']);
+        $encontrista->SetEstadocivil($_POST['Estadocivil']);
+        $encontrista->setTelResid($_POST['TelResid']);
+        $encontrista->setCelular($_POST['Celular']);
+        $encontrista->setOperadora($_POST['Operadora']);
+        $encontrista->setWhats($_POST['Whats']);
+        $encontrista->setFacebook($_POST['Facebook']);
+        $encontrista->setEmail($_POST['Email']);
+        $encontrista->setConvite($_POST['Convite']);
+        $encontrista->setParoquia($_POST['Paroquia']);
+        $encontrista->setComunidade($_POST['Comunidade']);
+        $encontrista->setOutro($_POST['Outro']);
+        $encontrista->setServico($_POST['Servico']);
+        $encontrista->setQ_Servico($_POST['Q_Servico']);
+        $encontrista->setOnibus($_POST['Onibus']);
+        $encontrista->setRua($_POST['Rua']);
+        $encontrista->setNumero($_POST['Numero']);
+        $encontrista->setBairro($_POST['Bairro']);
+        $encontrista->setCidade($_POST['Cidade']);
+        $encontrista->setEstado($_POST['Estado']);
+        $encontrista->setCep($_POST['Cep']);
+        $encontrista->setReferencia($_POST['Referencia']);
+        $encontrista->setComplemento($_POST['Complemento']);
+        $encontrista->setNumApt($_POST['NumApt']);
+        $encontrista->setNomeApt($_POST['NomeApt']);
+        $encontrista->setNomePai($_POST['NomePai']);
+        $encontrista->setContatoPai($_POST['ContatoPai']);
+        $encontrista->setNomeMae($_POST['NomeMae']);
+        $encontrista->setContatoMae($_POST['ContatoMae']);
+        $encontrista->setResponsavel($_POST['Responsavel']);
+        $encontrista->setContatoResponsavel($_POST['ContatoResponsavel']);
+        $encontrista->setProcurar($_POST['Procurar']);
+        $encontrista->setContatoProcurar($_POST['ContatoProcurar']);
+        $encontrista->setRemedio($_POST['Remedio']);
+        $encontrista->setQ_Remedio($_POST['Q_Remedio']);
+        $encontrista->setHorario($_POST['Horario']);
+        $encontrista->setAlergia($_POST['Alergia']);
+        $encontrista->setQ_Alergia($_POST['Q_Alergia']);
         $encontrista->setSexo($_POST['Sexo']);
         $encontrista->setComunidade($_POST['Comunidade']);
-        $encontrista->setIdade($_POST['Idade']);
-        $encontrista->setOnibus($_POST['Onibus']);
-        $encontrista->setRemedio($_POST['Remedio']);
         
         //chamando a funcao que faz o insert
        $resposta =  $encontristaController->atualizar($encontrista);
@@ -57,15 +125,49 @@
         }
         $IdFicha = $myEncontrista['IdFicha'];
         $Nome = $myEncontrista['Nome'];
-        $Sexo = $myEncontrista['Sexo'];
-        $Comunidade = $myEncontrista['Comunidade'];
+        $DataNasc = $myEncontrista['DataNasc'];
         $Idade = $myEncontrista['Idade'];
-        $Onibus = $myEncontrista['Onibus'];
-        $Carta = $myEncontrista['Carta'];
-        $Valor = $myEncontrista['Valor'];
-        $Desistencia = $myEncontrista['Desistencia'];
+        $Sexo = $myEncontrista['Sexo'];
+        $EstadoCivil = $myEncontrista['EstadoCivil'];
+        $TelResid = $myEncontrista['TelResid'];
+        $Celular = $myEncontrista['Celular'];
+        $Operadora = $myEncontrista['Operadora'];
+        $Whats = $myEncontrista['Whats'];
+        $Facebook = $myEncontrista['Facebook'];
+        $Email = $myEncontrista['Email'];
+        $Convite = $myEncontrista['Convite'];
+        $Paroquia = $myEncontrista['Paroquia'];
+        $Comunidade = $myEncontrista['Comunidade'];
+        $Outro = $myEncontrista['Outro'];
+        $Servico = $myEncontrista['Servico'];
+        $Q_Servico = $myEncontrista['Q_Servico'];
+        $Rua = $myEncontrista['Rua'];
+        $Numero = $myEncontrista['Numero'];
+        $Bairro = $myEncontrista['Bairro'];
+        $Cidade = $myEncontrista['Cidade'];
+        $Estado = $myEncontrista['Estado'];
+        $Cep = $myEncontrista['Cep'];
+        $Referencia = $myEncontrista['Referencia'];
+        $Complemento = $myEncontrista['Complemento'];
+        $NumApt = $myEncontrista['NumApt'];
+        $NomeApt = $myEncontrista['NomeApt'];
+        $NomePai = $myEncontrista['NomePai'];
+        $ContatoPai = $myEncontrista['ContatoPai'];
+        $NomeMae = $myEncontrista['NomeMae'];
+        $ContatoMae = $myEncontrista['ContatoMae'];
+        $Responsavel = $myEncontrista['Responsavel'];
+        $ContatoResposavel = $myEncontrista['ContatoResposavel'];
+        $Procurar = $myEncontrista['Procurar'];
+        $ContatoProcurar = $myEncontrista['ContatoProcurar'];
         $Remedio = $myEncontrista['Remedio'];
-    }
+        $Q_Remedio = $myEncontrista['Q_Remedio '];
+        $Horario = $myEncontrista['Horario'];
+        $Alergia = $myEncontrista['Alergia'];
+        $Q_Alergia = $myEncontrista['Q_Alergia'];
+        $Comunidade = $myEncontrista['Comunidade'];
+        $Onibus = $myEncontrista['Onibus'];
+        
+    }$myEncontrista[''];
 }
    session_start();
 ?>
@@ -164,7 +266,6 @@
                                             <input type="text" class="form-control" name="Nome" id="Nome"  value="<?php echo $Nome;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
-                        
                                 <div class="form-group row">
                                     <label for="DataNasc" class="col-sm-2 col-form-label" name="DataNasc">Data Nascimento:</label>
                                     <div class="col-sm-2">
@@ -207,18 +308,18 @@
                                     <div class="col-sm-2">
                                         <select name="Operadora" class="form-control"  <?php echo $permissao;?>>
                                             <option> </option>
-                                            <option name="Operadora" id="Operadora" value="Solteiro" <?php if($Operadora == 'VIVO') echo"selected";?>>VIVO</option>
-                                            <option name="Operadora" id="Operadora" value="Namorando"<?php if($Operadora == 'TIM') echo"selected";?>>TIM</option>
-                                            <option name="Operadora" id="Operadora" value="Casado" <?php if($Operadora == 'CLARO') echo"selected";?>>CLARO</option>
-                                            <option name="Operadora" id="Operadora" value="Casado" <?php if($Operadora == 'OI') echo"selected";?>>OI</option>
+                                            <option name="Operadora" value="VIVO" <?php if($Operadora == 'VIVO') echo"selected";?>>VIVO</option>
+                                            <option name="Operadora" value="TIM"<?php if($Operadora == 'TIM') echo"selected";?>>TIM</option>
+                                            <option name="Operadora" value="CLARO" <?php if($Operadora == 'CLARO') echo"selected";?>>CLARO</option>
+                                            <option name="Operadora" value="OI" <?php if($Operadora == 'OI') echo"selected";?>>OI</option>
                                         </select>
                                     </div>
                                     <label for="Whats" class="col-xs-1 col-form-label" name="Whats">Possui WhatsApp:</label>
                                     <div class="col-sm-2">
-                                        <select name="Sexo" class="form-control"  <?php echo $permissao;?>>
+                                        <select name="Whats" class="form-control"  <?php echo $permissao;?>>
                                             <option></option>
-                                            <option name="Whats" id="Whats" value="1" <?php if($Whats == '1') echo"selected";?>>Sim</option>
-                                            <option name="Whats" id="Whats"value="0" <?php if($Whats == '0') echo"selected";?>>Não</option>
+                                            <option name="Whats" id="Whats" value="SIM" <?php if($Whats == 'SIM') echo"selected";?>>Sim</option>
+                                            <option name="Whats" id="Whats" value="NÃO" <?php if($Whats == 'NÂO') echo"selected";?>>Não</option>
                                         </select>
                                     </div>
                                     <label for="Facebook" class="col-sm-1 col-form-label" name="Facebook">Facebook:</label>
@@ -268,8 +369,8 @@
                                         <div class="col-sm-2">
                                             <select name="Servico" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Servico.disabled=false : Q_Servico.disabled=true;">
                                                  <option></option>
-                                                <option name="Servico" <?php if($Servico == '1') echo"selected";?> value="1">Sim</option>
-                                                <option name="Servico"<?php if($Servico == '0') echo"selected";?>  value="0">Não</option>
+                                                <option name="Servico" <?php if($Servico == 'SIM') echo"selected";?> value="SIM">Sim</option>
+                                                <option name="Servico"<?php if($Servico == 'NÃO') echo"selected";?>  value="NÃO">Não</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
@@ -374,9 +475,9 @@
 									<div class="col-sm-5">
 										<input type="text" class="form-control" name="Responsavel" id="Responsavel" value="<?php echo $Responsavel;?>" <?php echo $permissao;?>>
 									</div>
-								<label for="ContatoResposavel" class="col-sm-1 col-form-label" name="ContatoResposavel">Contato:</label>
+								<label for="ContatoResponsavel" class="col-sm-1 col-form-label" name="ContatoResponsavel">Contato:</label>
 									<div class="col-sm-2">
-										<input type="text" class="form-control" name="ContatoResposavel" id="ContatoResposavel" value="<?php echo $ContatoResposavel;?>" <?php echo $permissao;?>>
+										<input type="text" class="form-control" name="ContatoResponsavel" id="ContatoResponsavel" value="<?php echo $ContatoResponsavel;?>" <?php echo $permissao;?>>
 									</div>
                             </div>
                         </div>
@@ -397,12 +498,12 @@
                                     </div>
                             </div>
                             <div class="form-group row">
-                            <label for="Medicamento" class="col-sm-2 col-form-label" name="Medicamento">Toma algum medicamento?</label>
+                            <label for="Remedio" class="col-sm-2 col-form-label" name="Remedio">Toma algum medicamento?</label>
                                 <div class="col-sm-2">
                                     <select name="Medicamento" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Remedio.disabled=false : Q_Remedio.disabled=true; this.value=='Sim'? Horario.disabled=false : Horario.disabled=true;">
                                         <option></option>
-                                        <option name="Medicamento" id="Medicamento"  value="Sim" <?php if($Medicamento == 'Sim')  echo"selected";?>>Sim</option>
-                                        <option name="Medicamento" id="Medicamento" value="Nao" <?php if($Medicamento == 'Nao')  echo"selected";?>>Não</option>
+                                        <option name="Remedio" id="Remedio"  value="Sim" <?php if($Remedio == 'Sim')  echo"selected";?>>Sim</option>
+                                        <option name="Remedio" id="Remedio" value="Nao" <?php if($Remedio == 'Nao')  echo"selected";?>>Não</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">

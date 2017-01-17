@@ -15,6 +15,7 @@ class Encontrista{
     private $whats='';
     private $facebook='';
     private $email='';
+    private $convite='';
     private $paroquia='';
     private $comunidade='';
     private $outro='';
@@ -39,7 +40,7 @@ class Encontrista{
     private $contatoresponsavel='';
     private $procurar='';
     private $contatoprocurar='';
-    private $medicamento='';
+    private $remedio='';
     private $q_remedio='';
     private $horario='';
     private $arlegia='';
@@ -47,20 +48,34 @@ class Encontrista{
     private $carta='';
     private $valor='';
     private $desistencia='';
-    private $remedio='';
-   
-Q_Alergia
+    private $quarto='';
     
     public function save($encontrista){
-        $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `Sexo`, `Idade`, `Comunidade`, `Onibus`, `Carta`, `Valor`, `Desistencia`, `Remedio`) 
-        VALUES('$encontrista->id','$encontrista->nome','$encontrista->sexo','$encontrista->idade','$encontrista->comunidade','$encontrista->onibus','$encontrista->carta','$encontrista->valor','$encontrista->desistencia','$encontrista->remedio')";
+    $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `DataNasc`, `Idade`, `Sexo`, `EstadoCivil`, `TelResid`, `Celular`, `Operadora`, `Whats`, 
+    `Facebook`, `Email`, `Convite`, `Paroquia`, `Comunidade`, `Outro`, `Servico`, `Q_Servico`, `Onibus`, `Rua`, `Numero`, `Bairro`, `Cidade`, 
+    `Estado`, `Cep`, `Referencia`, `Complemento`, `NumApt`, `NomeApt`, `NomePai`, `ContatoPai`, `NomeMae`, `ContatoMae`, `Responsavel`, 
+    `ContatoResponsavel`, `Procurar`, `ContatoProcurar`, `Remedio`, `Q_Remedio`, `Horario`, `Alergia`, `Q_Alergia`, `Carta`, `Desistencia`) 
+    VALUES ('$encontrista->id','$encontrista->nome','$encontrista->datanasc','$encontrista->idade','$encontrista->sexo','$encontrista->estadocivil',
+    '$encontrista->telresid','$encontrista->celular','$encontrista->operadora','$encontrista->whats','$encontrista->facebook','$encontrista->email',
+    '$encontrista->convite','$encontrista->paroquia','$encontrista->comunidade','$encontrista->outro','$encontrista->servico','$encontrista->q_servico',
+    '$encontrista->onibus','$encontrista->rua','$encontrista->numero','$encontrista->bairro','$encontrista->cidade','$encontrista->estado','$encontrista->cep',
+    '$encontrista->referencia','$encontrista->complemento','$encontrista->numapt','$encontrista->nomeapt','$encontrista->nomepai','$encontrista->contatopai',
+    '$encontrista->nomemae','$encontrista->contatomae','$encontrista->responsavel','$encontrista->contatoresponsavel','$encontrista->procurar',
+    '$encontrista->contatoprocurar','$encontrista->remedio','$encontrista->q_remedio','$encontrista->horario','$encontrista->alergia','$encontrista->q_alergia',0,0)";
         return mysql_query($Consulta);
     }
     
     public function update($encontrista){
-        
-        $Consulta = "UPDATE `retiro`.`encontrista` SET `Nome`='$encontrista->nome',`Sexo`='$encontrista->sexo',`Idade`= '$encontrista->idade',
-        `Comunidade`= '$encontrista->comunidade',`Onibus`='$encontrista->onibus',`Remedio`= '$encontrista->remedio' WHERE `IdFicha`= '$encontrista->id'";
+    $Consulta = "UPDATE `encontrista` SET `IdFicha`='$encontrista->id',`Nome`='$encontrista->nome',`DataNasc`='$encontrista->datanasc',`Idade`='$encontrista->idade',
+        `Sexo`='$encontrista->sexo',`EstadoCivil`='$encontrista->estadocivil',`TelResid`='$encontrista->telresid',`Celular`='$encontrista->celular',
+        `Operadora`='$encontrista->operadora',`Whats`='$encontrista->whats',`Facebook`='$encontrista->facebook',`Email`='$encontrista->email',`Convite`='$encontrista->convite',
+        `Paroquia`='$encontrista->paroquia',`Comunidade`='$encontrista->comunidade',`Outro`='$encontrista->outro',`Servico`='$encontrista->servico',
+        `Q_Servico`='$encontrista->q_servico',`Onibus`='$encontrista->onibus',`Rua`='$encontrista->rua',`Numero`='$encontrista->numero',`Bairro`='$encontrista->bairro',
+        `Cidade`='$encontrista->cidade',`Estado`='$encontrista->estado',`Cep`='$encontrista->cep',`Referencia`='$encontrista->referencia',`Complemento`='$encontrista->complemento',
+        `NumApt`='$encontrista->numapt',`NomeApt`='$encontrista->nomeapt',`NomePai`='$encontrista->nomepai',`ContatoPai`='$encontrista->contatopai',`NomeMae`='$encontrista->nomemae',
+        `ContatoMae`='$encontrista->contatomae',`Responsavel`='$encontrista->responsavel',`ContatoResponsavel`='$encontrista->contatoresponsavel',`Procurar`='$encontrista->procurar',
+        `ContatoProcurar`='$encontrista->contatoprocurar',`Remedio`='$encontrista->remedio',`Q_Remedio`='$encontrista->q_remedio',`Horario`='$encontrista->horario',
+        `Alergia`='$encontrista->alergia',`Q_Alergia`='$encontrista->q_alergia', WHERE `IdFicha`= '$encontrista->id''";
 
         return mysql_query($Consulta);
        
@@ -68,17 +83,17 @@ Q_Alergia
     
     //Retorna uma lista com todos os encontristas cadastrados
     public function getAll(){
-        $sql = 'select * from retiro.encontrista';
+        $sql = 'select * from encontrista';
         return mysql_query($sql);
     }
     
     //Retorna uma lista com todos os encontristas que não desistiram
     public function getEncontristasNaoDesistentes(){
     
-        $sql = "SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Sexo`, `encontrista`.`Idade`, `encontrista`.`Onibus`, `encontrista`.`Carta`, `encontrista`.`Valor`, `encontrista`.`Desistencia`, `encontrista`.`Remedio`, `encontrista`.`Justificativa`, `comunidade`.`Nome` as Comunidade
+        $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Nome` ,  `encontrista`.`Idade` ,  `encontrista`.`Comunidade` ,  `encontrista`.`Valor` , `comunidade`.`Nome` AS Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
-                WHERE  Desistencia=0";
+                WHERE Desistencia =0";
         return mysql_query($sql);
     }
     
@@ -139,91 +154,188 @@ Q_Alergia
         Getters e Setters 
     
     ----------------------------*/
-    public function getId(){
-        return $this->$id; 
-    }
+    //ID FICHA
+    public function getId(){  return $this->$id; }
+    public function setId($id){ $this->id = $id; }
     
-    public function setId($id){
-        $this->id = $id;
-    }
+    //NOME
+    public function getNome(){ return $this->$nome; }
+    public function setNome($nome){  $this->nome = $nome;}
+    
+    //DATA DE NASCIMENTO
+    public function getDataNasc(){ return $this->$datanasc; }
+    public function setDataNasc($datanasc){$this->datanasc = $datanasc; }
+    
+    //IDADE
+    public function getIdade(){  $this->$idade; }
+    public function setIdade($idade){ $this->idade = $idade;}
+    
+    //SEXO
+    public function getSexo(){    return $this->$sexo; }
+    public function setSexo($sexo){    $this->sexo = $sexo;}
+    
+    //ESTADO CIVIL
+    public function getEstadoCivil(){ return $this->$estadocivil; }
+    public function setEstadoCivil($estadocivil){ $this->estadocivil = $estadocivil;}
+    
+    //TELEFONE RESIDENCIAL
+    public function getTelResid (){ return $this->$telresid; }
+    public function setTelResid ($telresid){ $this->telresid = $telresid;}
 
-    public function getNome(){
-        return $this->$nome; 
-    }
+    //CELULAR
+    public function getCelular (){ return $this->$celular; }
+    public function setCelular ($celular){ $this->celular = $celular;}
     
-    public function setNome($nome){
-        $this->nome = $nome;
-    }
+    //OPERADORA
+    public function getOperadora (){ return $this->$operadora; }
+    public function setOperadora ($operadora){ $this->operadora = $operadora;}   
+    
+    //WHAST
+    public function getWhats (){ return $this->$whats; }
+    public function setWhats ($whats){ $this->whats = $whats;}   
+    
+    //FACEBOOK
+    public function getFacebook (){ return $this->$facebook; }
+    public function setFacebook ($facebook){ $this->facebook = $facebook;}   
 
-    public function getSexo(){
-        return $this->$sexo; 
-    }
+    //EMAIL
+    public function getEmail (){ return $this->$email; }
+    public function setEmail ($email){ $this->email = $email;} 
     
-    public function setSexo($sexo){
-        $this->sexo = $sexo;
-    }
+    //CONVITE
+    public function getConvite  (){ return $this->$convite; }
+    public function setConvite ($convite){ $this->convite = $convite;} 
+    
+    //PAROQUIA
+    public function getParoquia (){ return $this->$paroquia; }
+    public function setParoquia ($paroquia){ $this->paroquia = $paroquia;} 
 
-    public function getDataNascimento(){
-        return $this->$dataNascimento; 
-    }
+    //COMUNIDADE
+    public function getComunidade(){    return $this->$comunidade; }
+    public function setComunidade($comunidade){ $this->comunidade = $comunidade;}
+
+    //OUTRO
+    public function getOutro (){ return $this->$outro; }
+    public function setOutro ($outro){ $this->outro = $outro;} 
+
+    //SERVIÇO
+    public function getServico (){ return $this->$servico; }
+    public function setServico ($servico){ $this->servico = $servico;} 
+
+    //QUAL SERVIÇOS
+    public function getQ_Servico (){ return $this->$q_servico; }
+    public function setQ_Servico ($q_servico){ $this->q_servico = $q_servico;} 
     
-    public function setDataNascimento($dataNascimento){
-        $this->dataNascimento = $dataNascimento;
-    }
+    //ONIBUS
+    public function getOnibus(){  return $this->$onibus; }
+    public function setOnibus($onibus){ $this->onibus = $onibus; }
     
-    public function getIdade(){
-        $this->$idade;
-    }
+    //RUA
+    public function getRua (){ return $this->$rua; }
+    public function setRua ($rua){ $this->rua = $rua;} 
     
-    public function setIdade($idade){
-        $this->idade = $idade;
-    }
+    //NUMERO
+    public function getNumero (){ return $this->$numero; }
+    public function setNumero ($numero){ $this->numero = $numero;} 
     
-    public function getComunidade(){
-        return $this->$comunidade; 
-    }
+    //BAIRRO
+    public function getBairro (){ return $this->$bairo; }
+    public function setBairro ($bairro){ $this->bairro = $bairro;} 
     
-    public function setComunidade($comunidade){
-        $this->comunidade = $comunidade;
-    }
+    //CIDADE
+    public function getCidade (){ return $this->$cidade; }
+    public function setCidade ($cidade){ $this->cidade = $cidade;} 
     
-    public function getOnibus(){
-        return $this->$onibus; 
-    }
+    //ESTADO
+    public function getEstado (){ return $this->$estado; }
+    public function setEstado ($estado){ $this->estado = $estado;} 
     
-    public function setOnibus($onibus){
-        $this->onibus = $onibus;
-    }
+    //CEP
+    public function getCep (){ return $this->$cep; }
+    public function setCep ($cep){ $this->cep = $cep;} 
     
-    public function getCarta(){
-        return $this->$carta; 
-    }
+    //REFERENCIA
+    public function getReferencia (){ return $this->$referencia; }
+    public function setReferencia ($referencia){ $this->referencia = $referencia;} 
     
-    public function setCarta($carta){
-        $this->carta = $carta;
-    }
+    //COMPLEMENTO
+    public function getComplemento (){ return $this->$complemento; }
+    public function setComplemento ($complemento){ $this->complemento = $complemento;} 
     
-    public function getValor(){
-        return $this->valor; 
-    }
+    //NUMERO DO APARTAMENTO
+    public function getNumApt (){ return $this->$numapt; }
+    public function setNumApt ($numapt){ $this->numapt = $numapt;} 
     
-    public function setValor($valor){
-        $this->valor = $valor;
-    }
+    //NOME DO APARTAMENTO
+    public function getNomeApt (){ return $this->$nomeapt; }
+    public function setNomeApt ($nomeapt){ $this->nomeapt = $nomeapt;} 
     
-    public function getDesistencia(){
-        return $this->$desistencia; 
-    }
+    //NOME DO PAI 
+    public function getNomePai (){ return $this->$nomepai; }
+    public function setNomePai ($nomepai){ $this->nomepai = $nomepai;} 
     
-    public function setDesistencia($desistencia){
-        $this->desistencia = $desistencia;
-    }
+    //CONTATO DO PAI
+    public function getContatoPai (){ return $this->$contatopai; }
+    public function setContatoPai ($contatopai){ $this->contatopai = $contatopai;} 
     
-    public function getRemedio(){
-        return $this->$remedio; 
-    }
+    //NOME DA MÃE
+    public function getNomeMae (){ return $this->$nomemae; }
+    public function setNomeMae ($nomemae){ $this->nomemae = $nomemae;} 
     
-    public function setRemedio($remedio){
-        $this->remedio = $remedio;
-    }
+    //CONTATO DA MÃE
+    public function getContatoMae (){ return $this->$contatomae; }
+    public function setContatoMae ($contatomae){ $this->contatomae = $contatomae;} 
+    
+    //RESPONSAVEL
+    public function getResponsavel (){ return $this->$responsavel; }
+    public function setResponsavel ($responsavel){ $this->responsavel = $responsavel;} 
+    
+    //CONTATO DO RESPONSAVEL 
+    public function getContatoResponsavel(){ return $this->$contatoresponsavel; }
+    public function setContatoResponsavel($contatoresponsavel){ $this->contatoresponsavel = $contatoresponsavel;} 
+    
+    //PROCURAR
+    public function getProcurar(){ return $this->$procurar;  }
+    public function setProcurar($procurar){ $this->procurar = $procurar;}
+    
+    //CONTATO DO PROCURAR
+    public function getContatoProcurar(){ return $this->$contatoprocurar;  }
+    public function setContatoProcurar($contatoprocurar){ $this->contatoprocurar = $contatoprocurar;}
+    
+    //REMEDIO
+    public function getRemedio(){ return $this->$remedio; }
+    public function setRemedio($remedio){   $this->remedio = $remedio; }
+
+    //QUAL REMEDIO
+    public function getQ_Remedio(){ return $this->$q_remedio;  }
+    public function setQ_Remedio($q_remedio){ $this->q_remedio = $q_remedio;}
+    
+    //HORARIO
+    public function getHorario(){ return $this->$horario;  }
+    public function setHorario($horario){ $this->horario = $horario;}
+    
+    //ALEGRIA
+    public function getAlergia(){ return $this->$alergia;  }
+    public function setAlergia($alergia){ $this->alergia = $alergia;}
+    
+    //QUAL ALERGIA
+    public function getQ_Alergia(){ return $this->$q_alergia; }
+    public function setQ_Alergia($q_alergia){ $this->q_alergia = $q_alergia;}
+   
+    //CARTA
+    public function getCarta(){ return $this->$carta;  }
+    public function setCarta($carta){ $this->carta = $carta;}
+    
+    //VALOR
+    public function getValor(){  return $this->valor;  }
+    public function setValor($valor){   $this->valor = $valor;  }
+    
+    //DESISTENCIA
+    public function getDesistencia(){   return $this->$desistencia;  }
+    public function setDesistencia($desistencia){   $this->desistencia = $desistencia;}
+    
+    //QUARTO
+    public function getQuarto(){   return $this->$quarto;  }
+    public function setQuarto($quarto){   $this->quarto = $quarto;}
+    
 }
