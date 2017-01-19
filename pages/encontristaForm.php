@@ -20,7 +20,7 @@
         $encontrista->setNome($_POST['Nome']);
         $encontrista->setDataNasc($_POST['DataNasc']);
         $encontrista->setIdade($_POST['Idade']);
-        $encontrista->SetEstadocivil($_POST['Estadocivil']);
+        $encontrista->setEstadoCivil($_POST['EstadoCivil']);
         $encontrista->setTelResid($_POST['TelResid']);
         $encontrista->setCelular($_POST['Celular']);
         $encontrista->setOperadora($_POST['Operadora']);
@@ -167,7 +167,7 @@
         $Comunidade = $myEncontrista['Comunidade'];
         $Onibus = $myEncontrista['Onibus'];
         
-    }$myEncontrista[''];
+    }
 }
    session_start();
 ?>
@@ -289,9 +289,9 @@
                                     <div class="col-sm-2">
                                         <select name="EstadoCivil" class="form-control"  <?php echo $permissao;?>>
                                             <option> </option>
-                                            <option name="EstadoCivil" id="EstadoCivil" value="Solteiro" <?php if($EstadoCivil == 'Solteiro') echo"selected";?>>Solteiro</option>
-                                            <option name="EstadoCivil" id="EstadoCivil" value="Namorando" <?php if($EstadoCivil == 'Namorando') echo"selected";?>>Namorando</option>
-                                            <option name="EstadoCivil" id="EstadoCivil" value="Casado" <?php if($EstadoCivil == 'Casado') echo"selected";?>>Casado</option>
+                                            <option name="EstadoCivil"  value="Solteiro" <?php if($EstadoCivil == 'Solteiro') echo"selected";?>>Solteiro</option>
+                                            <option name="EstadoCivil"  value="Namorando" <?php if($EstadoCivil == 'Namorando') echo"selected";?>>Namorando</option>
+                                            <option name="EstadoCivil"  value="Casado" <?php if($EstadoCivil == 'Casado') echo"selected";?>>Casado</option>
                                         </select>
                                     </div>
                                     <label for="TelResid" class="col-xs-1 col-form-label" name="TelResid">Tel. Resid.:</label>
@@ -518,8 +518,8 @@
                                 <div class="col-sm-2">
                                     <select name="Alergia" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim' ? Q_Alergia.disabled=false : Q_Alergia.disabled=true;">
                                         <option></option>
-                                        <option name="Alergia" id="Alergia" <?php if($Alergia == 'Sim')  echo"selected";?>value="Sim">Sim</option>
-                                        <option name="Alergia" id="Alergia" <?php if($Alergia == 'Nao')  echo"selected";?> value="Nao">Não</option>
+                                        <option name="Alergia" value="Sim" <?php if($Alergia == 'Sim')  echo"selected";?>>Sim</option>
+                                        <option name="Alergia" value="Nao"  <?php if($Alergia == 'Nao')  echo"selected";?>>Não</option>
                                     </select>
                                 </div>
                                  <div class="col-sm-4">

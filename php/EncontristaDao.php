@@ -66,16 +66,17 @@ class Encontrista{
     }
     
     public function update($encontrista){
-    $Consulta = "UPDATE `encontrista` SET `IdFicha`='$encontrista->id',`Nome`='$encontrista->nome',`DataNasc`='$encontrista->datanasc',`Idade`='$encontrista->idade',
-        `Sexo`='$encontrista->sexo',`EstadoCivil`='$encontrista->estadocivil',`TelResid`='$encontrista->telresid',`Celular`='$encontrista->celular',
-        `Operadora`='$encontrista->operadora',`Whats`='$encontrista->whats',`Facebook`='$encontrista->facebook',`Email`='$encontrista->email',`Convite`='$encontrista->convite',
-        `Paroquia`='$encontrista->paroquia',`Comunidade`='$encontrista->comunidade',`Outro`='$encontrista->outro',`Servico`='$encontrista->servico',
-        `Q_Servico`='$encontrista->q_servico',`Onibus`='$encontrista->onibus',`Rua`='$encontrista->rua',`Numero`='$encontrista->numero',`Bairro`='$encontrista->bairro',
-        `Cidade`='$encontrista->cidade',`Estado`='$encontrista->estado',`Cep`='$encontrista->cep',`Referencia`='$encontrista->referencia',`Complemento`='$encontrista->complemento',
-        `NumApt`='$encontrista->numapt',`NomeApt`='$encontrista->nomeapt',`NomePai`='$encontrista->nomepai',`ContatoPai`='$encontrista->contatopai',`NomeMae`='$encontrista->nomemae',
-        `ContatoMae`='$encontrista->contatomae',`Responsavel`='$encontrista->responsavel',`ContatoResponsavel`='$encontrista->contatoresponsavel',`Procurar`='$encontrista->procurar',
-        `ContatoProcurar`='$encontrista->contatoprocurar',`Remedio`='$encontrista->remedio',`Q_Remedio`='$encontrista->q_remedio',`Horario`='$encontrista->horario',
-        `Alergia`='$encontrista->alergia',`Q_Alergia`='$encontrista->q_alergia', WHERE `IdFicha`= '$encontrista->id''";
+    $Consulta =$Consulta = "UPDATE `retiro`.`encontrista` SET `Nome`='$encontrista->nome',`DataNasc`='$encontrista->datanasc',`Idade`='$encontrista->idade',
+`Sexo`='$encontrista->sexo',`EstadoCivil`='$encontrista->estadocivil',`TelResid`='$encontrista->telresid',`Celular`='$encontrista->celular',
+`Operadora`='$encontrista->operadora',`Whats`='$encontrista->whats',`Facebook`='$encontrista->facebook',`Email`='$encontrista->email',`Convite`='$encontrista->convite',
+`Paroquia`='$encontrista->paroquia',`Comunidade`='$encontrista->comunidade',`Outro`='$encontrista->outro',`Servico`='$encontrista->servico',
+`Q_Servico`='$encontrista->q_servico',`Onibus`='$encontrista->onibus',`Rua`='$encontrista->rua',`Numero`='$encontrista->numero',`Bairro`='$encontrista->bairro',
+`Cidade`='$encontrista->cidade',`Estado`='$encontrista->estado',`Cep`='$encontrista->cep',`Referencia`='$encontrista->referencia',`Complemento`='$encontrista->complemento',
+`NumApt`='$encontrista->numapt',`NomeApt`='$encontrista->nomeapt',`NomePai`='$encontrista->nomepai',`ContatoPai`='$encontrista->contatopai',`NomeMae`='$encontrista->nomemae',
+`ContatoMae`='$encontrista->contatomae',`Responsavel`='$encontrista->responsavel',`ContatoResponsavel`='$encontrista->contatoresponsavel',`Procurar`='$encontrista->procurar',
+`ContatoProcurar`='$encontrista->contatoprocurar',`Remedio`='$encontrista->remedio',`Q_Remedio`='$encontrista->q_remedio',`Horario`='$encontrista->horario',
+`Alergia`='$encontrista->alergia',`Q_Alergia`='$encontrista->q_alergia' WHERE `IdFicha`= '$encontrista->id'";
+
 
         return mysql_query($Consulta);
        
