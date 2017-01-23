@@ -52,17 +52,17 @@ class Encontrista{
     
     public function save($encontrista){
     $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `DataNasc`, `Idade`, `Sexo`, `EstadoCivil`, `TelResid`, `Celular`, `Operadora`, `Whats`, 
-    `Facebook`, `Email`, `Convite`, `Paroquia`, `Comunidade`, `Outro`, `Servico`, `Q_Servico`, `Onibus`, `Rua`, `Numero`, `Bairro`, `Cidade`, 
-    `Estado`, `Cep`, `Referencia`, `Complemento`, `NumApt`, `NomeApt`, `NomePai`, `ContatoPai`, `NomeMae`, `ContatoMae`, `Responsavel`, 
-    `ContatoResponsavel`, `Procurar`, `ContatoProcurar`, `Remedio`, `Q_Remedio`, `Horario`, `Alergia`, `Q_Alergia`, `Carta`, `Desistencia`) 
-    VALUES ('$encontrista->id','$encontrista->nome','$encontrista->datanasc','$encontrista->idade','$encontrista->sexo','$encontrista->estadocivil',
-    '$encontrista->telresid','$encontrista->celular','$encontrista->operadora','$encontrista->whats','$encontrista->facebook','$encontrista->email',
-    '$encontrista->convite','$encontrista->paroquia','$encontrista->comunidade','$encontrista->outro','$encontrista->servico','$encontrista->q_servico',
-    '$encontrista->onibus','$encontrista->rua','$encontrista->numero','$encontrista->bairro','$encontrista->cidade','$encontrista->estado','$encontrista->cep',
-    '$encontrista->referencia','$encontrista->complemento','$encontrista->numapt','$encontrista->nomeapt','$encontrista->nomepai','$encontrista->contatopai',
-    '$encontrista->nomemae','$encontrista->contatomae','$encontrista->responsavel','$encontrista->contatoresponsavel','$encontrista->procurar',
-    '$encontrista->contatoprocurar','$encontrista->remedio','$encontrista->q_remedio','$encontrista->horario','$encontrista->alergia','$encontrista->q_alergia',0,0)";
-        return mysql_query($Consulta);
+        `Facebook`, `Email`, `Convite`, `Paroquia`, `Comunidade`, `Outro`, `Servico`, `Q_Servico`, `Onibus`, `Rua`, `Numero`, `Bairro`, `Cidade`, 
+        `Estado`, `Cep`, `Referencia`, `Complemento`, `NumApt`, `NomeApt`, `NomePai`, `ContatoPai`, `NomeMae`, `ContatoMae`, `Responsavel`, 
+        `ContatoResponsavel`, `Procurar`, `ContatoProcurar`, `Remedio`, `Q_Remedio`, `Horario`, `Alergia`, `Q_Alergia`, `Carta`, `Desistencia`) 
+        VALUES ('$encontrista->id','$encontrista->nome','$encontrista->datanasc','$encontrista->idade','$encontrista->sexo','$encontrista->estadocivil',
+        '$encontrista->telresid','$encontrista->celular','$encontrista->operadora','$encontrista->whats','$encontrista->facebook','$encontrista->email',
+        '$encontrista->convite','$encontrista->paroquia','$encontrista->comunidade','$encontrista->outro','$encontrista->servico','$encontrista->q_servico',
+        '$encontrista->onibus','$encontrista->rua','$encontrista->numero','$encontrista->bairro','$encontrista->cidade','$encontrista->estado','$encontrista->cep',
+        '$encontrista->referencia','$encontrista->complemento','$encontrista->numapt','$encontrista->nomeapt','$encontrista->nomepai','$encontrista->contatopai',
+        '$encontrista->nomemae','$encontrista->contatomae','$encontrista->responsavel','$encontrista->contatoresponsavel','$encontrista->procurar',
+        '$encontrista->contatoprocurar','$encontrista->remedio','$encontrista->q_remedio','$encontrista->horario','$encontrista->alergia','$encontrista->q_alergia',0,0)";
+    return mysql_query($Consulta);
     }
     
     public function update($encontrista){
@@ -94,6 +94,7 @@ class Encontrista{
         $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Nome` ,  `encontrista`.`Idade` ,  `encontrista`.`Comunidade` ,  `encontrista`.`Valor` , `comunidade`.`Nome` AS Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+                OR encontrista.Outro = comunidade.Nome
                 WHERE Desistencia =0";
         return mysql_query($sql);
     }
@@ -105,6 +106,16 @@ class Encontrista{
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
                 WHERE  Desistencia = 0 AND Comunidade='".$Comunidade_."'";
         return mysql_query($sql);
+    }
+    
+     public function getBycadcomundade($encontrista){
+        $sql = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) SELECT Comunidade, Outro FROM encontrista  WHERE Comunidade = 0 and Outro <> Nome";
+        return  mysql_query($sql);
+    }
+    
+     public function getByhue(){
+         $update = "UPDATE `retiro`.encontrista SET Comunidade = IdComunidade, Outro = Nome SELECT '', Outro FROM encontrista WHERE Comunidade = 0"; 
+         return  mysql_query($update);
     }
     
     public function getByComun($Comunidade_){

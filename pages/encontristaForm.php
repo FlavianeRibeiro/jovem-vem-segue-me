@@ -61,6 +61,7 @@
         $encontrista->setComunidade($_POST['Comunidade']);
         //chamando a funcao que faz o insert
        $resposta =  $encontristaController->salvar($encontrista);
+       
     }elseif($acao == 'AtualizarCadastro'){
         //Atribuindo valores ao objeto
         $encontrista->setId($_POST['IdFicha']);
@@ -109,6 +110,8 @@
         
         //chamando a funcao que faz o insert
        $resposta =  $encontristaController->atualizar($encontrista);
+       $sql = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) SELECT Comunidade, Outro FROM encontrista  WHERE Comunidade = 0 and Outro <> Nome";$teste = mysql_query($update);
+       $update = "UPDATE `retiro`.encontrista SET Comunidade = IdComunidade, Outro = Nome SELECT '', Outro FROM encontrista WHERE Comunidade = 0"; $hue =  mysql_query($sql); 
     }else if(($acao == "verFicha") || ($acao == "editarFicha")){
         $IdFicha = $_GET['Id'];
         if($acao == "verFicha"){
@@ -268,7 +271,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="DataNasc" class="col-sm-2 col-form-label" name="DataNasc">Data Nascimento:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input type="Date" class="form-control" name="DataNasc" id="DataNasc" value="<?php echo $DataNasc;?>" <?php echo $permissao;?>>
                                     </div>
                                     <label for="Idade" class="col-sm-1 col-form-label" name="Idade"><font color="red">*</font>Idade:</label>
@@ -348,15 +351,14 @@
                                  <?php $listComunidade = $comunidadeController->listarTodas();?>
                                     <label for="Comunidade" class="col-sm-2 col-form-label" name="Comunidade"><font color="red">*</font>Qual comnunidade você participa ?:</label>
                                         <div class="col-sm-2">
-                                            <select name="Comunidade" class="form-control" <?php echo $permissao;?>  onchange="this.value=='x' ? Outro.disabled=false : Outro.disabled=true;">
+                                            <select name="Comunidade" class="form-control" <?php echo $permissao;?>  onchange="this.value=='0' ? Outro.disabled=false : Outro.disabled=true;">
                                                 <option ></option>
                                                 <?php while($myComunidade = mysql_fetch_array($listComunidade)){
-                                                        
                                                     ($Comunidade == $myComunidade['IdComunidade']) ? $selected = "selected" : $selected = "";
                                                     echo "<option name='Comunidade' value='".$myComunidade['IdComunidade']."'".$selected.">".$myComunidade['Nome']."</option>";
                                                  }
                                                  ?>
-                                                <option name="Comunidade" value="x">Outros</option>
+                                                <option name="Comunidade" value="0">Outros</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
