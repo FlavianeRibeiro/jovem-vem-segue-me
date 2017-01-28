@@ -49,9 +49,13 @@
                     $Comunidade = $_GET['op'];
                     $Titulo = "São Marcos";
                 break;
-                case 8:
+                case 9:
                     $Comunidade = $_GET['op'];
                     $Titulo = "São Sebastião";
+                break;
+                case 0:
+                    $Comunidade = $_GET['op'];
+                    $Titulo = "Outros";
                 break;
             }
         }
@@ -74,11 +78,8 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            
         <!-- ********************************* listagem ****************************************-->
-        <?php
-            $listaDeEncontristas = $encontrista->listarPorComunidade($Comunidade);
-        ?>
+        <?php   $listaDeEncontristas = $encontrista->listarPorComunidade($Comunidade); ?>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -88,21 +89,29 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            
                             <thead>
                                 <tr>
                                     <th>Nº Ficha</th>
                                     <th>Nome</th>
                                     <th>Idade</th>
+                                    <?php   if ($Comunidade== 0){
+                                        echo '<th>Comunidade</th>';} ?>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
-                               <tr class="odd gradeX">
-                                    <td><?php echo $myEncontrista['IdFicha'];?></td>
-                                    <td><?php echo $myEncontrista['Nome'];?></td>
-                                    <td><?php echo $myEncontrista['Idade']." anos";?></td>
+                                <tr class="odd gradeX">
+                                    <?php if ($myEncontrista['Outro'] != ''){ 
+                                    echo "<td>".$myEncontrista['IdFicha']."</td>
+                                    <td>".$myEncontrista['Nome']."}</td>
+                                    <td>".$myEncontrista['Idade']." anos</td>
+                                    <td>".$myEncontrista['Outro']."</td>";} 
+                                    else {
+                                    echo "<td>".$myEncontrista['IdFicha']."</td>
+                                        <td>". $myEncontrista['Nome']."</td>
+                                        <td>".$myEncontrista['Idade']." anos </td>";}}?>
                                 </tr>
-                                <?php }?>
                             </tbody>
                         </table>
                     <!-- /.table-responsive -->

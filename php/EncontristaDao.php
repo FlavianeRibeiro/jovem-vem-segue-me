@@ -50,7 +50,7 @@ class Encontrista{
     private $desistencia='';
     private $quarto='';
     
-    public function save($encontrista){
+    public function save($encontrista){ 
     $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `DataNasc`, `Idade`, `Sexo`, `EstadoCivil`, `TelResid`, `Celular`, `Operadora`, `Whats`, 
         `Facebook`, `Email`, `Convite`, `Paroquia`, `Comunidade`, `Outro`, `Servico`, `Q_Servico`, `Onibus`, `Rua`, `Numero`, `Bairro`, `Cidade`, 
         `Estado`, `Cep`, `Referencia`, `Complemento`, `NumApt`, `NomeApt`, `NomePai`, `ContatoPai`, `NomeMae`, `ContatoMae`, `Responsavel`, 
@@ -64,7 +64,6 @@ class Encontrista{
         '$encontrista->contatoprocurar','$encontrista->remedio','$encontrista->q_remedio','$encontrista->horario','$encontrista->alergia','$encontrista->q_alergia',0,0)";
     return mysql_query($Consulta);
     }
-    
     public function update($encontrista){
     $Consulta =$Consulta = "UPDATE `retiro`.`encontrista` SET `Nome`='$encontrista->nome',`DataNasc`='$encontrista->datanasc',`Idade`='$encontrista->idade',
 `Sexo`='$encontrista->sexo',`EstadoCivil`='$encontrista->estadocivil',`TelResid`='$encontrista->telresid',`Celular`='$encontrista->celular',
@@ -100,22 +99,16 @@ class Encontrista{
     }
     
     
-    public function getByComunidade($Comunidade_){
-        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`, `comunidade`.`Nome` as Comunidade
-                FROM  `encontrista` 
-                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
-                WHERE  Desistencia = 0 AND Comunidade='".$Comunidade_."'";
+    public function getByComunidade($Comunidade){
+    
+            $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Outro` ,  `encontrista`.`Nome` ,  `encontrista`.`Idade` ,  `comunidade`.`Nome` AS Comunidade
+                    FROM  `encontrista` 
+                    INNER JOIN  `comunidade` ON comunidade.Nome = encontrista.Outro
+                    OR comunidade.IdComunidade = encontrista.Comunidade
+                    WHERE Desistencia =0
+                    AND Comunidade='".$Comunidade."'";
         return mysql_query($sql);
-    }
-    
-     public function getBycadcomundade($encontrista){
-        $sql = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) SELECT Comunidade, Outro FROM encontrista  WHERE Comunidade = 0 and Outro <> Nome";
-        return  mysql_query($sql);
-    }
-    
-     public function getByhue(){
-         $update = "UPDATE `retiro`.encontrista SET Comunidade = IdComunidade, Outro = Nome SELECT '', Outro FROM encontrista WHERE Comunidade = 0"; 
-         return  mysql_query($update);
+        
     }
     
     public function getByComun($Comunidade_){
@@ -159,6 +152,19 @@ class Encontrista{
     public function getTotalEncontristasPorValor(){
         $sql = 'SELECT DISTINCT Valor, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.Valor = enc.Valor) AS total_Valor FROM  encontrista ORDER BY Valor';
         return mysql_query($sql);
+    }
+    
+    public function cadastrarNovaComunidade($nomeComunidade){
+        //vai retornar o maior id cadastrado e somar mais um
+        $sql = "(SELECT MAX(`IdComunidade`) FROM `comunidade`)";
+        $novoId = mysql_query($sql);
+        
+        //cadastra a nova cumunidade e retorna o codigo
+        $sql = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) 
+                SELECT ".$novoId.", '".$nomeComunidade."' ";
+        mysql_query($sql);
+        
+        return $encontrista-> $novoId;
     }
     
     

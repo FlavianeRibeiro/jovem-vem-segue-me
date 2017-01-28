@@ -37,9 +37,9 @@ class EncontristaController {
     }
     
     //LISTAGEM POR COMUNIDADE fora da paroquia
-    public function listarPorComun($Comunidade_) {
+    public function listarPorComun($Comunidade) {
         $encontrista = new Encontrista();
-        return $encontrista->getByComun($Comunidade_);
+        return $encontrista->getByComun($Comunidade);
     }
     
     //Realiza o cadastro de um novo encontrista 
@@ -47,8 +47,8 @@ class EncontristaController {
         return $encontrista->save($encontrista);
     }
     
-     public function CadComunidade($encontrista){
-        return $encontrista->getBycadcomundade($encontrista);
+    public function cadastrarNovaComunidade($nomeComunidade){
+        return $encontrista->cadastrarNovaComunidade($nomeComunidade);
     }
     
     //Realiza o cadastro de um novo encontrista 

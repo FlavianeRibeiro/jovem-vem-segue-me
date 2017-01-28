@@ -59,7 +59,20 @@
         $encontrista->setQ_Alergia($_POST['Q_Alergia']);
         $encontrista->setSexo($_POST['Sexo']);
         $encontrista->setComunidade($_POST['Comunidade']);
-        //chamando a funcao que faz o insert
+        
+       //se comunidade for igual a 0, selecionou "Outros", o campo 'Outros contem o nome da nova comunidade'
+       if($_POST['Comunidade'] == 0){
+           $x =$_POST['Outro'];
+           //vai retornar o maior id cadastrado e somar mais um
+        $sql = "(SELECT MAX(`IdComunidade`) FROM `comunidade`)";
+        $novoId = mysql_query($sql);
+        //cadastra a nova cumunidade e retorna o codigo
+        $sql2 = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) 
+                VALUES ('.$novoId.', '$x') ";
+        mysql_query($sql2);
+       }
+       
+       //chamando a funcao que faz o insert
        $resposta =  $encontristaController->salvar($encontrista);
        
     }elseif($acao == 'AtualizarCadastro'){
@@ -68,7 +81,7 @@
         $encontrista->setNome($_POST['Nome']);
         $encontrista->setDataNasc($_POST['DataNasc']);
         $encontrista->setIdade($_POST['Idade']);
-        $encontrista->SetEstadocivil($_POST['Estadocivil']);
+        $encontrista->SetEstadoCivil($_POST['EstadoCivil']);
         $encontrista->setTelResid($_POST['TelResid']);
         $encontrista->setCelular($_POST['Celular']);
         $encontrista->setOperadora($_POST['Operadora']);
@@ -106,12 +119,10 @@
         $encontrista->setAlergia($_POST['Alergia']);
         $encontrista->setQ_Alergia($_POST['Q_Alergia']);
         $encontrista->setSexo($_POST['Sexo']);
-        $encontrista->setComunidade($_POST['Comunidade']);
-        
-        //chamando a funcao que faz o insert
+       
+       //chamando a funcao que faz o insert
        $resposta =  $encontristaController->atualizar($encontrista);
-       $sql = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) SELECT Comunidade, Outro FROM encontrista  WHERE Comunidade = 0 and Outro <> Nome";$teste = mysql_query($update);
-       $update = "UPDATE `retiro`.encontrista SET Comunidade = IdComunidade, Outro = Nome SELECT '', Outro FROM encontrista WHERE Comunidade = 0"; $hue =  mysql_query($sql); 
+       
     }else if(($acao == "verFicha") || ($acao == "editarFicha")){
         $IdFicha = $_GET['Id'];
         if($acao == "verFicha"){
@@ -159,7 +170,7 @@
         $NomeMae = $myEncontrista['NomeMae'];
         $ContatoMae = $myEncontrista['ContatoMae'];
         $Responsavel = $myEncontrista['Responsavel'];
-        $ContatoResposavel = $myEncontrista['ContatoResposavel'];
+        $ContatoResponsavel = $myEncontrista['ContatoResponsavel'];
         $Procurar = $myEncontrista['Procurar'];
         $ContatoProcurar = $myEncontrista['ContatoProcurar'];
         $Remedio = $myEncontrista['Remedio'];
@@ -371,8 +382,8 @@
                                         <div class="col-sm-2">
                                             <select name="Servico" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Servico.disabled=false : Q_Servico.disabled=true;">
                                                  <option></option>
-                                                <option name="Servico" <?php if($Servico == 'SIM') echo"selected";?> value="SIM">Sim</option>
-                                                <option name="Servico"<?php if($Servico == 'NÃO') echo"selected";?>  value="NÃO">Não</option>
+                                                <option name="Servico" <?php if($Servico == 'Sim') echo"selected";?> value="Sim">Sim</option>
+                                                <option name="Servico"<?php if($Servico == 'Nao') echo"selected";?>  value="Nao">Não</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
@@ -479,7 +490,7 @@
 									</div>
 								<label for="ContatoResponsavel" class="col-sm-1 col-form-label" name="ContatoResponsavel">Contato:</label>
 									<div class="col-sm-2">
-										<input type="text" class="form-control" name="ContatoResponsavel" id="ContatoResponsavel" value="<?php echo $ContatoResponsavel;?>" <?php echo $permissao;?>>
+										<input type="text" class="form-control" name="ContatoResponsavel"  value="<?php echo $ContatoResponsavel;?>" <?php echo $permissao;?>>
 									</div>
                             </div>
                         </div>

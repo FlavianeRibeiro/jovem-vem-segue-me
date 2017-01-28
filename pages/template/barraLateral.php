@@ -76,7 +76,7 @@
                                     <a href="listagemPorComunidade.php?op=9">São Sebastião</a>
                                 </li>
                                 <li>
-                                    <a href="listagemPorComunidade.php?op=10">Outros</a>
+                                    <a href="listagemPorComunidade.php?op=0">Outros</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
