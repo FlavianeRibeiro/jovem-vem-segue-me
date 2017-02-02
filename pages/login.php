@@ -86,10 +86,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <?php include './template/styles.html'; ?>
-    
     <title>Jovem vem e segue-me</title>
 </head>
-
 <body>
 <div class="container">
         <div class="row">

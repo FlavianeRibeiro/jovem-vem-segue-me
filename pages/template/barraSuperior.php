@@ -1,19 +1,19 @@
 <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <?php 
-                include '../php/Banco.php'; 
-                session_start();
-                if(isset($_SESSION["IdEquipe"])){
-        			$IdEquipe= $_SESSION["IdEquipe"];
-        			$Nome= $_SESSION["Nome"];
-        			$Status= $_SESSION["Status"];
-        		}
-                echo '<a class="navbar-brand" href="index.html">Bem vindo, '. $_SESSION['Nome'].'</a>';?>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <?php 
+        include '../php/Banco.php'; 
+        session_start();
+        if(isset($_SESSION["IdEquipe"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+			$xy= $_SESSION["NomeEquipe"];
+			$Status= $_SESSION["Status"];
+		}
+        echo '<a class="navbar-brand" href="index.html">Bem vindo, '. $_SESSION['NomeEquipe'].'</a>';?>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">

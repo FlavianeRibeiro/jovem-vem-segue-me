@@ -89,7 +89,6 @@ class Encontrista{
     
     //Retorna uma lista com todos os encontristas que não desistiram
     public function getEncontristasNaoDesistentes(){
-    
         $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Nome` ,  `encontrista`.`Idade` ,  `encontrista`.`Comunidade` ,  `encontrista`.`Valor` , `comunidade`.`Nome` AS Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
@@ -105,7 +104,7 @@ class Encontrista{
                     FROM  `encontrista` 
                     INNER JOIN  `comunidade` ON comunidade.Nome = encontrista.Outro
                     OR comunidade.IdComunidade = encontrista.Comunidade
-                    WHERE Desistencia =0
+                    WHERE Desistencia = 0
                     AND Comunidade='".$Comunidade."'";
         return mysql_query($sql);
         

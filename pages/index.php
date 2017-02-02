@@ -1,12 +1,11 @@
 <?php
-    //include '../model/petDao.php';
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
     session_start();
-			if(isset($_SESSION["Idusuario"])){
-				$IdEquipe= $_SESSION["IdEquipe"];
-				$g= $_SESSION["Nome"];
-			}
+		if(isset($_SESSION["Idusuario"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		}//else{ header('Location: ../pages/login.php');}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +22,7 @@
     <script type="text/javascript" language="Javascript">
         function registrarDesistencia(idFicha){
             var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
-            if (r == true) {
-                location.href = "./desistenciaForm.php?Id="+idFicha;
-            }
+            if (r == true) { location.href = "./desistenciaForm.php?Id="+idFicha;}
         }
     </script>
 </head>
@@ -35,7 +32,6 @@
             <?php 
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
-                session_start();
             ?>
         </nav>
         <div id="page-wrapper">
@@ -43,12 +39,16 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Jovem Vem e Segue-me</h1>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
             
         <!-- ********************************* listagem ****************************************-->
         <?php
             $listaDeEncontristas = $encontrista->listarEncontristasNaoDesistentes();
+            session_start();
+			if(isset($_SESSION["Idusuario"])){
+				$IdEquipe= $_SESSION["IdEquipe"];
+			    $g= $_SESSION["Nome"];
+			}
         ?>
         <div class="row">
             <div class="col-lg-12">

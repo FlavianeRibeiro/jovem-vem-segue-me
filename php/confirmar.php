@@ -6,7 +6,6 @@
 	$Consulta ="SELECT * FROM  `equipe` WHERE  `Email` =  '".$email."'	AND  `Senha` ='$senha'";
 	$ok=mysql_query($Consulta);
 	$contador=0;
-		
 		while($linha=mysql_fetch_array($ok))
 		{
 			$Nome=$linha["Nome"];
@@ -14,11 +13,9 @@
 		    $Status=$linha["Status"];
 			$contador++;
 		}
-
-		
 	if($contador>0){
 		session_start();
-		echo $_SESSION["Nome"]  = $Nome;
+		echo $_SESSION["NomeEquipe"]  = $Nome;
 		echo $_SESSION["IdEquipe"] = $IdEquipe;
         echo $_SESSION["Status"] = $Status;
 		header('Location: ../pages/index.php');
@@ -28,6 +25,4 @@
 		echo "erro";
 		header('Location: ../pages/login.php');
 	}
-	
-
 ?>

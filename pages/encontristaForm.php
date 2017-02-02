@@ -3,122 +3,87 @@
     require_once '../php/ComunidadeController.php';
     $encontristaController = new EncontristaController();
     $comunidadeController = new ComunidadeController();
-    
+    include '../php/Banco.php'; 
+    session_start();
+    if(isset($_SESSION["IdEquipe"])){
+		$IdEquipe= $_SESSION["IdEquipe"];
+	    $xy= $_SESSION["NomeEquipe"];
+		$Status= $_SESSION["Status"];
+	}
     $encontrista = new Encontrista();
     $Titulo = 'CADASTRAR ENCONTRISTA';
-    $action = 'cadastraEncontrista';
-    
+    $action = 'cadastraEncontrista';$Data = date("d/m/Y");
+    echo $Data."'teste";
     // pega a variavel GET que passamos no action do form
     if (isset($_GET['acao'])){
     $acao = $_GET['acao'];
     
     // Verifica qual formulario foi submetido
     if($acao == "cadastraEncontrista"){
-        echo "cadastrar".$_POST['IdFicha'];
         //Atribuindo valores ao objeto
-        $encontrista->setId($_POST['IdFicha']);
-        $encontrista->setNome($_POST['Nome']);
-        $encontrista->setDataNasc($_POST['DataNasc']);
-        $encontrista->setIdade($_POST['Idade']);
-        $encontrista->setEstadoCivil($_POST['EstadoCivil']);
-        $encontrista->setTelResid($_POST['TelResid']);
-        $encontrista->setCelular($_POST['Celular']);
-        $encontrista->setOperadora($_POST['Operadora']);
-        $encontrista->setWhats($_POST['Whats']);
-        $encontrista->setFacebook($_POST['Facebook']);
-        $encontrista->setEmail($_POST['Email']);
-        $encontrista->setConvite($_POST['Convite']);
-        $encontrista->setParoquia($_POST['Paroquia']);
-        $encontrista->setComunidade($_POST['Comunidade']);
-        $encontrista->setOutro($_POST['Outro']);
-        $encontrista->setServico($_POST['Servico']);
-        $encontrista->setQ_Servico($_POST['Q_Servico']);
-        $encontrista->setOnibus($_POST['Onibus']);
-        $encontrista->setRua($_POST['Rua']);
-        $encontrista->setNumero($_POST['Numero']);
-        $encontrista->setBairro($_POST['Bairro']);
-        $encontrista->setCidade($_POST['Cidade']);
-        $encontrista->setEstado($_POST['Estado']);
-        $encontrista->setCep($_POST['Cep']);
-        $encontrista->setReferencia($_POST['Referencia']);
-        $encontrista->setComplemento($_POST['Complemento']);
-        $encontrista->setNumApt($_POST['NumApt']);
-        $encontrista->setNomeApt($_POST['NomeApt']);
-        $encontrista->setNomePai($_POST['NomePai']);
-        $encontrista->setContatoPai($_POST['ContatoPai']);
-        $encontrista->setNomeMae($_POST['NomeMae']);
-        $encontrista->setContatoMae($_POST['ContatoMae']);
-        $encontrista->setResponsavel($_POST['Responsavel']);
-        $encontrista->setContatoResponsavel($_POST['ContatoResponsavel']);
-        $encontrista->setProcurar($_POST['Procurar']);
-        $encontrista->setContatoProcurar($_POST['ContatoProcurar']);
-        $encontrista->setRemedio($_POST['Remedio']);
-        $encontrista->setQ_Remedio($_POST['Q_Remedio']);
-        $encontrista->setHorario($_POST['Horario']);
-        $encontrista->setAlergia($_POST['Alergia']);
-        $encontrista->setQ_Alergia($_POST['Q_Alergia']);
-        $encontrista->setSexo($_POST['Sexo']);
+        $encontrista->setId($_POST['IdFicha']);               $encontrista->setNome($_POST['Nome']);
+        $encontrista->setDataNasc($_POST['DataNasc']);        $encontrista->setIdade($_POST['Idade']);
+        $encontrista->setEstadoCivil($_POST['EstadoCivil']);  $encontrista->setTelResid($_POST['TelResid']);
+        $encontrista->setCelular($_POST['Celular']);          $encontrista->setOperadora($_POST['Operadora']);
+        $encontrista->setWhats($_POST['Whats']);              $encontrista->setFacebook($_POST['Facebook']);
+        $encontrista->setEmail($_POST['Email']);              $encontrista->setConvite($_POST['Convite']);
+        $encontrista->setParoquia($_POST['Paroquia']);        $encontrista->setComunidade($_POST['Comunidade']);
+        $encontrista->setOutro($_POST['Outro']);              $encontrista->setServico($_POST['Servico']);
+        $encontrista->setQ_Servico($_POST['Q_Servico']);      $encontrista->setOnibus($_POST['Onibus']);
+        $encontrista->setRua($_POST['Rua']);                  $encontrista->setNumero($_POST['Numero']);
+        $encontrista->setBairro($_POST['Bairro']);            $encontrista->setCidade($_POST['Cidade']);
+        $encontrista->setEstado($_POST['Estado']);            $encontrista->setCep($_POST['Cep']);
+        $encontrista->setReferencia($_POST['Referencia']);    $encontrista->setComplemento($_POST['Complemento']);
+        $encontrista->setNumApt($_POST['NumApt']);            $encontrista->setNomeApt($_POST['NomeApt']);
+        $encontrista->setNomePai($_POST['NomePai']);          $encontrista->setContatoPai($_POST['ContatoPai']);
+        $encontrista->setNomeMae($_POST['NomeMae']);          $encontrista->setContatoMae($_POST['ContatoMae']);
+        $encontrista->setResponsavel($_POST['Responsavel']);  $encontrista->setContatoResponsavel($_POST['ContatoResponsavel']);
+        $encontrista->setProcurar($_POST['Procurar']);        $encontrista->setContatoProcurar($_POST['ContatoProcurar']);
+        $encontrista->setRemedio($_POST['Remedio']);          $encontrista->setQ_Remedio($_POST['Q_Remedio']);
+        $encontrista->setHorario($_POST['Horario']);          $encontrista->setAlergia($_POST['Alergia']);
+        $encontrista->setQ_Alergia($_POST['Q_Alergia']);      $encontrista->setSexo($_POST['Sexo']);
         $encontrista->setComunidade($_POST['Comunidade']);
         
        //se comunidade for igual a 0, selecionou "Outros", o campo 'Outros contem o nome da nova comunidade'
-       if($_POST['Comunidade'] == 0){
-           $x =$_POST['Outro'];
-           //vai retornar o maior id cadastrado e somar mais um
-        $sql = "(SELECT MAX(`IdComunidade`) FROM `comunidade`)";
-        $novoId = mysql_query($sql);
+       if($_POST['Comunidade'] == 0){ $x =$_POST['Outro'];
+         //vai retornar o maior id cadastrado e somar mais um
+        $sql = "(SELECT MAX(`IdComunidade`) FROM `comunidade`)"; $novoId = mysql_query($sql);
         //cadastra a nova cumunidade e retorna o codigo
-        $sql2 = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) 
-                VALUES ('.$novoId.', '$x') ";
-        mysql_query($sql2);
+        $sql2 = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) VALUES ('.$novoId.', '$x') "; mysql_query($sql2);
        }
+       // CADASTRAR HISTORICO
+       $idficha = $_POST['IdFicha'];
+       
+       $sql0 ="INSERT INTO `Historico`(`Id`, `Nome`, `Descricao`, `Ficha`, `Data`) VALUES ('Null','$xy','Cadastrou a ficha do(a)','$idficha','$Data')";
+       mysql_query($sql0);
+       
+       
        
        //chamando a funcao que faz o insert
        $resposta =  $encontristaController->salvar($encontrista);
-       
     }elseif($acao == 'AtualizarCadastro'){
         //Atribuindo valores ao objeto
-        $encontrista->setId($_POST['IdFicha']);
-        $encontrista->setNome($_POST['Nome']);
-        $encontrista->setDataNasc($_POST['DataNasc']);
-        $encontrista->setIdade($_POST['Idade']);
-        $encontrista->SetEstadoCivil($_POST['EstadoCivil']);
-        $encontrista->setTelResid($_POST['TelResid']);
-        $encontrista->setCelular($_POST['Celular']);
-        $encontrista->setOperadora($_POST['Operadora']);
-        $encontrista->setWhats($_POST['Whats']);
-        $encontrista->setFacebook($_POST['Facebook']);
-        $encontrista->setEmail($_POST['Email']);
-        $encontrista->setConvite($_POST['Convite']);
-        $encontrista->setParoquia($_POST['Paroquia']);
-        $encontrista->setComunidade($_POST['Comunidade']);
-        $encontrista->setOutro($_POST['Outro']);
-        $encontrista->setServico($_POST['Servico']);
-        $encontrista->setQ_Servico($_POST['Q_Servico']);
-        $encontrista->setOnibus($_POST['Onibus']);
-        $encontrista->setRua($_POST['Rua']);
-        $encontrista->setNumero($_POST['Numero']);
-        $encontrista->setBairro($_POST['Bairro']);
-        $encontrista->setCidade($_POST['Cidade']);
-        $encontrista->setEstado($_POST['Estado']);
-        $encontrista->setCep($_POST['Cep']);
-        $encontrista->setReferencia($_POST['Referencia']);
-        $encontrista->setComplemento($_POST['Complemento']);
-        $encontrista->setNumApt($_POST['NumApt']);
-        $encontrista->setNomeApt($_POST['NomeApt']);
-        $encontrista->setNomePai($_POST['NomePai']);
-        $encontrista->setContatoPai($_POST['ContatoPai']);
-        $encontrista->setNomeMae($_POST['NomeMae']);
-        $encontrista->setContatoMae($_POST['ContatoMae']);
-        $encontrista->setResponsavel($_POST['Responsavel']);
-        $encontrista->setContatoResponsavel($_POST['ContatoResponsavel']);
-        $encontrista->setProcurar($_POST['Procurar']);
-        $encontrista->setContatoProcurar($_POST['ContatoProcurar']);
-        $encontrista->setRemedio($_POST['Remedio']);
-        $encontrista->setQ_Remedio($_POST['Q_Remedio']);
-        $encontrista->setHorario($_POST['Horario']);
-        $encontrista->setAlergia($_POST['Alergia']);
-        $encontrista->setQ_Alergia($_POST['Q_Alergia']);
-        $encontrista->setSexo($_POST['Sexo']);
+        $encontrista->setId($_POST['IdFicha']);               $encontrista->setNome($_POST['Nome']);
+        $encontrista->setDataNasc($_POST['DataNasc']);        $encontrista->setIdade($_POST['Idade']);
+        $encontrista->SetEstadoCivil($_POST['EstadoCivil']);  $encontrista->setTelResid($_POST['TelResid']);
+        $encontrista->setCelular($_POST['Celular']);          $encontrista->setOperadora($_POST['Operadora']);
+        $encontrista->setWhats($_POST['Whats']);              $encontrista->setFacebook($_POST['Facebook']);
+        $encontrista->setEmail($_POST['Email']);              $encontrista->setConvite($_POST['Convite']);
+        $encontrista->setParoquia($_POST['Paroquia']);        $encontrista->setComunidade($_POST['Comunidade']);
+        $encontrista->setOutro($_POST['Outro']);              $encontrista->setServico($_POST['Servico']);
+        $encontrista->setQ_Servico($_POST['Q_Servico']);      $encontrista->setOnibus($_POST['Onibus']);
+        $encontrista->setRua($_POST['Rua']);                  $encontrista->setNumero($_POST['Numero']);
+        $encontrista->setBairro($_POST['Bairro']);            $encontrista->setCidade($_POST['Cidade']);
+        $encontrista->setEstado($_POST['Estado']);            $encontrista->setCep($_POST['Cep']);
+        $encontrista->setReferencia($_POST['Referencia']);    $encontrista->setComplemento($_POST['Complemento']);
+        $encontrista->setNumApt($_POST['NumApt']);            $encontrista->setNomeApt($_POST['NomeApt']);
+        $encontrista->setNomePai($_POST['NomePai']);          $encontrista->setContatoPai($_POST['ContatoPai']);
+        $encontrista->setNomeMae($_POST['NomeMae']);          $encontrista->setContatoMae($_POST['ContatoMae']);
+        $encontrista->setResponsavel($_POST['Responsavel']);  $encontrista->setContatoResponsavel($_POST['ContatoResponsavel']);
+        $encontrista->setProcurar($_POST['Procurar']);        $encontrista->setContatoProcurar($_POST['ContatoProcurar']);
+        $encontrista->setRemedio($_POST['Remedio']);          $encontrista->setQ_Remedio($_POST['Q_Remedio']);
+        $encontrista->setHorario($_POST['Horario']);          $encontrista->setAlergia($_POST['Alergia']);
+        $encontrista->setQ_Alergia($_POST['Q_Alergia']);      $encontrista->setSexo($_POST['Sexo']);
        
        //chamando a funcao que faz o insert
        $resposta =  $encontristaController->atualizar($encontrista);
@@ -130,60 +95,38 @@
             $permissao='disabled';
             $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
             $myEncontrista = mysql_fetch_array($resposta);
-           
         }else{
             $Titulo = 'EDITAR FICHA';
             $action='AtualizarCadastro';
             $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
-            $myEncontrista = mysql_fetch_array($resposta);
+            $myEncontrista = mysql_fetch_array($resposta); 
+            $idficha = $myEncontrista['IdFicha'];  
+            
         }
-        $IdFicha = $myEncontrista['IdFicha'];
-        $Nome = $myEncontrista['Nome'];
-        $DataNasc = $myEncontrista['DataNasc'];
-        $Idade = $myEncontrista['Idade'];
-        $Sexo = $myEncontrista['Sexo'];
-        $EstadoCivil = $myEncontrista['EstadoCivil'];
-        $TelResid = $myEncontrista['TelResid'];
-        $Celular = $myEncontrista['Celular'];
-        $Operadora = $myEncontrista['Operadora'];
-        $Whats = $myEncontrista['Whats'];
-        $Facebook = $myEncontrista['Facebook'];
-        $Email = $myEncontrista['Email'];
-        $Convite = $myEncontrista['Convite'];
-        $Paroquia = $myEncontrista['Paroquia'];
-        $Comunidade = $myEncontrista['Comunidade'];
-        $Outro = $myEncontrista['Outro'];
-        $Servico = $myEncontrista['Servico'];
-        $Q_Servico = $myEncontrista['Q_Servico'];
-        $Rua = $myEncontrista['Rua'];
-        $Numero = $myEncontrista['Numero'];
-        $Bairro = $myEncontrista['Bairro'];
-        $Cidade = $myEncontrista['Cidade'];
-        $Estado = $myEncontrista['Estado'];
-        $Cep = $myEncontrista['Cep'];
-        $Referencia = $myEncontrista['Referencia'];
-        $Complemento = $myEncontrista['Complemento'];
-        $NumApt = $myEncontrista['NumApt'];
-        $NomeApt = $myEncontrista['NomeApt'];
-        $NomePai = $myEncontrista['NomePai'];
-        $ContatoPai = $myEncontrista['ContatoPai'];
-        $NomeMae = $myEncontrista['NomeMae'];
-        $ContatoMae = $myEncontrista['ContatoMae'];
-        $Responsavel = $myEncontrista['Responsavel'];
-        $ContatoResponsavel = $myEncontrista['ContatoResponsavel'];
-        $Procurar = $myEncontrista['Procurar'];
-        $ContatoProcurar = $myEncontrista['ContatoProcurar'];
-        $Remedio = $myEncontrista['Remedio'];
-        $Q_Remedio = $myEncontrista['Q_Remedio '];
-        $Horario = $myEncontrista['Horario'];
-        $Alergia = $myEncontrista['Alergia'];
-        $Q_Alergia = $myEncontrista['Q_Alergia'];
-        $Comunidade = $myEncontrista['Comunidade'];
+        $IdFicha = $myEncontrista['IdFicha'];            $Nome = $myEncontrista['Nome'];
+        $DataNasc = $myEncontrista['DataNasc'];          $Idade = $myEncontrista['Idade'];
+        $Sexo = $myEncontrista['Sexo'];                  $EstadoCivil = $myEncontrista['EstadoCivil'];
+        $TelResid = $myEncontrista['TelResid'];          $Celular = $myEncontrista['Celular'];
+        $Operadora = $myEncontrista['Operadora'];        $Whats = $myEncontrista['Whats'];
+        $Facebook = $myEncontrista['Facebook'];          $Email = $myEncontrista['Email'];
+        $Convite = $myEncontrista['Convite'];            $Paroquia = $myEncontrista['Paroquia'];
+        $Comunidade = $myEncontrista['Comunidade'];      $Outro = $myEncontrista['Outro'];
+        $Servico = $myEncontrista['Servico'];            $Q_Servico = $myEncontrista['Q_Servico'];
+        $Rua = $myEncontrista['Rua'];                    $Numero = $myEncontrista['Numero'];
+        $Bairro = $myEncontrista['Bairro'];              $Cidade = $myEncontrista['Cidade'];
+        $Estado = $myEncontrista['Estado'];              $Cep = $myEncontrista['Cep'];
+        $Referencia = $myEncontrista['Referencia'];      $Complemento = $myEncontrista['Complemento'];
+        $NumApt = $myEncontrista['NumApt'];              $NomeApt = $myEncontrista['NomeApt'];
+        $NomePai = $myEncontrista['NomePai'];            $ContatoPai = $myEncontrista['ContatoPai'];
+        $NomeMae = $myEncontrista['NomeMae'];            $ContatoMae = $myEncontrista['ContatoMae'];
+        $Responsavel = $myEncontrista['Responsavel'];    $ContatoResponsavel = $myEncontrista['ContatoResponsavel'];
+        $Procurar = $myEncontrista['Procurar'];          $ContatoProcurar = $myEncontrista['ContatoProcurar'];
+        $Remedio = $myEncontrista['Remedio'];            $Q_Remedio = $myEncontrista['Q_Remedio'];
+        $Horario = $myEncontrista['Horario'];            $Alergia = $myEncontrista['Alergia'];
+        $Q_Alergia = $myEncontrista['Q_Alergia'];        $Comunidade = $myEncontrista['Comunidade'];
         $Onibus = $myEncontrista['Onibus'];
-        
     }
 }
-   session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -228,14 +171,12 @@
                                 $("#Estado").val(dados.uf);
                             } //end if.
                             else {//CEP pesquisado não foi encontrado.
-                                limpa_formulário_cep();
-                                alert("CEP não encontrado.");
+                                limpa_formulário_cep(); alert("CEP não encontrado.");
                             }
                         });
                     } //end if.
                     else {//cep é inválido.
-                        limpa_formulário_cep();
-                        alert("Formato de CEP inválido.");
+                        limpa_formulário_cep(); alert("Formato de CEP inválido.");
                     }
                 } //end if.
                 else {//cep sem valor, limpa formulário.
@@ -382,7 +323,7 @@
                                         <div class="col-sm-2">
                                             <select name="Servico" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Servico.disabled=false : Q_Servico.disabled=true;">
                                                  <option></option>
-                                                <option name="Servico" <?php if($Servico == 'Sim') echo"selected";?> value="Sim">Sim</option>
+                                                <option name="Servico"<?php if($Servico == 'Sim') echo"selected";?> value="Sim">Sim</option>
                                                 <option name="Servico"<?php if($Servico == 'Nao') echo"selected";?>  value="Nao">Não</option>
                                             </select>
                                         </div>
@@ -513,17 +454,17 @@
                             <div class="form-group row">
                             <label for="Remedio" class="col-sm-2 col-form-label" name="Remedio">Toma algum medicamento?</label>
                                 <div class="col-sm-2">
-                                    <select name="Medicamento" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Remedio.disabled=false : Q_Remedio.disabled=true; this.value=='Sim'? Horario.disabled=false : Horario.disabled=true;">
+                                    <select name="Remedio" class="form-control" <?php echo $permissao;?>  onchange="this.value=='Sim'? Q_Remedio.disabled=false : Q_Remedio.disabled=true; this.value=='Sim'? Horario.disabled=false : Horario.disabled=true;">
                                         <option></option>
-                                        <option name="Remedio" id="Remedio"  value="Sim" <?php if($Remedio == 'Sim')  echo"selected";?>>Sim</option>
-                                        <option name="Remedio" id="Remedio" value="Nao" <?php if($Remedio == 'Nao')  echo"selected";?>>Não</option>
+                                        <option name="Remedio" value="Sim" <?php if($Remedio == 'Sim')  echo"selected";?>>Sim</option>
+                                        <option name="Remedio" value="Nao" <?php if($Remedio == 'Nao')  echo"selected";?>>Não</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="Q_Remedio" id="Q_Remedio" placeholder="Qual(is) medicamento(s)"value="<?php echo $Q_Remedio;?>" <?php echo $permissao;?>>
+                                    <input type="text" class="form-control" name="Q_Remedio" placeholder="Qual(is) medicamento(s)"value="<?php echo $Q_Remedio;?>" <?php echo $permissao;?>>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="Horario" id="Horario" placeholder="Horários(De manhã / De Tarde / De Noite)"value="<?php echo $Horario;?>" <?php echo $permissao;?>>
+                                    <input type="text" class="form-control" name="Horario" id="Horario" placeholder="Horários(De manhã / De Tarde / De Noite)" value="<?php echo $Horario;?>" <?php echo $permissao;?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -536,7 +477,7 @@
                                     </select>
                                 </div>
                                  <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="Q_Alergia" id="Q_Alergia"placeholder="Quail(s) medicamento(s)"value="<?php echo $Q_Alergia;?>" <?php echo $permissao;?>>
+                                    <input type="text" class="form-control" name="Q_Alergia" id="Q_Alergia"placeholder="Quail(s) medicamento(s)" value="<?php echo $Q_Alergia;?>" <?php echo $permissao;?>>
                                 </div>
                         </div>
                         </div>
