@@ -9,6 +9,7 @@
 		$IdEquipe= $_SESSION["IdEquipe"];
 	    $xy= $_SESSION["NomeEquipe"];
 		$Status= $_SESSION["Status"];
+        $Equipe = $_SESSION["Equipe"];
 	}
     $encontrista = new Encontrista();
     $Titulo = 'CADASTRAR ENCONTRISTA';
@@ -49,15 +50,12 @@
          //vai retornar o maior id cadastrado e somar mais um
         $sql = "(SELECT MAX(`IdComunidade`) FROM `comunidade`)"; $novoId = mysql_query($sql);
         //cadastra a nova cumunidade e retorna o codigo
-        $sql2 = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) VALUES ('.$novoId.', '$x') "; mysql_query($sql2);
+        $sql2 = "INSERT INTO  `retiro`.`comunidade` (`IdComunidade` ,  `Nome`) VALUES ('.$novoId.', '$x') "; mysql_query($sql2);
        }
        // CADASTRAR HISTORICO
        $idficha = $_POST['IdFicha'];
-       
-       $sql0 ="INSERT INTO `Historico`(`Id`, `Nome`, `Descricao`, `Ficha`, `Data`) VALUES ('Null','$xy','Cadastrou a ficha do(a)','$idficha','$Data')";
+       $sql0 ="INSERT INTO `Historico`(`Id`, `Nome`, `Descricao`, `Ficha`, `Data`, `Equipe`, `Status`) VALUES ('Null','$xy','Cadastrou a ficha','$idficha','$Data','$Equipe','$Status')";
        mysql_query($sql0);
-       
-       
        
        //chamando a funcao que faz o insert
        $resposta =  $encontristaController->salvar($encontrista);
@@ -101,6 +99,8 @@
             $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
             $myEncontrista = mysql_fetch_array($resposta); 
             $idficha = $myEncontrista['IdFicha'];  
+            $sql0 ="INSERT INTO `Historico`(`Id`, `Nome`, `Descricao`, `Ficha`, `Data`, `Equipe`, `Status`) VALUES ('Null','$xy','Editou a ficha','$idficha','$Data','$Equipe','$Status')";
+       mysql_query($sql0);
             
         }
         $IdFicha = $myEncontrista['IdFicha'];            $Nome = $myEncontrista['Nome'];

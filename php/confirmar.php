@@ -15,9 +15,11 @@
 		}
 	if($contador>0){
 		session_start();
-		echo $_SESSION["NomeEquipe"]  = $Nome;
-		echo $_SESSION["IdEquipe"] = $IdEquipe;
-        echo $_SESSION["Status"] = $Status;
+		$_SESSION["NomeEquipe"]  = $Nome;
+		$_SESSION["IdEquipe"] = $IdEquipe;
+        $_SESSION["Status"] = $Status;
+        $_SESSION["Equipe"] = $Equipe;
+        
 		header('Location: ../pages/index.php');
 		
 	}else

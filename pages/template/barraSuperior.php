@@ -12,6 +12,7 @@
 			$IdEquipe= $_SESSION["IdEquipe"];
 			$xy= $_SESSION["NomeEquipe"];
 			$Status= $_SESSION["Status"];
+            $Equipe = $_SESSION["Equipe"];
 		}
         echo '<a class="navbar-brand" href="index.html">Bem vindo, '. $_SESSION['NomeEquipe'].'</a>';?>
             </div>
@@ -22,54 +23,29 @@
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
+                        <?php  
+                        $Recebe = mysql_query("SELECT * FROM  `Historico`");
+                    $Nome;$Descricao;$Ficha;$Data;$Equipe;$Status;$contador=0;
+                        while($linha = mysql_fetch_array($Recebe)){
+                            $Nome[$contador] = $linha["Nome"];      $Descricao[$contador] = $linha["Descricao"];
+                            $Ficha[$contador] = $linha["Ficha"];    $Data[$contador]= $linha["Data"];
+                            $Equipe[$contador] = $linha["Equipe"];  $Status[$contador] = $linha["Status"];
+                            $contador++;
+                        }$cont=0;
+                            while($cont<count($Nome)){
+                                echo '<li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-comment fa-fw"></i> '.$Nome[$cont].' '.$Descricao[$cont].'('.$Ficha[$cont].')
+                                           <span class="pull-right text-muted small">'.$Data[$cont].'</span>
+                                        </div>
+                                    </a>
+                                </li> <br>
+                                <li class="divider"></li>';$cont++;
+                         } ?>
                         <li>
                             <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
+                                <strong>Ver todo o historico</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
