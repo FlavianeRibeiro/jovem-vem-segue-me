@@ -34,11 +34,11 @@
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <?php 
+            <?php $permissao='';
                 if ($Status == 'Equipe'){include "./template/barraLateral.php";$permissao='disabled';}
-                else if($Status == 'Coordenador') {include "./template/Barra.Lateral.php";}
-                else if(($Status == 'Coordenador') && ($Equipe == 'Secretaria')) {include "./template/BarraLateral.php";}
-                else if($Status == 'ADMIN'){include "./template/Barralateral.php"; }
+                else if($Status == 'Coordenador') {include "./template/Barra.Lateral.php";$permissao='';}
+                else if(($Status == 'Coordenador') && ($Equipe == 'Secretaria')) {include "./template/BarraLateral.php";$permissao='';}
+                else if($Status == 'ADMIN'){include "./template/Barralateral.php"; $permissao=''; }
                 include "./template/barraSuperior.php";
             ?>
         </nav>
@@ -82,9 +82,9 @@
                                     <td><?php echo $myEncontrista['Comunidade'];?></td>
                                     <td><?php echo $myEncontrista['Idade'];?></td>
                                     <td><?php echo $myEncontrista['Valor'];?></td>
-                                    <td align="center"><a href="encontristaForm.php?acao=verFicha&Id=<?php echo $myEncontrista['IdFicha']; echo $permissao;?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
-                                    <td align="center"><a href="encontristaForm.php?acao=editarFicha&Id=<?php echo $myEncontrista['IdFicha']; echo $permissao; ?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
-                                    <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha']; ?><?php echo $permissao;?>)" class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>
+                                    <td align="center"><a href="encontristaForm.php?acao=verFicha&Id=<?php echo $myEncontrista['IdFicha'];?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
+                                    <td align="center"><a href="encontristaForm.php?acao=editarFicha&Id=<?php echo $myEncontrista['IdFicha'];  ?>" type="button" class="btn btn-info btn-circle <?php echo $permissao;?>" ><i class="fa fa-check"></i></a></td>
+                                    <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>") class="btn btn-danger btn-circle <?php echo $permissao;?>"><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
