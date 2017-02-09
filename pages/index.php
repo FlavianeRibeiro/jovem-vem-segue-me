@@ -1,11 +1,16 @@
 <?php
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
+    include '../php/Banco.php';
     session_start();
-		if(isset($_SESSION["Idusuario"])){
+		if(isset($_SESSION["IdEquipe"])){
 			$IdEquipe= $_SESSION["IdEquipe"];
 		    $g= $_SESSION["NomeEquipe"];
-		}//else{ header('Location: ../pages/login.php');}
+		    $Status= $_SESSION["Status"];
+		    $Equipe= $_SESSION["Equipe"];
+		}else{
+		    header('Location: ../pages/login.php');;
+		}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +35,11 @@
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
+                if ($Status == 'Equipe'){include "./template/barraLateral.php";$permissao='disabled';}
+                else if($Status == 'Coordenador') {include "./template/Barra.Lateral.php";}
+                else if(($Status == 'Coordenador') && ($Equipe == 'Secretaria')) {include "./template/BarraLateral.php";}
+                else if($Status == 'ADMIN'){include "./template/Barralateral.php"; }
                 include "./template/barraSuperior.php";
-                include "./template/barraLateral.php";
             ?>
         </nav>
         <div id="page-wrapper">
@@ -44,11 +52,6 @@
         <!-- ********************************* listagem ****************************************-->
         <?php
             $listaDeEncontristas = $encontrista->listarEncontristasNaoDesistentes();
-            session_start();
-			if(isset($_SESSION["Idusuario"])){
-				$IdEquipe= $_SESSION["IdEquipe"];
-			    $g= $_SESSION["Nome"];
-			}
         ?>
         <div class="row">
             <div class="col-lg-12">
@@ -79,9 +82,9 @@
                                     <td><?php echo $myEncontrista['Comunidade'];?></td>
                                     <td><?php echo $myEncontrista['Idade'];?></td>
                                     <td><?php echo $myEncontrista['Valor'];?></td>
-                                    <td align="center"><a href="encontristaForm.php?acao=verFicha&Id=<?php echo $myEncontrista['IdFicha'];?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
-                                    <td align="center"><a href="encontristaForm.php?acao=editarFicha&Id=<?php echo $myEncontrista['IdFicha'];?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
-                                    <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>)" class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>
+                                    <td align="center"><a href="encontristaForm.php?acao=verFicha&Id=<?php echo $myEncontrista['IdFicha']; echo $permissao;?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
+                                    <td align="center"><a href="encontristaForm.php?acao=editarFicha&Id=<?php echo $myEncontrista['IdFicha']; echo $permissao; ?>" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                    <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha']; ?><?php echo $permissao;?>)" class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

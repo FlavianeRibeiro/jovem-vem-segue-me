@@ -15,6 +15,10 @@
     <?php
         include './template/styles.html';
         session_start();
+		if(isset($_SESSION["Idusuario"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		}
         if (isset($_GET['op'])){
             switch ($_GET['op']){
                 case 1:

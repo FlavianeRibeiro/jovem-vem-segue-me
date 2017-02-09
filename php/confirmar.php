@@ -6,8 +6,7 @@
 	$Consulta ="SELECT * FROM  `equipe` WHERE  `Email` =  '".$email."'	AND  `Senha` ='$senha'";
 	$ok=mysql_query($Consulta);
 	$contador=0;
-		while($linha=mysql_fetch_array($ok))
-		{
+		while($linha=mysql_fetch_array($ok)){
 			$Nome=$linha["Nome"];
 			$IdEquipe=$linha["IdEquipe"];
 		    $Status=$linha["Status"];
@@ -19,12 +18,8 @@
 		$_SESSION["IdEquipe"] = $IdEquipe;
         $_SESSION["Status"] = $Status;
         $_SESSION["Equipe"] = $Equipe;
-        
 		header('Location: ../pages/index.php');
-		
-	}else
-	{
-		echo "erro";
+	}else{
 		header('Location: ../pages/login.php');
 	}
 ?>

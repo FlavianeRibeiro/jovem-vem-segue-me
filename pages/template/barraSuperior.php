@@ -13,7 +13,10 @@
 			$xy= $_SESSION["NomeEquipe"];
 			$Status= $_SESSION["Status"];
             $Equipe = $_SESSION["Equipe"];
+		}else{
+		    
 		}
+		
         echo '<a class="navbar-brand" href="index.html">Bem vindo, '. $_SESSION['NomeEquipe'].'</a>';?>
             </div>
             <!-- /.navbar-header -->

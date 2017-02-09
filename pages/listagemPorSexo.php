@@ -15,6 +15,10 @@
     <?php
         include './template/styles.html';
         session_start();
+        if(isset($_SESSION["Idusuario"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		}else{ header('Location: ../pages/login.php');}
         if (isset($_GET['Sexo'])){
             if($_GET['Sexo'] == 'F'){
                 $Sexo = 'Feminino'; 

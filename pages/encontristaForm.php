@@ -6,15 +6,14 @@
     include '../php/Banco.php'; 
     session_start();
     if(isset($_SESSION["IdEquipe"])){
-		$IdEquipe= $_SESSION["IdEquipe"];
-	    $xy= $_SESSION["NomeEquipe"];
-		$Status= $_SESSION["Status"];
-        $Equipe = $_SESSION["Equipe"];
-	}
+		echo $IdEquipe= $_SESSION["IdEquipe"];
+	    echo $xy= $_SESSION["NomeEquipe"];
+		echo $Status= $_SESSION["Status"];
+        echo $Equipe = $_SESSION["Equipe"];
+	}else{ header('Location: ../pages/login.php');}
     $encontrista = new Encontrista();
     $Titulo = 'CADASTRAR ENCONTRISTA';
     $action = 'cadastraEncontrista';$Data = date("d/m/Y");
-    echo $Data."'teste";
     // pega a variavel GET que passamos no action do form
     if (isset($_GET['acao'])){
     $acao = $_GET['acao'];

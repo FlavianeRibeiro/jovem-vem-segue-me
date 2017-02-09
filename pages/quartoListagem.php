@@ -23,7 +23,10 @@
             <?php 
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
-                session_start();
+                if(isset($_SESSION["Idusuario"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		}else{ header('Location: ../pages/login.php');}
             ?>
         </nav>
         <div id="page-wrapper">

@@ -1,7 +1,10 @@
 <?php
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
-    session_start();
+    if(isset($_SESSION["Idusuario"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		}else{ header('Location: ../pages/login.php');}
    echo $op = $_GET['Sexo'];
     if($op == 'Feminino'){
     	$titulo = "CADASTRAR QUARTO DAS MENINAS";
