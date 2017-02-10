@@ -14,6 +14,12 @@ class EncontristaController {
         return $encontrista->getEncontristasNaoDesistentes();
     }
     
+    //Retorna uma lista com todos os encontristas que não desistiram
+    public function listarEncontristasDesistentes() {
+        $encontrista = new Encontrista();
+        return $encontrista->getEncontristasDesistentes();
+    }
+    
     public function listarPorSexo($Sexo) {
         $encontrista = new Encontrista();
         return $encontrista->getBySexo($Sexo);

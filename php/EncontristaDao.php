@@ -4,7 +4,7 @@ include 'Banco.php';
 class Encontrista{
     
     private $id='';
-    private $nome='';
+    private $nomeencontrista='';
     private $datanasc='';
     private $idade='';
     private $sexo='';
@@ -53,11 +53,11 @@ class Encontrista{
     private $datadesistencia='';
     
     public function save($encontrista){ 
-    $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `DataNasc`, `Idade`, `Sexo`, `EstadoCivil`, `TelResid`, `Celular`, `Operadora`, `Whats`, 
+    $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `NomeEncontrista`, `DataNasc`, `Idade`, `Sexo`, `EstadoCivil`, `TelResid`, `Celular`, `Operadora`, `Whats`, 
         `Facebook`, `Email`, `Convite`, `Paroquia`, `Comunidade`, `Outro`, `Servico`, `Q_Servico`, `Onibus`, `Rua`, `Numero`, `Bairro`, `Cidade`, 
         `Estado`, `Cep`, `Referencia`, `Complemento`, `NumApt`, `NomeApt`, `NomePai`, `ContatoPai`, `NomeMae`, `ContatoMae`, `Responsavel`, 
         `ContatoResponsavel`, `Procurar`, `ContatoProcurar`, `Remedio`, `Q_Remedio`, `Horario`, `Alergia`, `Q_Alergia`, `Carta`, `Desistencia`) 
-        VALUES ('$encontrista->id','$encontrista->nome','$encontrista->datanasc','$encontrista->idade','$encontrista->sexo','$encontrista->estadocivil',
+        VALUES ('$encontrista->id','$encontrista->nomeencontrista','$encontrista->datanasc','$encontrista->idade','$encontrista->sexo','$encontrista->estadocivil',
         '$encontrista->telresid','$encontrista->celular','$encontrista->operadora','$encontrista->whats','$encontrista->facebook','$encontrista->email',
         '$encontrista->convite','$encontrista->paroquia','$encontrista->comunidade','$encontrista->outro','$encontrista->servico','$encontrista->q_servico',
         '$encontrista->onibus','$encontrista->rua','$encontrista->numero','$encontrista->bairro','$encontrista->cidade','$encontrista->estado','$encontrista->cep',
@@ -67,7 +67,7 @@ class Encontrista{
     return mysql_query($Consulta);
     }
     public function update($encontrista){
-    $Consulta =$Consulta = "UPDATE `retiro`.`encontrista` SET `Nome`='$encontrista->nome',`DataNasc`='$encontrista->datanasc',`Idade`='$encontrista->idade',
+    $Consulta =$Consulta = "UPDATE `retiro`.`encontrista` SET `NomeEncontrista`='$encontrista->nomeencontrista',`DataNasc`='$encontrista->datanasc',`Idade`='$encontrista->idade',
 `Sexo`='$encontrista->sexo',`EstadoCivil`='$encontrista->estadocivil',`TelResid`='$encontrista->telresid',`Celular`='$encontrista->celular',
 `Operadora`='$encontrista->operadora',`Whats`='$encontrista->whats',`Facebook`='$encontrista->facebook',`Email`='$encontrista->email',`Convite`='$encontrista->convite',
 `Paroquia`='$encontrista->paroquia',`Comunidade`='$encontrista->comunidade',`Outro`='$encontrista->outro',`Servico`='$encontrista->servico',
@@ -91,7 +91,7 @@ class Encontrista{
     
     //Retorna uma lista com todos os encontristas que não desistiram
     public function getEncontristasNaoDesistentes(){
-        $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Nome` ,  `encontrista`.`Idade` ,  `encontrista`.`Comunidade` ,  `encontrista`.`Valor` , `comunidade`.`Nome` AS Comunidade
+        $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`NomeEncontrista` ,  `encontrista`.`Idade` ,  `encontrista`.`Comunidade` ,  `encontrista`.`Valor` , `comunidade`.`Nome` AS Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
                 OR encontrista.Outro = comunidade.Nome
@@ -99,10 +99,19 @@ class Encontrista{
         return mysql_query($sql);
     }
     
-    
+    //Retorna uma lista com todos os encontristas que desistiram
+    public function getEncontristasDesistentes(){
+        $sql = "SELECT  `encontrista`.`IdFicha`,  `encontrista`.`NomeEncontrista`,  `encontrista`.`Justificativa`,  `encontrista`.`DataDesistencia`, `comunidade`.`Nome` AS Comunidade
+                FROM  `encontrista` 
+                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+                OR encontrista.Outro = comunidade.Nome
+                WHERE Desistencia = 1";
+        return mysql_query($sql);
+    }
+
     public function getByComunidade($Comunidade){
     
-            $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Outro` ,  `encontrista`.`Nome` ,  `encontrista`.`Idade` ,  `comunidade`.`Nome` AS Comunidade
+            $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Outro` ,  `encontrista`.`NomeEncontrista` ,  `encontrista`.`Idade` ,  `comunidade`.`Nome` AS Comunidade
                     FROM  `encontrista` 
                     INNER JOIN  `comunidade` ON comunidade.Nome = encontrista.Outro
                     OR comunidade.IdComunidade = encontrista.Comunidade
@@ -113,7 +122,7 @@ class Encontrista{
     }
     
     public function getByComun($Comunidade_){
-        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`,  `comunidade`.`Nome` as Comunidade
+        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`, `encontrista`.`Idade`,  `comunidade`.`Nome` as Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
                 WHERE  Desistencia=0 AND Comunidade !='".$Comunidade_."'";
@@ -121,7 +130,7 @@ class Encontrista{
     }
     
     public function getBySexo($Sexo_){
-        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
+        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
                 WHERE  Desistencia=0 AND Sexo='".$Sexo_." '";
@@ -129,7 +138,7 @@ class Encontrista{
     }
     
     public function getByValor($Valor_){
-        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`Nome`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
+        $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
                 WHERE  Desistencia=0 AND Valor='".$Valor_." '";
@@ -178,8 +187,8 @@ class Encontrista{
     public function setId($id){ $this->id = $id; }
     
     //NOME
-    public function getNome(){ return $this->$nome; }
-    public function setNome($nome){  $this->nome = $nome;}
+    public function getNomeEncontrista(){ return $this->$nomeencontrista; }
+    public function setNomeEncontrista($nomeencontrista){  $this->nomeencontrista = $nomeencontrista;}
     
     //DATA DE NASCIMENTO
     public function getDataNasc(){ return $this->$datanasc; }

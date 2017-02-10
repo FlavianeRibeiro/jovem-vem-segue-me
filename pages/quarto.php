@@ -1,32 +1,32 @@
 <?php
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
-     session_start();
+    session_start();
 		if(isset($_SESSION["IdEquipe"])){
 			$IdEquipe= $_SESSION["IdEquipe"];
 		    $g= $_SESSION["NomeEquipe"];
 		    $Status= $_SESSION["Status"];
 		    $Equipe= $_SESSION["Equipe"];
 		}else{ header('Location: ../pages/login.php');}
-   echo $op = $_GET['Sexo'];
+	$op = $_GET['Sexo'];
     if($op == 'Feminino'){
-    	$titulo = "CADASTRAR QUARTO DAS MENINAS";
+    	$titulo = "CADASTRAR QUARTO DAS MENINAS";$incio=101;$fim=130;
     	}else if($op == 'Masculino' ){
-		$titulo = "CADASTRAR QUARTO DOS MENINOS";	
+		$titulo = "CADASTRAR QUARTO DOS MENINOS";$incio=201;$fim=230;
     	}
-    $Recebe = mysql_query('SELECT IdFicha, Nome, Valor FROM encontrista WHERE Sexo =  "'.$op.'" AND `Quarto` = 0 AND Desistencia =0');
-	    $IdFicha;$Nome;$Valor;$contador=0;
+    $Recebe = mysql_query('SELECT IdFicha, NomeEncontrista, Valor FROM encontrista WHERE Sexo =  "'.$op.'" AND `Quarto` = 0 AND Desistencia =0');
+	    $IdFicha;$NomeEncontrista;$Valor;$contador=0;
 	    while($linha = mysql_fetch_array($Recebe)){
 	    	$IdFicha[$contador] = $linha["IdFicha"];
-			$Nome[$contador] = $linha["Nome"];
+			$NomeEncontrista[$contador] = $linha["NomeEncontrista"];
 			$Valor[$contador] = $linha["Valor"];
 			$contador++;
 	    }
-	$Recebe2 = mysql_query('SELECT `IdEquipe`,`Nome`,`Status` FROM `equipe` WHERE `Sexo` = "'.$op.'" AND `Quarto` = 0');
-	    $IdEquipe;$Nome;$Status;$contador=0;
+	$Recebe2 = mysql_query('SELECT `IdEquipe`,`NomeEquipe`,`Status` FROM `equipe` WHERE `Sexo` = "'.$op.'" AND `Quarto` = 0');
+	    $IdEquipe;$NomeEquipe;$Status;$contador=0;
 	    while($linha = mysql_fetch_array($Recebe2)){
 	    	$IdEquipe[$contador] = $linha["IdEquipe"];
-			$NomeE[$contador] = $linha["Nome"];
+			$NomeEquipe[$contador] = $linha["NomeEquipe"];
 			$Status[$contador] = $linha["Status"];
 			$contador++;
 	    }
@@ -39,19 +39,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Jovem vem e segue-me</title>
-    <?php
-        include './template/styles.html';
-    ?>
+    <?php  include './template/styles.html'; ?>
 </head>
-
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
+            	$permissao='';
+                if ($Status == 'Equipe'){include "./template/barraLateral.php";$permissao='disabled';}
+                else if(($Status == 'Coordenador') && ($Equipe != 'Secretaria')) {include "./template/Barra.Lateral.php";$permissao='';}
+                else if(($Status == 'Coordenador') && ($Equipe == 'Secretaria')) {include "./template/BarraLateral.php";$permissao='';}
+                else if($Status == 'ADMIN'){include "./template/Barralateral.php"; $permissao=''; }
                 include "./template/barraSuperior.php";
-                include "./template/barraLateral.php";
             ?>
         </nav>
         <div id="page-wrapper">
@@ -67,11 +67,10 @@
                         <div class="panel-heading">
                             <div class="panel-heading" >
                             	<div class="col-xs-2">
-		                            <select name="Quarto" class="form-control" >
-										<option> </option>
-										<option name="Quarto" value="10" >10</option>
-										<option name="Quarto" value="20" >20</option>
-										<option name="Quarto" value="30" >30</option>
+		                         <select name="Quarto" class="form-control" >
+										<option> </option><?php
+										for($i=$incio;$i<$fim;$i++){ ?>
+										<?php 	echo '<option name="Quarto" value="'.$i.'" >'.$i.'</option>';} ?>
 		                            </select>
 		                        </div>
 		                         <button type="sumit" class="btn btn-link">Validar</button>
@@ -97,10 +96,10 @@
 			                                    </thead>
 			                                    <tbody>
 			                                    <?php $contador=0;
-			                                    while($contador<count($IdFicha)){
+			                                    while($contador<count($NomeEncontrista)){
 													echo'<tr class="odd gradeX">
 														<td><input type="checkbox" name="IdFicha[]" value="'.$IdFicha[$contador].'"></td>
-														<td>'.$Nome[$contador].'</td>
+														<td>'.$NomeEncontrista[$contador].'</td>
 														<td>'.$Valor[$contador].'</td>
 														</tr>';
 													$contador++;
@@ -133,7 +132,7 @@
 			                                    while($contador<count($IdEquipe)){
 													echo'<tr class="odd gradeX">
 														<td><input type="checkbox" name="IdEquipe[]" value="'.$IdEquipe[$contador].'"></td>
-														<td>'.$NomeE[$contador].'</td>
+														<td>'.$NomeEquipe[$contador].'</td>
 														<td>'.$Status[$contador].'</td>
 														</tr>';
 													$contador++;

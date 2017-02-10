@@ -21,7 +21,7 @@
     // Verifica qual formulario foi submetido
     if($acao == "cadastraEncontrista"){
         //Atribuindo valores ao objeto
-        $encontrista->setId($_POST['IdFicha']);               $encontrista->setNome($_POST['Nome']);
+        $encontrista->setId($_POST['IdFicha']);               $encontrista->setNomeEncontrista($_POST['NomeEncontrista']);
         $encontrista->setDataNasc($_POST['DataNasc']);        $encontrista->setIdade($_POST['Idade']);
         $encontrista->setEstadoCivil($_POST['EstadoCivil']);  $encontrista->setTelResid($_POST['TelResid']);
         $encontrista->setCelular($_POST['Celular']);          $encontrista->setOperadora($_POST['Operadora']);
@@ -60,7 +60,7 @@
        $resposta =  $encontristaController->salvar($encontrista);
     }elseif($acao == 'AtualizarCadastro'){
         //Atribuindo valores ao objeto
-        $encontrista->setId($_POST['IdFicha']);               $encontrista->setNome($_POST['Nome']);
+        $encontrista->setId($_POST['IdFicha']);               $encontrista->setNomeEncontrista($_POST['NomeEncontrista']);
         $encontrista->setDataNasc($_POST['DataNasc']);        $encontrista->setIdade($_POST['Idade']);
         $encontrista->SetEstadoCivil($_POST['EstadoCivil']);  $encontrista->setTelResid($_POST['TelResid']);
         $encontrista->setCelular($_POST['Celular']);          $encontrista->setOperadora($_POST['Operadora']);
@@ -102,7 +102,7 @@
        mysql_query($sql0);
             
         }
-        $IdFicha = $myEncontrista['IdFicha'];            $Nome = $myEncontrista['Nome'];
+        $IdFicha = $myEncontrista['IdFicha'];            $NomeEncontrista = $myEncontrista['NomeEncontrista'];
         $DataNasc = $myEncontrista['DataNasc'];          $Idade = $myEncontrista['Idade'];
         $Sexo = $myEncontrista['Sexo'];                  $EstadoCivil = $myEncontrista['EstadoCivil'];
         $TelResid = $myEncontrista['TelResid'];          $Celular = $myEncontrista['Celular'];
@@ -215,9 +215,9 @@
                                     <div class="col-sm-1">
                                         <input type="text" class="form-control" name="IdFicha" id="IdFicha" value="<?php echo $IdFicha;?>" <?php echo $permissao;?>>
                                     </div>
-                                    <label for="Nome" class="col-sm-1 col-form-label" name="Nome"><font color="red">*</font>Nome:</label>
+                                    <label for="Nome" class="col-sm-1 col-form-label" name="NomeEncontrista"><font color="red">*</font>Nome:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="Nome" id="Nome"  value="<?php echo $Nome;?>" <?php echo $permissao;?>>
+                                            <input type="text" class="form-control" name="NomeEncontrista" id="NomeEncontrista"  value="<?php echo $NomeEncontrista;?>" <?php echo $permissao;?>>
                                         </div>
                                 </div>
                                 <div class="form-group row">

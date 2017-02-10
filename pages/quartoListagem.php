@@ -1,6 +1,8 @@
 <?php
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
+    session_start();
+    		if(!isset($_SESSION["IdEquipe"])){ header('Location: ../pages/login.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,26 +12,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
     ?>
 </head>
-
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <?php 
+                include "./template/barraSuperior.php";$permissao='';
+                if ($Status == 'Equipe'){include "./template/barraLateral.php";$permissao='disabled';}
+                else if(($Status == 'Coordenador') && ($Equipe != 'Secretaria')) {include "./template/Barra.Lateral.php";$permissao='';}
+                else if(($Status == 'Coordenador') && ($Equipe == 'Secretaria')) {include "./template/BarraLateral.php";$permissao='';}
+                else if($Status == 'ADMIN'){include "./template/Barralateral.php"; $permissao=''; }
                 include "./template/barraSuperior.php";
-                include "./template/barraLateral.php";
-                   session_start();
-		if(isset($_SESSION["IdEquipe"])){
-			$IdEquipe= $_SESSION["IdEquipe"];
-		    $g= $_SESSION["NomeEquipe"];
-		    $Status= $_SESSION["Status"];
-		    $Equipe= $_SESSION["Equipe"];
-		}else{ header('Location: ../pages/login.php');}
             ?>
         </nav>
         <div id="page-wrapper">

@@ -55,7 +55,6 @@
                     <div class="panel-heading">
                         Encontristas (Todos exceto desistentes)
                     </div>
-                    <!-- /.panel-heading -->
                     <div class="panel-body">
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
@@ -74,7 +73,7 @@
                                 <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){ ?>
                                <tr class="odd gradeX">
                                     <td><?php echo $myEncontrista['IdFicha'];?></td>
-                                    <td><?php echo $myEncontrista['Nome'];?></td>
+                                    <td><?php echo $myEncontrista['NomeEncontrista'];?></td>
                                     <td><?php echo $myEncontrista['Comunidade'];?></td>
                                     <td><?php echo $myEncontrista['Idade'];?></td>
                                     <td><?php echo $myEncontrista['Valor'];?></td>

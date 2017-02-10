@@ -2,7 +2,7 @@
     include 'Banco.php';
     session_start();
 	if(!isset($_SESSION["IdEquipe"])){header('Location: ../pages/login.php');}
-    $Nome = $_POST["Nome"];
+    $NomeEquipe = $_POST["NomeEquipe"];
     $Sexo = $_POST["Sexo"];
     $Fixo = $_POST["Fixo"];
     $Celular = $_POST["Celular"];
@@ -13,7 +13,7 @@
     $Equipe = $_POST["Equipe"];
     $Status = $_POST["Status"];
    
-    $Consulta ="INSERT INTO `retiro`.`equipe`(`IdEquipe`, `Nome`, `Fixo`, `Celular`, `Operadora`, `Email`, `Senha`, `Comunidade`, `Equipe`, `Status`, `Sexo`) 
+    $Consulta ="INSERT INTO `retiro`.`equipe`(`IdEquipe`, `NomeEquipe`, `Fixo`, `Celular`, `Operadora`, `Email`, `Senha`, `Comunidade`, `Equipe`, `Status`, `Sexo`) 
     VALUES ('Null','$Nome','$Fixo','$Celular','$Operadora','$Email','$Senha','$Comunidade','$Equipe','$Status','$Sexo')";
 	$Result = mysql_query($Consulta);
 	

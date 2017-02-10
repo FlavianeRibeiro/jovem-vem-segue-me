@@ -40,9 +40,9 @@
                 <div class="container">
                     <form action="../php/cad_equipe.php" method="POST">
                         <div class="form-group row">
-                            <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
+                            <label for="NomeEquipe" class="col-sm-1 col-form-label">Nome:</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" name="Nome" placeholder="Nome Completo">
+                                    <input type="text" class="form-control" name="NomeEquipe" placeholder="Nome Completo">
                                 </div>
                             <label for="Sexo" class="col-xs-1 col-form-label" name="Sexo">Sexo:</label>
                                 <div class="col-xs-2">
