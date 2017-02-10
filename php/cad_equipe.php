@@ -1,6 +1,7 @@
 <?php
     include 'Banco.php';
-    
+    session_start();
+	if(!isset($_SESSION["IdEquipe"])){header('Location: ../pages/login.php');}
     $Nome = $_POST["Nome"];
     $Sexo = $_POST["Sexo"];
     $Fixo = $_POST["Fixo"];

@@ -1,5 +1,7 @@
 <?php
 include 'Banco.php';
+session_start();
+	if(!isset($_SESSION["IdEquipe"])){header('Location: ../pages/login.php');}
 
 class Comunidade{
     

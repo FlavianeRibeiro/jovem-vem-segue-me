@@ -2,18 +2,19 @@
     require_once '../php/EncontristaController.php';
     $encontristaController = new EncontristaController();
     $encontrista = new Encontrista();
-        session_start();
-		if(isset($_SESSION["Idusuario"])){
+    session_start();
+		if(isset($_SESSION["IdEquipe"])){
 			$IdEquipe= $_SESSION["IdEquipe"];
 		    $g= $_SESSION["NomeEquipe"];
+		    $Status= $_SESSION["Status"];
+		    $Equipe= $_SESSION["Equipe"];
 		}else{ header('Location: ../pages/login.php');}
-    
     if (isset($_GET['Id'])){
         $IdFicha = $_GET['Id'];
         $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
         $myEncontrista = mysql_fetch_array($resposta);
     }
-    
+
     if (isset($_GET['acao'])){
         if($_GET['acao'] == 'cadastrarDesistencia'){
             $encontrista->setNome($_POST['Justificativa']);
@@ -69,7 +70,12 @@
                             <input type="text" class="form-control" name="Nome" value="<?php echo $myEncontrista["Nome"]; ?>" readonly>
                           </div>
                         </div>
-                
+                        <div class="form-group row">
+                            <label for="DataDesistencia" class="col-sm-1 col-form-label">Data:</label>
+                              <div class="col-sm-2">
+                                <input type="date" class="form-control" name="DataDesistencia" value="<?php echo $myEncontrista["DataD"]; ?>">
+                              </div>
+                        </div>
                         <div class="form-group row">
                             <label for="Justificativa" class="col-xs-1 col-form-label" name="Justificativa">Justificativa:</label>
                             <div class="col-sm-7">

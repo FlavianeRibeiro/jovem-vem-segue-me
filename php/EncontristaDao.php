@@ -49,6 +49,8 @@ class Encontrista{
     private $valor='';
     private $desistencia='';
     private $quarto='';
+    private $justificativa='';
+    private $datadesistencia='';
     
     public function save($encontrista){ 
     $Consulta ="INSERT INTO `encontrista`(`IdFicha`, `Nome`, `DataNasc`, `Idade`, `Sexo`, `EstadoCivil`, `TelResid`, `Celular`, `Operadora`, `Whats`, 
@@ -144,8 +146,8 @@ class Encontrista{
         return mysql_query($sql);
     }
     
-    public function saveDesistencia($IdFicha, $Justificativa){
-        $sql = "UPDATE encontrista SET Desistencia=1, Justificativa='".$Justificativa."' where IdFicha=".$IdFicha;
+    public function saveDesistencia($IdFicha, $Justificativa,$datadesistencia){
+        $sql = "UPDATE encontrista SET Desistencia=1, Justificativa='".$Justificativa."',DataDesistencia='".$DataDesistencia."' where IdFicha=".$IdFicha;
         return mysql_query($sql);
     }
     public function getTotalEncontristasPorValor(){
@@ -350,6 +352,10 @@ class Encontrista{
     //DESISTENCIA
     public function getDesistencia(){   return $this->$desistencia;  }
     public function setDesistencia($desistencia){   $this->desistencia = $desistencia;}
+
+    //DATADESISTENCIA
+    public function getDataDesistencia(){   return $this->$datadesistencia;  }
+    public function setDataDesistencia($datadesistencia){   $this->datadesistencia = $datadesistencia;}
     
     //QUARTO
     public function getQuarto(){   return $this->$quarto;  }

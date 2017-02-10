@@ -1,7 +1,13 @@
 <?php
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
-    session_start();
+        session_start();
+		if(isset($_SESSION["IdEquipe"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		    $Status= $_SESSION["Status"];
+		    $Equipe= $_SESSION["Equipe"];
+		}else{ header('Location: ../pages/login.php');}
 ?>
 <!DOCTYPE html>
 <html lang="en">

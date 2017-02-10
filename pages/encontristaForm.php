@@ -5,12 +5,12 @@
     $comunidadeController = new ComunidadeController();
     include '../php/Banco.php'; 
     session_start();
-    if(isset($_SESSION["IdEquipe"])){
-		echo $IdEquipe= $_SESSION["IdEquipe"];
-	    echo $xy= $_SESSION["NomeEquipe"];
-		echo $Status= $_SESSION["Status"];
-        echo $Equipe = $_SESSION["Equipe"];
-	}else{ header('Location: ../pages/login.php');}
+		if(isset($_SESSION["IdEquipe"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		    $Status= $_SESSION["Status"];
+		    $Equipe= $_SESSION["Equipe"];
+		}else{ header('Location: ../pages/login.php');}
     $encontrista = new Encontrista();
     $Titulo = 'CADASTRAR ENCONTRISTA';
     $action = 'cadastraEncontrista';$Data = date("d/m/Y");

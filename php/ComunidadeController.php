@@ -1,4 +1,6 @@
 <?php require_once 'ComunidadeDao.php';
+session_start();
+	if(!isset($_SESSION["IdEquipe"])){header('Location: ../pages/login.php');}
  
 class ComunidadeController {
 

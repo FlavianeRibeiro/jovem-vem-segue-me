@@ -16,7 +16,13 @@
                 include "./template/barraSuperior.php";
                 include "./template/barraLateral.php";
                 include '../php/Banco.php';
-                session_start();
+                    session_start();
+		if(isset($_SESSION["IdEquipe"])){
+			$IdEquipe= $_SESSION["IdEquipe"];
+		    $g= $_SESSION["NomeEquipe"];
+		    $Status= $_SESSION["Status"];
+		    $Equipe= $_SESSION["Equipe"];
+		}else{ header('Location: ../pages/login.php');}
                     $Recebe = mysql_query("SELECT * FROM  `Suplencia`");
                     $IdSuplencia;$Nome;$Equipe;$Email;$Telefone;$Ficha;$Devolvido;
                     $contador=0;

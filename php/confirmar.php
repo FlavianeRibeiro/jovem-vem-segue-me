@@ -10,6 +10,7 @@
 			$Nome=$linha["Nome"];
 			$IdEquipe=$linha["IdEquipe"];
 		    $Status=$linha["Status"];
+		    $Equipe=$linha["Equipe"];
 			$contador++;
 		}
 	if($contador>0){

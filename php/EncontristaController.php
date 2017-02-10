@@ -57,9 +57,9 @@ class EncontristaController {
     }
     
     //Altera um encontrista para desistente
-    public function cadastrarDesistencia($IdFicha, $justificativa){
+    public function cadastrarDesistencia($IdFicha, $justificativa,$datadesistencia){
         $encontrista = new Encontrista();
-        $encontrista->saveDesistencia($IdFicha, $justificativa);
+        $encontrista->saveDesistencia($IdFicha, $justificativa,$datadesistencia);
     }
     
     public function obterTotalEncontristasPorIdade(){

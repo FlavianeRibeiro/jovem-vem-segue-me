@@ -13,8 +13,6 @@
 			$xy= $_SESSION["NomeEquipe"];
 			$Status= $_SESSION["Status"];
             $Equipe = $_SESSION["Equipe"];
-		}else{
-		    
 		}
 		
         echo '<a class="navbar-brand" href="index.html">Bem vindo, '. $_SESSION['NomeEquipe'].'</a>';?>
@@ -62,7 +60,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="../php/quebrasessao.php"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
