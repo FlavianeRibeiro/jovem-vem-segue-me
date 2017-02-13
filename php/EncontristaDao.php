@@ -108,6 +108,13 @@ class Encontrista{
                 WHERE Desistencia = 1";
         return mysql_query($sql);
     }
+        //LISTAGEM DE VALOR
+    public function getValor(){
+        $sql = "SELECT  `encontrista`.`NomeEncontrista`,  `encontrista`.`Valor`,  `equipe`.`NomeEquipe`, `equipe`.`Equipe` AS Quarto
+                FROM  `encontrista` 
+                INNER JOIN  `equipe` ON encontrista.Quarto = 101 and  equipe.Quarto = 101";
+        return mysql_query($sql);
+    }
 
     public function getByComunidade($Comunidade){
     

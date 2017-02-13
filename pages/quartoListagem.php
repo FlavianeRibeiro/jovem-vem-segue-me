@@ -1,8 +1,14 @@
 <?php
     require_once '../php/EncontristaController.php';
     $encontrista = new EncontristaController();
+    include '../php/Banco.php';
     session_start();
-    		if(!isset($_SESSION["IdEquipe"])){ header('Location: ../pages/login.php');
+	if(isset($_SESSION["IdEquipe"])){
+		$IdEquipe= $_SESSION["IdEquipe"];
+	    $g= $_SESSION["NomeEquipe"];
+	    $Status= $_SESSION["Status"];
+	    $Equipe= $_SESSION["Equipe"];
+	}else{ header('Location: ../pages/login.php');}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,15 +19,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Jovem vem e segue-me</title>
-    <?php
-        include './template/styles.html';
-    ?>
+    <?php include './template/styles.html'; ?>
+    <script type="text/javascript" language="Javascript">
+        function registrarDesistencia(idFicha){
+            var r = confirm("Tem certeza que deseja registrar desistência para o encontrista "+idFicha+ "?");
+            if (r == true) { location.href = "./desistenciaForm.php?Id="+idFicha;}
+        }
+    </script>
 </head>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <?php 
-                include "./template/barraSuperior.php";$permissao='';
+            <?php $permissao='';
                 if ($Status == 'Equipe'){include "./template/barraLateral.php";$permissao='disabled';}
                 else if(($Status == 'Coordenador') && ($Equipe != 'Secretaria')) {include "./template/Barra.Lateral.php";$permissao='';}
                 else if(($Status == 'Coordenador') && ($Equipe == 'Secretaria')) {include "./template/BarraLateral.php";$permissao='';}
@@ -31,108 +40,54 @@
         </nav>
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12"><h1 class="page-header">Listagem do quarto</h1></div>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Jovem Vem e Segue-me</h1>
+                </div>
             </div>
-                <div class="col-lg-8">
-                    
-                    <div class="col-lg-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                NUMERO DO QUARTO
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="table-responsive table-bordered">
-                                <table class="table">
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOME COMPLETO ENCONTRISTA</td>
-                                        <td>EQUIPE</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+            
+        <!-- ********************************* listagem ****************************************-->
+        <?php
+            $listaDeEncontristas = $encontrista->listarEncontristasNaoDesistentes();
+        ?>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Encontristas (Todos exceto desistentes)
                     </div>
+                    <div class="panel-body">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Nº Ficha</th>
+                                    <th>Nome</th>
+                                    <th>Comunidade</th>
+                                    <th>Idade</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){ ?>
+                               <tr class="odd gradeX">
+                                    <td><?php echo $myEncontrista['IdFicha'];?></td>
+                                    <td><?php echo $myEncontrista['NomeEncontrista'];?></td>
+                                    <td><?php echo $myEncontrista['Comunidade'];?></td>
+                                    <td><?php echo $myEncontrista['Idade'];?></td>
+                                    <td><?php echo $myEncontrista['Valor'];?></td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
                 </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Cadastrar Quarto
-                        </div>
-                          <!-- /.panel-heading -->
-                         <?php
-							$encontrista = mysql_query("SELECT * FROM `encontrista` WHERE `Desistencia` = 0");
-						//	$equipe = mysql_query("SELECT * FROM `equipe`");
-							$IdFicha;$Nome;$Idequipe;$contador=0;$cont=0;
-							
-							while($linha = mysql_fetch_array($encontrista)){
-								$IdFicha[$contador] = $linha["IdFicha"];
-								$Nome[$contador] = $linha["Nome"];
-								$contador++;
-							}
-						/*	while($ln = mysql_fetch_array($equipe)){
-								$Idequipe[$cont] = $ln["Idequipe"];
-								$Nomeeq[$cont] = $ln["Nome"];
-								$cont++;
-							}*/
-						?>
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <div class="form-group row">
-                                    <label for="Email" class="col-sm-1 col-form-label">Nº:</label>
-                                    <div class="col-md-3">
-                                        <input type="text" class="form-control" name="Email" placeholder="Nº">
-                                    </div>
-                                </div>
-                                <!-- /. ENCONTRISTA -->
-                                <div class="form-group row">
-                                    <label for="Email" class="col-sm-1 col-form-label">Encontrista:  </label>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
-                                        </div>
-                                        <datalist id="datalist"> value='3' <?php $add =3; ?> >3
-                                            </select>
-                                            <?php
-                                            $contador=0;
-                                            echo $add;
-                                            while($contador<count($IdFicha)){
-                								echo  '<option name="'.$IdFicha[$contador].'" value="'.$Nome[$contador].'">';
-                								$contador++;
-                    							} ?>
-                    				    </datalist>
-                                </div>
-                                <!-- /.EQUIPE -->
-                                <div class="form-group row">
-                                    <label for="Email" class="col-sm-1 col-form-label">Equipe:  </label>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control" name="Nome" placeholder="Digite o nome" list="datalist">
-                                        </div>
-                                        <datalist id="datalist">
-                                            <?php
-                                          //  $cont=0;
-                                            /*while($cont<count($Nomeeq)){
-                								echo '<option name="'.$Idequipe[$cont].'" value="'.$Nomeeq[$cont].'">';
-                								$contador++;
-                    						}*/	?>
-                    				    </datalist>
-                                </div>
-                            </div>
-                    <!-- /.panel -->
-                </div>
+                <!-- /.panel -->
             </div>
-            <!-- /.row -->
-		</div>
-	</div>
-</body>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- ********************************* listagem ****************************************-->
+        </div>
+    </body>
+</html>
 </html>
