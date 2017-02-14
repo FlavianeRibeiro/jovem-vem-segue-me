@@ -96,8 +96,7 @@
             $Titulo = 'EDITAR FICHA';
             $action='AtualizarCadastro';
             $resposta =  $encontristaController->obterEncontristaPorIdFicha($IdFicha);
-            $myEncontrista = mysql_fetch_array($resposta); 
-            $idficha = $myEncontrista['IdFicha'];  
+            $myEncontrista = mysql_fetch_array($resposta);
             $sql0 ="INSERT INTO `Historico`(`Id`, `Nome`, `Descricao`, `Ficha`, `Data`, `Equipe`, `Status`) VALUES ('Null','$xy','Editou a ficha','$idficha','$Data','$Equipe','$Status')";
        mysql_query($sql0);
             

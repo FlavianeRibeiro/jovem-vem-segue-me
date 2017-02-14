@@ -24,7 +24,6 @@ class EncontristaController {
         $encontrista = new Encontrista();
         return $encontrista->getBySexo($Sexo);
     }
-    
     //LISTAGEM POR VALOR
     public function listarPorValor($Valor_) {
         $encontrista = new Encontrista();

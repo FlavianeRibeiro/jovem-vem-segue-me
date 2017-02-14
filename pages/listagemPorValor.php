@@ -71,14 +71,14 @@
 											<?php
 												include '../php/Banco.php';
 												
-												$Recebe = mysql_query('SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`,  `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
+												$Recebe = mysql_query('SELECT `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`,  `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
 														                FROM  `encontrista`  INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
 														                WHERE  Desistencia = 0  ORDER BY `Idade` ASC');
-												$IdFicha;$Nome;	$Comunidade;$Idade;	$Valor;$contador=0;
+												$IdFicha;$NomeEncontrista;	$Comunidade;$Idade;	$Valor;$contador=0;
 												
 												while($linha = mysql_fetch_array($Recebe)){
 													$IdFicha[$contador] = $linha["IdFicha"];
-													$Nome[$contador] = $linha["Nome"];
+													$NomeEncontrista[$contador] = $linha["NomeEncontrista"];
 													$Comunidade[$contador] = $linha["Comunidade"];
 													$Valor[$contador] = $linha["Valor"];
 													$Idade[$contador] = $linha["Idade"];	$contador++;
@@ -90,7 +90,7 @@
 													echo'<tr class="odd gradeX">
 															<td><input type="checkbox" name="Id[]" value="'.$IdFicha[$contador].'"></td>
 															<td>'.$IdFicha[$contador].'</td>
-															<td>'.$Nome[$contador].'</td>
+															<td>'.$NomeEncontrista[$contador].'</td>
 															<td class="center">'.$Idade[$contador].' anos</td>
 															<td>'.$Comunidade[$contador].'</td>
 															<td>'.$Valor[$contador].'</td>

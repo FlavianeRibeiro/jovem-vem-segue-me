@@ -110,12 +110,12 @@
                                 <tr class="odd gradeX">
                                     <?php if ($myEncontrista['Outro'] != ''){ 
                                     echo "<td>".$myEncontrista['IdFicha']."</td>
-                                    <td>".$myEncontrista['Nome']."</td>
+                                    <td>".$myEncontrista['NomeEncontrista']."</td>
                                     <td>".$myEncontrista['Idade']." anos</td>
                                     <td>".$myEncontrista['Outro']."</td>";} 
                                     else {
                                     echo "<td>".$myEncontrista['IdFicha']."</td>
-                                        <td>". $myEncontrista['Nome']."</td>
+                                        <td>". $myEncontrista['NomeEncontrista']."</td>
                                         <td>".$myEncontrista['Idade']." anos </td>";}}?>
                                 </tr>
                             </tbody>

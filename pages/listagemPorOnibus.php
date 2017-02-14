@@ -53,7 +53,7 @@
 								<tbody>
 									<?php
 										include '../php/Banco.php';
-	                                    $Recebe = mysql_query("SELECT `encontrista`.`IdFicha`, `encontrista`.`Nome`,  `encontrista`.`Valor`,  `comunidade`.`Nome` as Comunidade
+	                                    $Recebe = mysql_query("SELECT `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`,  `encontrista`.`Valor`,  `comunidade`.`Nome` as Comunidade
 												                FROM  `encontrista` 
 												                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
 												                WHERE  Desistencia=0  ORDER BY `Nome` ASC");
@@ -61,7 +61,7 @@
 
 										while($linha = mysql_fetch_array($Recebe)){
 											$IdFicha[$contador] = $linha["IdFicha"];
-											$Nome[$contador] = $linha["Nome"];
+											$Nome[$contador] = $linha["NomeEncontrista"];
 											$Comunidade[$contador] = $linha["Comunidade"];
 											$Valor[$contador] = $linha["Valor"];
 											$contador++;

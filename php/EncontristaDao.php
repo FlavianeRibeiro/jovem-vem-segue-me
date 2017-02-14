@@ -77,10 +77,7 @@ class Encontrista{
 `ContatoMae`='$encontrista->contatomae',`Responsavel`='$encontrista->responsavel',`ContatoResponsavel`='$encontrista->contatoresponsavel',`Procurar`='$encontrista->procurar',
 `ContatoProcurar`='$encontrista->contatoprocurar',`Remedio`='$encontrista->remedio',`Q_Remedio`='$encontrista->q_remedio',`Horario`='$encontrista->horario',
 `Alergia`='$encontrista->alergia',`Q_Alergia`='$encontrista->q_alergia' WHERE `IdFicha`= '$encontrista->id'";
-
-
         return mysql_query($Consulta);
-       
     }
     
     //Retorna uma lista com todos os encontristas cadastrados
@@ -108,16 +105,8 @@ class Encontrista{
                 WHERE Desistencia = 1";
         return mysql_query($sql);
     }
-        //LISTAGEM DE VALOR
-    public function getValor(){
-        $sql = "SELECT  `encontrista`.`NomeEncontrista`,  `encontrista`.`Valor`,  `equipe`.`NomeEquipe`, `equipe`.`Equipe` AS Quarto
-                FROM  `encontrista` 
-                INNER JOIN  `equipe` ON encontrista.Quarto = 101 and  equipe.Quarto = 101";
-        return mysql_query($sql);
-    }
 
     public function getByComunidade($Comunidade){
-    
             $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`Outro` ,  `encontrista`.`NomeEncontrista` ,  `encontrista`.`Idade` ,  `comunidade`.`Nome` AS Comunidade
                     FROM  `encontrista` 
                     INNER JOIN  `comunidade` ON comunidade.Nome = encontrista.Outro
@@ -136,11 +125,11 @@ class Encontrista{
         return mysql_query($sql);
     }
     
-    public function getBySexo($Sexo_){
+    public function getBySexo($Sexo){
         $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
-                WHERE  Desistencia=0 AND Sexo='".$Sexo_." '";
+                WHERE  Desistencia=0 AND Sexo='".$Sexo." '";
         return mysql_query($sql);
     }
     
@@ -153,7 +142,7 @@ class Encontrista{
     }
     
     public function getTotalEncontristasPorIdade(){
-        $sql = 'SELECT DISTINCT idade, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.idade = enc.idade) AS total_idade FROM  encontrista ORDER BY idade';
+        $sql = 'SELECT DISTINCT idade, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.idade = enc.idade AND Desistencia =0) AS total_idade FROM encontrista ORDER BY idade';
         return mysql_query($sql);
     }
     
@@ -169,19 +158,6 @@ class Encontrista{
     public function getTotalEncontristasPorValor(){
         $sql = 'SELECT DISTINCT Valor, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.Valor = enc.Valor) AS total_Valor FROM  encontrista ORDER BY Valor';
         return mysql_query($sql);
-    }
-    
-    public function cadastrarNovaComunidade($nomeComunidade){
-        //vai retornar o maior id cadastrado e somar mais um
-        $sql = "(SELECT MAX(`IdComunidade`) FROM `comunidade`)";
-        $novoId = mysql_query($sql);
-        
-        //cadastra a nova cumunidade e retorna o codigo
-        $sql = "INSERT INTO  `retiro`.`comunidade` (  `IdComunidade` ,  `Nome` ) 
-                SELECT ".$novoId.", '".$nomeComunidade."' ";
-        mysql_query($sql);
-        
-        return $encontrista-> $novoId;
     }
     
     

@@ -76,7 +76,7 @@
                                 <?php while($myEncontrista = mysql_fetch_array($listaDeEncontristas)){?>
                                <tr class="odd gradeX">
                                     <td><?php echo $myEncontrista['IdFicha'];?></td>
-                                    <td><?php echo $myEncontrista['Nome'];?></td>
+                                    <td><?php echo $myEncontrista['NomeEncontrista'];?></td>
                                     <td><?php echo $myEncontrista['Comunidade'];?></td>
                                     <td><?php echo $myEncontrista['Idade'];?></td>
                                     <td><?php echo $myEncontrista['Valor'];?></td>

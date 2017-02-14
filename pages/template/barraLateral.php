@@ -73,7 +73,7 @@
 				<!-- /.nav-second-level -->
 			</li>
 			<li>
-				<a href="#"><i class="fa fa-table fa-fw"></i> Desistência</a>
+				<a href="desistencia.php"><i class="fa fa-table fa-fw"></i> Desistência</a>
 			</li>
 		</ul>
 	</div>

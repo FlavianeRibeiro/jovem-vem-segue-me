@@ -14,12 +14,16 @@
                                     <a href="suplencia.php">Suplência</a>
                                 </li>
                                 <li>
-                                    <a href="quarto.php?Sexo=Feminino">Quarto das meninas</a>
+                                    <a href="#"> Quarto<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="quarto.php?Sexo=Feminino">Quarto das meninas</a>
+                                        </li>
+                                        <li>
+                                            <a href="quarto.php?Sexo=Masculino">Quarto dos meninos</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a href="quarto.php?Sexo=Masculino">Quarto dos meninos</a>
-                                </li>
-                                <?php echo $teste; ?>
                             </ul>
                         </li>
                         <li>
@@ -42,6 +46,17 @@
                                 </li>
                                 <li>
                                     <a href="suplenciaListagem.php">Suplência</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Quarto<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="listagemQuarto.php?Sexo=Feminino">Quarto das meninas</a>
+                                        </li>
+                                        <li>
+                                            <a href="listagemQuarto.php?Sexo=Masculino">Quarto dos meninos</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -83,7 +98,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Desistência</a>
+                            <a href="desistencia.php"><i class="fa fa-table fa-fw"></i> Desistência</a>
                         </li>
                     </ul>
                 </div>
