@@ -72,7 +72,7 @@
 												include '../php/Banco.php';
 												
 												$Recebe = mysql_query('SELECT `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`,  `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
-														                FROM  `encontrista`  INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+														                FROM  `encontrista`  INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade or comunidade.Nome=encontrista.Outro
 														                WHERE  Desistencia = 0  ORDER BY `Idade` ASC');
 												$IdFicha;$NomeEncontrista;	$Comunidade;$Idade;	$Valor;$contador=0;
 												
@@ -84,9 +84,7 @@
 													$Idade[$contador] = $linha["Idade"];	$contador++;
 												}
 												$contador=0;
-												
-												
-												while($contador<count($Nome)){
+												while($contador<count($NomeEncontrista)){
 													echo'<tr class="odd gradeX">
 															<td><input type="checkbox" name="Id[]" value="'.$IdFicha[$contador].'"></td>
 															<td>'.$IdFicha[$contador].'</td>

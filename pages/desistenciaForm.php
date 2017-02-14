@@ -17,10 +17,10 @@
 
     if (isset($_GET['acao'])){
         if($_GET['acao'] == 'cadastrarDesistencia'){
-            $encontrista->setNome($_POST['Justificativa']);
             $id = $_POST['IdFicha'];
             $just = $_POST['Justificativa'];
-            $resposta =  $encontristaController->cadastrarDesistencia($id, $just);
+            $datadesistencia = $_POST['DataDesistencia'];
+            $resposta =  $encontristaController->cadastrarDesistencia($id, $just,$datadesistencia);
         }
         
     }
@@ -65,9 +65,9 @@
                             <input type="text" class="form-control" name="IdFicha" value="<?php echo $myEncontrista["IdFicha"]; ?>" readonly>
                           </div>
                          
-                          <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
+                          <label for="NomeEncontrista" class="col-sm-1 col-form-label">Nome:</label>
                           <div class="col-sm-5">
-                            <input type="text" class="form-control" name="Nome" value="<?php echo $myEncontrista["Nome"]; ?>" readonly>
+                            <input type="text" class="form-control" name="NomeEncontrista" value="<?php echo $myEncontrista["NomeEncontrista"]; ?>" readonly>
                           </div>
                         </div>
                         <div class="form-group row">

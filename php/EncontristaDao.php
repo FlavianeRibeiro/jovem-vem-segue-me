@@ -136,7 +136,7 @@ class Encontrista{
     public function getByValor($Valor_){
         $sql = "select  `encontrista`.`IdFicha`, `encontrista`.`NomeEncontrista`, `encontrista`.`Idade`, `encontrista`.`Valor`, `comunidade`.`Nome` as Comunidade
                 FROM  `encontrista` 
-                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade
+                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade OR comunidade.Nome=encontrista.Outro
                 WHERE  Desistencia=0 AND Valor='".$Valor_." '";
         return mysql_query($sql);
     }
@@ -158,6 +158,14 @@ class Encontrista{
     public function getTotalEncontristasPorValor(){
         $sql = 'SELECT DISTINCT Valor, (SELECT COUNT( * ) FROM encontrista enc WHERE encontrista.Valor = enc.Valor) AS total_Valor FROM  encontrista ORDER BY Valor';
         return mysql_query($sql);
+    }
+
+    public function getRemedio(){
+        $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`NomeEncontrista` ,  `encontrista`.`Idade` ,  `encontrista`.`Q_Remedio` , `comunidade`.`Nome` AS Comunidade
+                FROM  `encontrista` 
+                INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade OR comunidade.Nome = encontrista.Outro
+                WHERE  `Remedio` =  'Sim'";
+                return mysql_query($sql);
     }
     
     
