@@ -9,40 +9,42 @@
     <title>Jovem vem e segue-me</title>
     <?php
         include './template/styles.html';
+                include '../php/Banco.php';
         session_start();
 		if(isset($_SESSION["IdEquipe"])){
-			$IdEquipe= $_SESSION["IdEquipe"];
+			$IdEquipe2= $_SESSION["IdEquipe"];
 		    $g= $_SESSION["NomeEquipe"];
-		    $Status= $_SESSION["Status"];
-		    $Equipe= $_SESSION["Equipe"];
+		    $Status2= $_SESSION["Status"];
+		    $Equipe2= $_SESSION["Equipe"];
 		}else{ header('Location: ../pages/login.php');}
     ?>
 </head>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <?php 
-                include "./template/barraSuperior.php";
-                include "./template/barraLateral.php";
-                include '../php/Banco.php';
-                    $Recebe = mysql_query("SELECT * FROM  `equipe`");
-                    $Nome;$Sexo;$Fixo;$Celular;$Operadora;$Email;$Senha;$Comunidade;$Equipe;$Status;
-                    
-                    $contador=0;
-                    
-                    while($linha = mysql_fetch_array($Recebe)){
-                        $Nome[$contador] = $linha["Nome"];
-                        $Fixo[$contador] = $linha["Fixo"];
-                        $Celular[$contador] = $linha["Celular"];
-                        $Operadora[$contador]= $linha["Operadora"];
-                        $Email[$contador] = $linha["Email"];
-                        $Senha[$contador] = $linha["Senha"];
-                        $Comunidade[$contador] = $linha["Comunidade"];
-                        $Equipe[$contador] = $linha["Equipe"];
-                        $Status[$contador] = $linha["Status"];
-                        $contador++;
-                    }
-            ?>
+        <?php  
+            if ($Status2 == 'Equipe'){include "./template/barraLateral.php";$permissao='disabled';}
+            else if(($Status == 'Coordenador') && ($Equipe != 'Secretaria')) {include "./template/Barra.Lateral.php";$permissao='';}
+            else if(($Status == 'Coordenador') && ($Equipe == 'Secretaria')) {include "./template/BarraLateral.php";$permissao='';}
+            else if($Status == 'ADMIN'){include "./template/Barralateral.php"; $permissao=''; }
+            include "./template/barraSuperior.php";
+                $Recebe = mysql_query("SELECT * FROM  `retiro`.`equipe`");
+                $NomeEquipe;$Sexo;$Fixo;$Celular;$Operadora;$Email;$Senha;$Comunidade;$Equipe;$Status; $contador=0;
+                
+                while($linha = mysql_fetch_array($Recebe)){
+                    $Idequipe[$contador] = $linha["IdEquipe"];
+                    $Nomeequipe[$contador] = $linha["NomeEquipe"];
+                    $Fixo[$contador] = $linha["Fixo"];
+                    $Celular[$contador] = $linha["Celular"];
+                    $Operadora[$contador]= $linha["Operadora"];
+                    $Email[$contador] = $linha["Email"];
+                    $Senha[$contador] = $linha["Senha"];
+                    $Comunidade[$contador] = $linha["Comunidade"];
+                    $equipe[$contador] = $linha["Equipe"];
+                    $status[$contador] = $linha["Status"];
+                    $contador++;
+                }
+        ?>
         </nav>
 
         <div id="page-wrapper">
@@ -67,69 +69,60 @@
                                     <th>Nome</th>
                                     <th>Fixo</th>
                                     <th>Celular</th>
-                                    <th>Operadora</th>
                                     <th>Email</th>
                                     <th>Comunidade</th>
                                     <th>Equipe</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                $contador=0;
-                                while($contador<count($Nome)){
-                                    if($Status[$contador] == "Coordenador"){
+                            <?php $contador=0;
+                                while($contador<count($Idequipe)){
+                                    if($status[$contador] == "Coordenador"){
                                         echo'<tr class="danger">
-                                            <td>'.$Nome[$contador].'</td>
+                                            <td>'.$Nomeequipe[$contador].'</td>
                                             <td>'.$Fixo[$contador].'</td>
                                             <td>'.$Celular[$contador].'</td>
-                                            <td>'.$Operadora[$contador].'</td>
                                             <td>'.$Email[$contador].'</td>
                                             <td>'.$Comunidade[$contador].'</td>
-                                            <td>'.$Equipe[$contador].'</td>
+                                            <td>'.$equipe[$contador].'</td>
                                         </tr>';  
-                                    }else if ($Equipe[$contador] == "Casal Apoio"){
+                                    }else if ($equipe[$contador] == "Casal Apoio"){
                                         echo'<tr class="info">
-                                            <td>'.$Nome[$contador].'</td>
+                                            <td>'.$Nomeequipe[$contador].'</td>
                                             <td>'.$Fixo[$contador].'</td>
                                             <td>'.$Celular[$contador].'</td>
-                                            <td>'.$Operadora[$contador].'</td>
                                             <td>'.$Email[$contador].'</td>
                                             <td>'.$Comunidade[$contador].'</td>
-                                            <td>'.$Equipe[$contador].'</td>
+                                            <td>'.$equipe[$contador].'</td>
                                         </tr>';  
-                                    }else if($Status[$contador]=="Equipe"){
+                                    }else if($status[$contador]=="Equipe"){
                                         echo'<tr class="odd gradeX">
-                                            <td>'.$Nome[$contador].'</td>
+                                            <td>'.$Nomeequipe[$contador].'</td>
                                             <td>'.$Fixo[$contador].'</td>
                                             <td>'.$Celular[$contador].'</td>
-                                            <td>'.$Operadora[$contador].'</td>
                                             <td>'.$Email[$contador].'</td>
                                             <td>'.$Comunidade[$contador].'</td>
-                                            <td>'.$Equipe[$contador].'</td>
+                                            <td>'.$equipe[$contador].'</td>
                                         </tr>';  
-                                    }else if($Status[$contador]=="Espiao"){
+                                    }else if($status[$contador]=="Espiao"){
                                         echo'<tr class="warning">
-                                            <td>'.$Nome[$contador].'</td>
+                                            <td>'.$Nomeequipe[$contador].'</td>
                                             <td>'.$Fixo[$contador].'</td>
                                             <td>'.$Celular[$contador].'</td>
-                                            <td>'.$Operadora[$contador].'</td>
                                             <td>'.$Email[$contador].'</td>
                                             <td>'.$Comunidade[$contador].'</td>
-                                            <td>'.$Equipe[$contador].'</td>
+                                            <td>'.$equipe[$contador].'</td>
                                         </tr>';  
-                                    }else if($Status[$contador]=="Apresentador"){
+                                    }else if($status[$contador]=="Apresentador"){
                                         echo'<tr class="success">
-                                            <td>'.$Nome[$contador].'</td>
+                                            <td>'.$Nomeequipe[$contador].'</td>
                                             <td>'.$Fixo[$contador].'</td>
                                             <td>'.$Celular[$contador].'</td>
-                                            <td>'.$Operadora[$contador].'</td>
                                             <td>'.$Email[$contador].'</td>
                                             <td>'.$Comunidade[$contador].'</td>
-                                            <td>'.$Equipe[$contador].'</td>
+                                            <td>'.$equipe[$contador].'</td>
                                         </tr>';  
                                     }
-                                    
-                                    
                                     $contador++;
                                 }
                             ?>
