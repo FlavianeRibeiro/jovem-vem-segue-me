@@ -47,17 +47,7 @@
                                 <li>
                                     <a href="suplenciaListagem.php">Suplência</a>
                                 </li>
-                                <li>
-                                    <a href="#"> Quarto<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="listagemQuarto.php?Sexo=Feminino">Quarto das meninas</a>
-                                        </li>
-                                        <li>
-                                            <a href="listagemQuarto.php?Sexo=Masculino">Quarto dos meninos</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

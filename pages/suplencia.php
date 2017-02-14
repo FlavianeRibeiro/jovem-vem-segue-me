@@ -2,23 +2,18 @@
     include './template/styles.html';
     include '../php/Banco.php';
         session_start();
-		if(isset($_SESSION["IdEquipe"])){
-			$IdEquipe= $_SESSION["IdEquipe"];
-		    $NomeEquipe= $_SESSION["NomeEquipe"];
-		    $Status= $_SESSION["Status"];
-		    $Equipe= $_SESSION["Equipe"];
-		}else{ header('Location: ../pages/login.php');}
+		if(!isset($_SESSION["IdEquipe"])){ header('Location: ../pages/login.php');}
     if (isset($_GET['acao'])){
         $acao = $_GET['acao'];
         $hue = $_GET['Id'];
-        $x = mysql_query("SELECT * FROM `Suplencia`  WHERE `IdSuplencia` = '".$hue."'");
-        $Nome;$Equipe;$Email;$Telefone;$Ficha;
+        $x = mysql_query("SELECT `NomeSuplencia`, `EquipeSuplencia`, `Email`, `Telefone`, `Ficha` FROM `Suplencia`   WHERE `IdSuplencia` = '".$hue."'");
+        $NomeSuplencia;$EquipeSuplencia;$Email;$Telefone;$Ficha;
         if($acao == 'Editar'){
             $contador=0;
                 while($linha = mysql_fetch_array($x)){
                     $Ficha = $linha["Ficha"];
-                    $Nome = $linha["Nome"];
-                    $Equipe= $linha["Equipe"];
+                    $NomeSuplencia = $linha["NomeSuplencia"];
+                    $EquipeSuplencia= $linha["EquipeSuplencia"];
                     $Email = $linha["Email"];
                     $Telefone = $linha["Telefone"];
                     $contador++;
@@ -27,8 +22,8 @@
             $permissao='disabled';
             while($linha = mysql_fetch_array($x)){
                     $Ficha = $linha["Ficha"];
-                    $Nome = $linha["Nome"];
-                    $Equipe= $linha["Equipe"];
+                    $NomeSuplencia = $linha["NomeSuplencia"];
+                    $EquipeSuplencia= $linha["EquipeSuplencia"];
                     $Email = $linha["Email"];
                     $Telefone = $linha["Telefone"];
                     $contador++;
@@ -85,27 +80,27 @@
                                 <input type="text" class="form-control" name="Ficha" id="Ficha"  value="<?php echo $Ficha;?>" <?php echo $permissao;?>>
                               </div>
                               <?php }?>
-                              <label for="Nome" class="col-sm-1 col-form-label">Nome:</label>
+                              <label for="NomeSuplencia" class="col-sm-1 col-form-label">Nome:</label>
                               <div class="col-sm-4">
-                                <input type="text" class="form-control" name="Nome" id="Nome" placeholder="Nome completo" value="<?php echo $Nome;?>" <?php echo $permissao;?>>
+                                <input type="text" class="form-control" name="NomeSuplencia" id="NomeSuplencia" placeholder="Nome completo" value="<?php echo $NomeSuplencia;?>" <?php echo $permissao;?>>
                               </div>
-                              <label for="Equipe" class="col-sm-1 col-form-label">Equipe:</label>
+                              <label for="EquipeSuplencia" class="col-sm-1 col-form-label">Equipe:</label>
                               <div class="col-sm-2">
-                                <select name="Equipe" id="Equipe" class="form-control" <?php echo $permissao;?>>
+                                <select name="EquipeSuplencia" id="EquipeSuplencia" class="form-control" <?php echo $permissao;?>>
                                     <option> </option>
-                                    <option name="Equipe" value="Bem Estar" <?php if($Equipe == 'Bem Estar') echo"selected";?>>Bem Estar</option>
-                                    <option name="Equipe" value="CG" <?php if($Equipe == 'CG') echo"selected";?>>CG</option>
-                                    <option name="Equipe" value="Comunicação" <?php if($Equipe == 'Comunicação') echo"selected";?>>Comunicação</option>
-                                    <option name="Equipe" value="Copa" <?php if($Equipe == 'Copa') echo"selected";?>>Copa</option>
-                                    <option name="Equipe" value="Casal Apoio" <?php if($Equipe == 'Casal Apoio') echo"selected";?>>Casal Apoio</option>
-                                    <option name="Equipe" value="Cozinha" <?php if($Equipe == 'Cozinha') echo"selected";?>>Cozinha</option>
-                                    <option name="Equipe" value="Decoração" <?php if($Equipe == 'Decoração') echo"selected";?>>Decoração</option>
-                                    <option name="Equipe" value="Intercessão e Liturgia" <?php if($Equipe == 'Intercessão e Liturgia') echo"selected";?>>Intercessão e Liturgia</option>
-                                    <option name="Equipe" value="Logistica" <?php if($Equipe == 'Logistica') echo"selected";?>>Logistica</option>
-                                    <option name="Equipe" value="Música" <?php if($Equipe == 'Música') echo"selected";?>>Música</option>
-                                    <option name="Equipe" value="Ordem e Vigilância" <?php if($Equipe == '>Ordem e Vigilância') echo"selected";?>>Ordem e Vigilância</option>
-                                    <option name="Equipe" value="Sala" <?php if($Equipe == 'Sala') echo"selected";?>>Sala</option>
-                                    <option name="Equipe" value="Secretaria" <?php if($Equipe == 'Secretaria') echo"selected";?>>Secretaria</option>
+                                    <option name="EquipeSuplencia" value="Bem Estar" <?php if($EquipeSuplencia == 'Bem Estar') echo"selected";?>>Bem Estar</option>
+                                    <option name="EquipeSuplencia" value="CG" <?php if($EquipeSuplencia == 'CG') echo"selected";?>>CG</option>
+                                    <option name="EquipeSuplencia" value="Comunicação" <?php if($EquipeSuplencia == 'Comunicação') echo"selected";?>>Comunicação</option>
+                                    <option name="EquipeSuplencia" value="Copa" <?php if($EquipeSuplencia == 'Copa') echo"selected";?>>Copa</option>
+                                    <option name="EquipeSuplencia" value="Casal Apoio" <?php if($EquipeSuplencia == 'Casal Apoio') echo"selected";?>>Casal Apoio</option>
+                                    <option name="EquipeSuplencia" value="Cozinha" <?php if($EquipeSuplencia == 'Cozinha') echo"selected";?>>Cozinha</option>
+                                    <option name="EquipeSuplencia" value="Decoração" <?php if($EquipeSuplencia == 'Decoração') echo"selected";?>>Decoração</option>
+                                    <option name="EquipeSuplencia" value="Intercessão e Liturgia" <?php if($EquipeSuplencia == 'Intercessão') echo"selected";?>>Intercessão e Liturgia</option>
+                                    <option name="EquipeSuplencia" value="Logistica" <?php if($EquipeSuplencia == 'Logistica') echo"selected";?>>Logistica</option>
+                                    <option name="EquipeSuplencia" value="Música" <?php if($EquipeSuplencia == 'Música') echo"selected";?>>Música</option>
+                                    <option name="EquipeSuplencia" value="Ordem e Vigilância" <?php if($EquipeSuplencia == '>Ordem') echo"selected";?>>Ordem e Vigilância</option>
+                                    <option name="EquipeSuplencia" value="Sala" <?php if($EquipeSuplencia == 'Sala') echo"selected";?>>Sala</option>
+                                    <option name="EquipeSuplencia" value="Secretaria" <?php if($EquipeSuplencia == 'Secretaria') echo"selected";?>>Secretaria</option>
                                 </select>
                               </div>
                             </div>

@@ -17,29 +17,19 @@
                 include "./template/barraLateral.php";
                 include '../php/Banco.php';
                     session_start();
-		if(isset($_SESSION["IdEquipe"])){
-			$IdEquipe= $_SESSION["IdEquipe"];
-		    $g= $_SESSION["NomeEquipe"];
-		    $Status= $_SESSION["Status"];
-		    $Equipe= $_SESSION["Equipe"];
-		}else{ header('Location: ../pages/login.php');}
-                    $Recebe = mysql_query("SELECT * FROM  `Suplencia`");
-                    $IdSuplencia;$Nome;$Equipe;$Email;$Telefone;$Ficha;$Devolvido;
+		            if(!isset($_SESSION["IdEquipe"])){ header('Location: ../pages/login.php');}
+                    $Recebe = mysql_query("SELECT `IdSuplencia`, `NomeSuplencia`, `EquipeSuplencia`, `Email`, `Telefone`, `Ficha`, `Devolvido` FROM `Suplencia` ");
+                    $IdSuplencia;$NomeSuplencia;$EquipeSuplencia;$Email;$Telefone;$Ficha;$Devolvido;
                     $contador=0;
                     
                     while($linha = mysql_fetch_array($Recebe)){
-                        $Ficha[$contador] = $linha["Ficha"];
-                        $IdSuplencia[$contador] = $linha["IdSuplencia"];
-                        $Nome[$contador] = $linha["Nome"];
-                        $Equipe[$contador] = $linha["Equipe"];
-                        $Email[$contador] = $linha["Email"];
-                        $Telefone[$contador] = $linha["Telefone"];
-                        $Devolvido[$contador] = $linha["Devolvido"];
-                        $contador++;
+                        $Ficha[$contador] = $linha["Ficha"];                    $IdSuplencia[$contador] = $linha["IdSuplencia"];
+                        $NomeSuplencia[$contador] = $linha["NomeSuplencia"];    $EquipeSuplencia[$contador] = $linha["EquipeSuplencia"];
+                        $Email[$contador] = $linha["Email"];                    $Telefone[$contador] = $linha["Telefone"];
+                        $Devolvido[$contador] = $linha["Devolvido"];            $contador++;
                     }
             ?>
         </nav>
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -69,40 +59,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <form action="teste.php" method="POST">
-                                <?php
-                                    $contador=0;
-                                    while($contador<count($Nome)){
+                                <form action="suplencia.php" method="POST">
+                                <?php $cont=0;
+                                    while($cont<count($IdSuplencia)){
                                         echo'<tr class="odd gradeX">';
-                                            if ($Ficha[$contador] == 0){
-                                                echo '
-                                                <td class="col-sm-1"><td></td>
-                                                <td>'.$IdSuplencia[$contador].'</td>
-                                                <td>'.$Nome[$contador].'</td>
-                                                <td>'.$Equipe[$contador].'</td>
-                                                <td class="center">'.$Telefone[$contador].'</td>
+                                            if ($Ficha[$cont] == 0){
+                                            echo '<td class="col-sm-1"><td></td>
+                                                <td>'.$IdSuplencia[$cont].'</td>
+                                                <td>'.$NomeSuplencia[$cont].'</td>
+                                                <td>'.$EquipeSuplencia[$cont].'</td>
+                                                <td class="center">'.$Telefone[$cont].'</td>
                                                 <td align="center"><a href="s
-                                                uplencia.php?acao=Ver&Id='.$IdSuplencia[$contador].'" button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>            
-                                                <td align="center"><a href="suplencia.php?acao=Editar&Id='.$IdSuplencia[$contador].'" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
+                                                uplencia.php?acao=Ver&Id='.$IdSuplencia[$cont].'" button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>            
+                                                <td align="center"><a href="suplencia.php?acao=Editar&Id='.$IdSuplencia[$cont].'" type="button" class="btn btn-info btn-circle" ><i class="fa fa-check"></i></a></td>
                                                 <td align="center"><a href="" type="button"class="btn btn-info btn-circle" ><i class="fa fa-times"></i></a></td>
                                             </tr>';
                                             }else {
-                                                echo '
-                                                <td>'.$Ficha[$contador].'</td><td></td>
-                                                <td>'.$IdSuplencia[$contador].'</td>
-                                                <td>'.$Nome[$contador].'</td>
-                                                <td>'.$Equipe[$contador].'</td>
-                                                <td class="center">'.$Telefone[$contador].'</td>
-                                                <td align="center"><a href="suplencia.php?acao=Ver&Id='.$IdSuplencia[$contador].'" button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
-                                                <td align="center"><a href="suplencia.php?acao=Editar&Id='.$IdSuplencia[$contador].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>';
-                                                if ($Devolvido[$contador] == 0){
-                                                    echo '<td align="center"><a href="suplencia.php?acao=ok&Id='.$IdSuplencia[$contador].'" type="button"  class="btn btn-info btn-circle" ><i class="fa fa-times"></i></a></td>';
+                                            echo '<td>'.$Ficha[$cont].'</td><td></td>
+                                                <td>'.$IdSuplencia[$cont].'</td>
+                                                <td>'.$NomeSuplencia[$cont].'</td>
+                                                <td>'.$EquipeSuplencia[$cont].'</td>
+                                                <td class="center">'.$Telefone[$cont].'</td>
+                                                <td align="center"><a href="suplencia.php?acao=Ver&Id='.$IdSuplencia[$cont].'" button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
+                                                <td align="center"><a href="suplencia.php?acao=Editar&Id='.$IdSuplencia[$cont].'" type="submit" type="button" class="btn btn-danger btn-circle" ><i class="fa fa-check"></i></a></td>';
+                                                if ($Devolvido[$cont] == 0){
+                                                    echo '<td align="center"><a href="suplencia.php?acao=ok&Id='.$IdSuplencia[$cont].'" type="button"  class="btn btn-info btn-circle" ><i class="fa fa-times"></i></a></td>';
                                                 }else {
-                                                    echo '<td align="center"><a href="suplencia.php?acao=&Id='.$IdSuplencia[$contador].'" type="button"  class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>';
+                                                    echo '<td align="center"><a href="suplencia.php?acao=&Id='.$IdSuplencia[$cont].'" type="button"  class="btn btn-danger btn-circle" ><i class="fa fa-times"></i></a></td>';
                                                 }
-                                                
                                             echo '</tr>'; }
-                                    $contador++;
+                                    $cont++;
                                     }
                                 ?>
                                 
