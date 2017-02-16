@@ -80,4 +80,8 @@ class EncontristaController {
         $encontrista = new Encontrista();
         return $encontrista->getTotalEncontristasPorValor();
     }
+  /*  public function obterRemedio(){
+        $encontrista = new Encontrista();
+        return $encontrista->getRemedio();
+    }*/
 }

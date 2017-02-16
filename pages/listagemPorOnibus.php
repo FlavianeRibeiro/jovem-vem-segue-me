@@ -61,7 +61,7 @@
 
 										while($linha = mysql_fetch_array($Recebe)){
 											$IdFicha[$contador] = $linha["IdFicha"];
-											$Nome[$contador] = $linha["NomeEncontrista"];
+											$NomeEncontrista[$contador] = $linha["NomeEncontrista"];
 											$Comunidade[$contador] = $linha["Comunidade"];
 											$Valor[$contador] = $linha["Valor"];
 											$contador++;
@@ -72,7 +72,7 @@
 										     
 									        echo'<tr class="odd gradeX">
 												<td>'.$IdFicha[$contador].'</td>
-												<td>'.$Nome[$contador].'</td>
+												<td>'.$NomeEncontrista[$contador].'</td>
 												<td>'.$Comunidade[$contador].'</td>
 												<td class="cenater">'.$Valor[$contador].'</td>
 											</tr>';

@@ -160,13 +160,13 @@ class Encontrista{
         return mysql_query($sql);
     }
 
-    public function getRemedio(){
+  /*  public function getRemedio(){
         $sql = "SELECT  `encontrista`.`IdFicha` ,  `encontrista`.`NomeEncontrista` ,  `encontrista`.`Idade` ,  `encontrista`.`Q_Remedio` , `comunidade`.`Nome` AS Comunidade
                 FROM  `encontrista` 
                 INNER JOIN  `comunidade` ON comunidade.IdComunidade = encontrista.Comunidade OR comunidade.Nome = encontrista.Outro
                 WHERE  `Remedio` =  'Sim'";
                 return mysql_query($sql);
-    }
+    }*/
     
     
     /*----------------------------

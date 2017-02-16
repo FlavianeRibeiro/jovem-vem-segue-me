@@ -20,6 +20,14 @@
     
     // Verifica qual formulario foi submetido
     if($acao == "cadastraEncontrista"){
+        echo $nomeenvio = $_POST['NomeEncontrista'];echo $emailenvio = $_POST['Email'];echo $idenvio = $_POST['IdFicha'];
+                        $assunto = "Confirmação de Cadastro do 9º Retiro";
+                        $mensagem = "Confirme seu cadastro clicando no link: https://retiro-flavianeribeiro.c9users.io/pages/ativar.php?Id=".$idenvio;
+                        $headers = "jovem.vemesegueme@gmail.com";
+                         $headers  = 'MIME-Version: 1.0' . "\r\n";
+      $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+                        mail($emailenvio,$assunto,$mensagem,$headers);
         //Atribuindo valores ao objeto
         $encontrista->setId($_POST['IdFicha']);               $encontrista->setNomeEncontrista($_POST['NomeEncontrista']);
         $encontrista->setDataNasc($_POST['DataNasc']);        $encontrista->setIdade($_POST['Idade']);
@@ -43,6 +51,7 @@
         $encontrista->setHorario($_POST['Horario']);          $encontrista->setAlergia($_POST['Alergia']);
         $encontrista->setQ_Alergia($_POST['Q_Alergia']);      $encontrista->setSexo($_POST['Sexo']);
         $encontrista->setComunidade($_POST['Comunidade']);
+        
         
        //se comunidade for igual a 0, selecionou "Outros", o campo 'Outros contem o nome da nova comunidade'
        if($_POST['Comunidade'] == 0){ $x =$_POST['Outro'];
@@ -480,10 +489,15 @@
                         </div>
                         </div>
                     </div>
-                    <?php if(!isset($permissao)) echo "<button type='submit' class='btn btn-danger'>Cadastrar</button>";?>
+                    
+                    <?php if(!isset($permissao)) echo "<button type='submit' value ='cadastra' class='btn btn-danger'>Cadastrar</button>";?>
                                 <button type="button" class="btn btn-primary" id="cancelar" onclick="location.href='index.php';">Voltar</button>
 								<br>
                             </form> 
+                    <?php
+                    
+                        
+                    ?>
                 </div>
             </div>
             <!-- /.row -->

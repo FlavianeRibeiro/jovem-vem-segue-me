@@ -5,6 +5,8 @@
     session_start();
 	if(isset($_SESSION["IdEquipe"])){
 		$IdEquipe= $_SESSION["IdEquipe"];
+	    $g= $_SESSION["NomeEquipe"];
+	    $Status= $_SESSION["Status"];
 	    $Equipe= $_SESSION["Equipe"];
 	}else{ header('Location: ../pages/login.php');}
 ?>
@@ -39,7 +41,7 @@
             
         <!-- ********************************* listagem ****************************************-->
         <?php
-            $listaDeEncontristas = $encontrista->obterRemedio();
+            $listaDeEncontristas = $encontrista->listarEncontristasNaoDesistentes();
         ?>
         <div class="row">
             <div class="col-lg-12">
@@ -54,9 +56,8 @@
                                     <th>Nº Ficha</th>
                                     <th>Nome</th>
                                     <th>Comunidade</th>
-                                    <th>Idade</th>
-                                    <th>Remedio</th>
-                                    <th>Ver Fichas</th>
+                                    <th>Confirmação</th>
+                                    <th>Eviar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,11 +66,8 @@
                                     <td><?php echo $myEncontrista['IdFicha'];?></td>
                                     <td><?php echo $myEncontrista['NomeEncontrista'];?></td>
                                     <td><?php echo $myEncontrista['Comunidade'];?></td>
-                                    <td><?php echo $myEncontrista['Idade'];?></td>
-                                    <td><?php echo $myEncontrista['Valor'];?></td>
-                                    <td align="center"><a href="encontristaForm.php?acao=verFicha&Id=<?php echo $myEncontrista['IdFicha'];?>"<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button></td>
-                                    <td align="center"><a href="encontristaForm.php?acao=editarFicha&Id=<?php echo $myEncontrista['IdFicha'];  ?>" type="button" class="btn btn-info btn-circle <?php echo $permissao;?>" ><i class="fa fa-check"></i></a></td>
-                                    <td align="center"><a href="#" type="button" onclick="registrarDesistencia(<?php echo $myEncontrista['IdFicha'];?>)" class="btn btn-danger btn-circle <?php echo $permissao;?>"><i class="fa fa-times"></i></a></td>
+                                    <td align="center"></td>
+                                    <td align="center"><a href="#" type="button" class="btn btn-danger btn-circle <?php echo $permissao;?>"><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
